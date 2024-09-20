@@ -1,13 +1,10 @@
-// Gets the available form from the site (Registration or Login)
 function getForm() {
-    // Initalize variables to null
+    // Set variables to null, try to get login form, registration form.
     let registrationForm = null;
     let loginForm = null;
 
-    // Check if they are vailable
     registrationForm = document.getElementById("registration-form") ?? null;
 
-    // Check if the login form is available
     loginForm = document.getElementById("login-form") ?? null;
 
     if(registrationForm && loginForm){
@@ -31,41 +28,39 @@ form = getForm()
 function customizeValidationMessages(form){
     form.addEventListener('submit', function(e){
         e.preventDefault(); // Prevent default browser validation message
+        e.stopPropagation()
         e.target.setCustomValidity(); // Clear any existing custom validity
 
-        // Set custom validtation messages
-        //Registration form settings
-        if(form.id === 'registration-form'){
+        // Set custom validtation messages        
+        if(form.id === 'registration-form' || form.id === 'login-form'){
             if(e.target.id === 'email'){
-                e.target.setCustomValidity("Kérlek add meg az email-cimedet.");
+                e.target.setCustomValidity("Kérlek add meg az email-cimedet!");
             }
-            else if(e.target.id='confirm_email'){
-                e.target.setCustomValidity("Kérlek erősítsd meg ay email címedet!");
+            else if(e.target.id ==='username'){
+                e.target.setCustomValidity("Kérlek adj meg a felhasználónevet!");
             }
-            else if(e.target.id='username'){
-                e.taget.setCustomValidity("Kérlek adj meg a felhasználónevet!");
+            else if(e.target.id === 'password'){
+                e.target.setCustomValidity("Kérlek adj meg egy jelszót!");
             }
-            else if(e.target.id='password'){
-                e.taget.setCustomValidity("Kérlek adj meg egy jelszót!");
             }
-            else if(e.target.id='confirm_password'){
-                e.taget.setCustomValidity("Kérlek erősítsd meg a jelszavadat'!");
-            }
-        }
-        // Login form settings
-        else if(form.id === 'login-form'){
-            if(form.id = 'registration-form'){
-                if(e.target.id === 'email'){
-                    e.target.setCustomValidity("Kérlek add meg az email-cimedet.");
-                }
-                else if(e.target.id='username'){
-                    e.taget.setCustomValidity("Kérlek add meg a felhasználóneved!");
-                }
-                else if(e.target.id='password'){
-                    e.taget.setCustomValidity("Kérlek add meg a jelszavadat!");
-                }
-            }
-        }
         
-    })
+        // Registration form settings
+        if(form.id === 'registration-form'){
+            if(e.target.id === 'confirm_email'){
+                e.target.setCustomValidity("Kérlek erősítsd meg a email címedet!");
+            } else if (e.target.id === 'confirm_password'){
+                e.target.setCustomValidity("Kérlek erősítsd meg a jelszavadat!");
+            }
+        }
+
+        // Trigger the validtaion. Process the form if its valid.
+        if(!form.checkValidity()){
+            form.reportValidity();
+        }
+        else{
+            form.submit();
+        }
+    });
 }
+
+customizeValidationMessages(form);
