@@ -1,4 +1,4 @@
-# Könyves Weboldal Fejlesztési Specifikáció
+# Könyvajánló Fejlesztési Specifikáció
 
 ## 1. Projekt Célja
 A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználók könyveket böngészhetnek, olvashatnak róluk véleményeket (hozzászólásokat), és külső linkeken keresztül megvásárolhatják azokat. A felhasználók véleményeket írhatnak a könyvekről, mások véleményeit kommentálhatják, és a könyveket is értékelhetik. A szűrési lehetőségek több szerzőre és kategóriára is kiterjednek. 
