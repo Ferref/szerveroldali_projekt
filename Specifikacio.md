@@ -1,17 +1,13 @@
 # Könyves Weboldal Fejlesztési Specifikáció
 
 ## 1. Projekt Célja
-A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználók könyveket böngészhetnek, olvashatnak róluk véleményeket (hozzászólásokat), és külső linkeken keresztül megvásárolhatják azokat. A felhasználók véleményeket írhatnak a könyvekről, mások véleményeit kommentálhatják, és a könyveket is értékelhetik. A szűrési lehetőségek több szerzőre és kategóriára is kiterjednek. Határidőre fel kell tölteni az alkalmazás telepítőjét, amely tartalmazza:
-
-- A fájlokat, amelyeket egyszerűen átmásolva az alkalmazás használható.
-- A teszteléshez szükséges adatokkal feltöltött adatbázis exportját, amelyet beimportálva az alkalmazás használható.
+A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználók könyveket böngészhetnek, olvashatnak róluk véleményeket (hozzászólásokat), és külső linkeken keresztül megvásárolhatják azokat. A felhasználók véleményeket írhatnak a könyvekről, mások véleményeit kommentálhatják, és a könyveket is értékelhetik. A szűrési lehetőségek több szerzőre és kategóriára is kiterjednek. 
 
 ## 2. Szerepkörök Felosztása (1. hét)
 
 - **Frontend fejlesztő**: HTML, CSS, Bootstrap, JavaScript alapú frontend komponensek készítése.
 - **Backend fejlesztő**: PHP alapú backend fejlesztés, adatbázis kezelés.
 - **Fullstack fejlesztő**: Frontend és backend fejlesztés kombinációja, integráció.
-- **Specifikáció felelős**: Dokumentáció készítése, követelmények kezelése.
 
 ## 3. Funkciók és Követelmények
 
