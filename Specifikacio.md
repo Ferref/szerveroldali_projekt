@@ -5,13 +5,33 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
 
 ## 2. Szerepkörök Felosztása (1. hét)
 
-- **Frontend fejlesztő**: HTML, CSS, Bootstrap, JavaScript alapú frontend komponensek készítése.
+- **Frontend fejlesztő**: HTML, CSS, Bootstrap, JavaScript alapú frontend komponensek készítése. Ezek PHP modulokra bontása.
 - **Backend fejlesztő**: PHP alapú backend fejlesztés, adatbázis kezelés.
-- **Fullstack fejlesztő**: Frontend és backend fejlesztés kombinációja, integráció.
+- **Fullstack fejlesztő**: Frontend és backend fejlesztés kombinációja, valamint dokumentáció és ppt.
 
 ## 3. Funkciók és Követelmények
 
+### Oldalak
+   - ***Belépés nélkül elérhető**
+   - Főoldal
+   - Belépés
+   - Regisztráció
+   - Könyv részletes megtekintő
+   - Író részletes megtekintő
+   - Keresés
+   - **Alap felhasználó**
+   - Felhasználói profil
+   - Mentett könyvek
+   - Kedvencek
+   - **Tartalomkezelő felhasználó**
+   - Tartalomkezelés
+   - **Admin**
+   - Felhasználókezelés
+
 ### Frontend
+
+Bootstrap alapú reszponzív dizájn használata.
+Színek, betűtípusok és elrendezés előre meghatározott sablon alapján.
 
 1. **Főoldal**
    - Könyvajánlók megjelenítése kártyaformátumban (Bootstrap kártyák).
@@ -20,24 +40,26 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
    - Több szűrő egyidejű alkalmazása (pl. szerzők és kategóriák egyszerre).
 
 2. **Könyv Részletei Oldal**
-   - Könyv címe, szerzője, borítóképe, leírása, kiadási éve, kategória.
+   - Könyv címe, szerzője, borítóképe, leírása, kiadási éve, kategóriáji.
+   - A könyvek értékelhetőek 1-5 csillag alapján, amely az összesített értékelést adja meg.
+   - Könyv kedvencelése.
+   - Könyv mentése (olvasott, olvasandó).
    - Felhasználói vélemények megjelenítése a könyvismertető alján, új vélemény és hozzászólás a véleményhez lehetősége.
    - Vélemények és hozzászólások értékelése:
      - **Vélemények**: Fel és le gombokkal értékelhetőek.
      - **Hozzászólások**: Fel és le gombokkal értékelhetőek.
-   - Csak a könyvek értékelhetőek 1-5 csillag alapján, amely az összesített értékelést adja meg.
    - Hozzászólást csak véleményre lehet írni, utána pedig az arra adott hozzászólásra lehet újabb hozzászólást írni.
    - Külső linkek a könyv megvásárlásához.
+   - Kategória alapján hasonló könyvek ajánlása.
+   - Más könyvek az alkotótól.
 
 3. **Felhasználói Profil**
-   - Vélemények és hozzászólások listázása, szerkesztése és törlése.
-   - Fiókadatok módosítása (pl. jelszó, e-mail, profilkép).
-   - Regisztrációs dátum megjelenítése.
+   - Fiókadatok megjelenítése és módosítása (pl. jelszó, e-mail, profilkép).
    - Profilkép feltöltési lehetőség.
-
-4. **Dizájn és Felület**
-   - Bootstrap alapú reszponzív dizájn használata.
-   - Színek, betűtípusok és elrendezés előre meghatározott sablon alapján.
+   - Regisztrációs dátum megjelenítése.
+   - Kedvenc könyvek és írók megjelenítése.
+   - Mentett könyvek megjelenítése (Elolvasott, Várólistás)
+   - Vélemények és hozzászólások listázása, szerkesztése és törlése.
 
 ### Backend
 
@@ -76,7 +98,7 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
    - Linkek validálása és érvényességük ellenőrzése.
 
 2. **SEO Optimalizálás**
-   - Kulcsszavak és meta adatok használata a jobb keresőoptimalizálás érdekében.
+   - Kulcsszavak és kategóriák használata a jobb keresőoptimalizálás érdekében.
 
 ## 4. Ütemterv (6 hetes ütemezés)
 
