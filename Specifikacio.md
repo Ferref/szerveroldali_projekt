@@ -12,21 +12,21 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
 ## 3. Funkciók és Követelmények
 
 ### Oldalak
-    **Belépés nélkül elérhető**
-   - Főoldal
-   - Belépés
-   - Regisztráció
-   - Könyv részletes megtekintő
-   - Író részletes megtekintő
-   - Keresés
-    **Alap felhasználó**
-   - Felhasználói profil
-   - Mentett könyvek
-   - Kedvencek
-    **Tartalomkezelő felhasználó**
-   - Tartalomkezelés
-    **Admin**
-   - Felhasználókezelés
+   - **Belépés nélkül elérhető**
+      - Főoldal
+      - Belépés
+      - Regisztráció
+      - Könyv részletes megtekintő
+      - Író részletes megtekintő
+      - Keresés
+   - **Alap felhasználó**
+      - Felhasználói profil
+      - Mentett könyvek
+      - Kedvencek
+   - **Tartalomkezelő felhasználó**
+      - Tartalomkezelés
+   - **Admin**
+      - Felhasználókezelés
 
 ### Frontend
 
