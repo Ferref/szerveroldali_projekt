@@ -1,11 +1,11 @@
 # Könyvajánló Fejlesztési Specifikáció
 
 ## 1. Projekt Célja
-A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználók könyveket böngészhetnek, olvashatnak róluk véleményeket (hozzászólásokat), és külső linkeken keresztül megvásárolhatják azokat. A felhasználók véleményeket írhatnak a könyvekről, mások véleményeit kommentálhatják, és a könyveket is értékelhetik. A szűrési lehetőségek több szerzőre és kategóriára is kiterjednek. 
+A projekt célja egy **könyvalánló**s oldal létrehozása. A felhasználók könyvek és írók között böngészhetnek. Olvashatnak és írhatnak a könyvekről és írókról véleményeket, valamint ezeket a hozzászólásokat értékelhetik is. Taláhatnak külső linkeket a könyvek megvásárlásához. Értékelhetik a könyveket és az írókat is egyaránt. Összetett szűrésre is van lehetőség, kategória, cím és író szerint is. 
 
 ## 2. Szerepkörök Felosztása (1. hét)
 
-- **Frontend fejlesztő**: HTML, CSS, Bootstrap, JavaScript alapú frontend komponensek készítése. Ezek PHP modulokra bontása.
+- **Frontend fejlesztő**: HTML, CSS (Bootstrap), JavaScript alapú frontend komponensek készítése. Ezek PHP modulokra bontása.
 - **Backend fejlesztő**: PHP alapú backend fejlesztés, adatbázis kezelés.
 - **Fullstack fejlesztő**: Frontend és backend fejlesztés kombinációja, valamint dokumentáció és ppt.
 
@@ -30,8 +30,9 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
 
 ### Frontend
 
-Bootstrap alapú reszponzív dizájn használata.
-Színek, betűtípusok és elrendezés előre meghatározott sablon alapján.
+Elsődlegesen a Bootstrap (CSS) keretrendszer által nyújtott layout és komponensek használata.
+Saját CSS csak abban az esetben, ha a kívánt dizájn elérését Bootstrap kijelölővel nem lehet megvalósítani.
+Színek, betűtípusok és elrendezés előre meghatározott sablon alapján kozisztensen egy egységes dizájn érdekébe.
 
 1. **Főoldal**
    - Keresés
