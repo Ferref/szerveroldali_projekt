@@ -12,20 +12,20 @@ A projekt célja egy olyan könyves weboldal létrehozása, ahol a felhasználó
 ## 3. Funkciók és Követelmények
 
 ### Oldalak
-   - ***Belépés nélkül elérhető**
+    **Belépés nélkül elérhető**
    - Főoldal
    - Belépés
    - Regisztráció
    - Könyv részletes megtekintő
    - Író részletes megtekintő
    - Keresés
-   - **Alap felhasználó**
+    **Alap felhasználó**
    - Felhasználói profil
    - Mentett könyvek
    - Kedvencek
-   - **Tartalomkezelő felhasználó**
+    **Tartalomkezelő felhasználó**
    - Tartalomkezelés
-   - **Admin**
+    **Admin**
    - Felhasználókezelés
 
 ### Frontend
@@ -34,17 +34,19 @@ Bootstrap alapú reszponzív dizájn használata.
 Színek, betűtípusok és elrendezés előre meghatározott sablon alapján.
 
 1. **Főoldal**
-   - Könyvajánlók megjelenítése kártyaformátumban (Bootstrap kártyák).
-   - Kategóriák és szerzők szerinti böngészés (HTML dropdown listák és gombok).
-   - Keresési lehetőség cím, szerző, kiadási év vagy kategória alapján.
-   - Több szűrő egyidejű alkalmazása (pl. szerzők és kategóriák egyszerre).
+   - Keresés
+      - Kategóriák és szerzők szerinti böngészés (HTML dropdown listák és gombok).
+      - Keresési lehetőség cím, szerző, kiadási év vagy kategória alapján.
+      - Több szűrő egyidejű alkalmazása (pl. szerzők és kategóriák egyszerre).
+   - Random kedv csináló, egy Véletlenszerű könyvet megjelenít meg.
+   - Legjobb könyvek megjelenítése kártyaformátumban (Bootstrap kártyák).
 
 2. **Könyv Részletei Oldal**
-   - Könyv címe, szerzője, borítóképe, leírása, kiadási éve, kategóriáji.
+   - Könyv adatainak kiírása, mint címe, szerzője, borítóképe, leírása, kiadási éve, kategóriáji.
    - A könyvek értékelhetőek 1-5 csillag alapján, amely az összesített értékelést adja meg.
    - Könyv kedvencelése.
-   - Könyv mentése (olvasott, olvasandó).
-   - Felhasználói vélemények megjelenítése a könyvismertető alján, új vélemény és hozzászólás a véleményhez lehetősége.
+   - Könyv mentése (elolvasott, várólistás).
+   - Felhasználói vélemények megjelenítése, új vélemény és hozzászólás a véleményhez lehetősége.
    - Vélemények és hozzászólások értékelése:
      - **Vélemények**: Fel és le gombokkal értékelhetőek.
      - **Hozzászólások**: Fel és le gombokkal értékelhetőek.
