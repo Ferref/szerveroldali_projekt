@@ -1,7 +1,42 @@
 # Könyvajánló Fejlesztési Specifikáció
 
 ## 1. Projekt Célja
-A projekt célja egy **könyvalánló**s oldal létrehozása. A felhasználók könyvek és írók között böngészhetnek. Olvashatnak és írhatnak a könyvekről és írókról véleményeket, valamint ezeket a hozzászólásokat értékelhetik is. Taláhatnak külső linkeket a könyvek megvásárlásához. Értékelhetik a könyveket és az írókat is egyaránt. Összetett szűrésre is van lehetőség, kategória, cím és író szerint is. 
+A projekt célja egy **könyvajánló**s oldal létrehozása. A felhasználók könyvek és írók között böngészhetnek. Olvashatnak és írhatnak a könyvekről és írókról véleményeket, valamint ezeket a hozzászólásokat értékelhetik is. Találhatnak külső linkeket a könyvek megvásárlásához. Értékelhetik a könyveket és az írókat is egyaránt. Összetett szűrésre is van lehetőség, kategória, cím és író szerint is.
+
+Az oldal célja, hogy segítse az olvasókat a megfelelő könyv kiválasztásában, lehetőséget biztosítson a könyvek és szerzők értékelésére és véleményezésére, valamint támogassa a könyvek körüli közösségi interakciókat. Az oldal felhasználóbarát felülete, keresési és szűrési lehetőségei révén megkönnyíti az érdeklődők számára a könyvek felfedezését, és lehetőséget nyújt arra, hogy a felhasználók megosszák véleményüket és tapasztalataikat másokkal. 
+
+A projekt további célja, hogy a felhasználók számára teljes körű adminisztrációs és tartalomkezelési funkciókat is biztosítson, mint például új könyvek és szerzők felvétele, vélemények moderálása, valamint a felhasználói interakciók és a közösség menedzselése.
+
+### Felhasználói Típusok és Funkcióik
+
+1. **Vendég Felhasználó**:
+   - **Jogosultságok**:
+     - Böngészhet a könyvek és szerzők között.
+     - Olvashatja a könyvekről írt véleményeket és hozzászólásokat.
+   - **Korlátok**:
+     - Nem írhat véleményeket és nem értékelheti azokat.
+     - Nem használhatja a mentési és kedvencelési funkciókat.
+
+2. **Regisztrált Felhasználó**:
+   - **Jogosultságok**:
+     - Írhat véleményeket és hozzászólhat mások véleményeihez.
+     - Értékelheti a könyveket csillagok alapján (1-5).
+     - Hozzáadhat könyveket a kedvenceihez, valamint elolvasottként vagy várólistára helyezheti őket.
+     - Szerkesztheti és törölheti saját véleményeit és hozzászólásait.
+     - Személyes profilt hozhat létre és kezelheti fiókadatait (név, e-mail, jelszó, profilkép).
+
+3. **Tartalomkezelő Felhasználó**:
+   - **Jogosultságok**:
+     - Új könyveket, szerzőket és kategóriákat adhat hozzá az adatbázishoz.
+     - Moderálhatja a felhasználói véleményeket és hozzászólásokat, és szükség esetén törölheti azokat.
+     - Kezelheti a felhasználók által beküldött hibajelentéseket és javaslatokat.
+
+4. **Adminisztrátor**:
+   - **Jogosultságok**:
+     - Teljes hozzáféréssel rendelkezik az oldal összes funkciójához és adatához.
+     - Felhasználói jogosultságokat állíthat be, új tartalomkezelőket és adminokat hozhat létre.
+     - Kezelheti az oldal struktúráját, dizájn elemeit és alapvető működési beállításait.
+     - Vezérelheti az oldal biztonsági beállításait és biztosíthatja az adatvédelem megfelelő szintjét.
 
 ## 2. Szerepkörök Felosztása (1. hét)
 
