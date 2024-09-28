@@ -28,15 +28,12 @@ A projekt további célja, hogy a felhasználók számára teljes körű adminis
 3. **Tartalomkezelő Felhasználó**:
    - **Jogosultságok**:
      - Új könyveket, szerzőket és kategóriákat adhat hozzá az adatbázishoz.
-     - Moderálhatja a felhasználói véleményeket és hozzászólásokat, és szükség esetén törölheti azokat.
      - Kezelheti a felhasználók által beküldött hibajelentéseket és javaslatokat.
 
 4. **Adminisztrátor**:
    - **Jogosultságok**:
      - Teljes hozzáféréssel rendelkezik az oldal összes funkciójához és adatához.
      - Felhasználói jogosultságokat állíthat be, új tartalomkezelőket és adminokat hozhat létre.
-     - Kezelheti az oldal struktúráját, dizájn elemeit és alapvető működési beállításait.
-     - Vezérelheti az oldal biztonsági beállításait és biztosíthatja az adatvédelem megfelelő szintjét.
 
 ## 2. Szerepkörök Felosztása (1. hét)
 
