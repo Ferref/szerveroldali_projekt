@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Inknut Antiqua";
+    src: url("./InknutAntiqua-Regular.ttf");
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.content-frame{
+    flex: 1;
+}
+p{
+    padding: 0;
+    margin: 0;
+}
+*{
+    font-family: "Inknut Antiqua";
+    /*"roboto"*/
+}
+.font-roboto{
+    font-family: roboto;
+ }
+ 
+.bi{
+    -webkit-text-stroke: 0.8px;
+    font-size: 1.2em;
+}
+body{
+    background-color: #D5E3EB;
+}
+.rounded-20{
+    border-radius: 20px;
+}
+.rounded-top-20{
+    border-radius: 20px 20px 0 0;
+}
+.top-line, .bottom-line{
+    height: 20px;
+    width: 150px;
+    position: relative;
+    left: 70px;
+}
+.top-line{
+   background-color: #4B6587;
+}
+.bottom-line{
+    background-color: #7FB2D7;
+ }
+ /*SZínek*/
+ .my-blue{ color: #4B6587; }
+ .my-light-blue{ color: #7FB2D7; }
+ .my-gray{ color: #858585; }
+ .my-gray-3{ color: #333; }
+ .my-light-gray{ color: #AEAEAE; }
+ .my-white-blue{ color: #D5E3EB; }
+ .my-star-yellow{ color: #ffeb37; }
+
+ .bg-my-blue{ background-color: #4B6587; }
+ .bg-my-light-blue{ background-color: #7FB2D7; }
+ .bg-my-gray{ background-color: #858585; }
+ .bg-my-gray-3{ background-color: #333; }
+ .bg-my-light-gray{ background-color: #AEAEAE; }
+ .bg-my-white-blue{ background-color: #D5E3EB; }
+
+ .bg-blue-wave{
+    background-image: url("../media/images/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: local;
+ }
+
+ .header .nav-item a{
+    line-height: 45px;
+    height: 45px;
+ }
+
+ .header a:hover{
+    color: #4B6587;
+ }
+ .block-icon-circle{
+   line-height: 35px;
+    width: 35px;
+    height: 35px;
+ }
+ .header nav{
+    box-shadow: 0 0.3rem 0.5rem rgb(127, 178, 215,0.15);
+ }

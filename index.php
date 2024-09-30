@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regisztráció</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <script src="../bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-</head>
-<body>
 <?php
-    echo "Logged in";
+//Oldal változók beállítása
+$ROOT = "./";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
+require_once($ROOT."generate.php"); //`generate.php` meghívása
+$testPage = new Generate();
+$testPage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
+$testPage->name = "Booknav"; //title attributum értéke
+
+
+//Tartalom
+$content = "Ez a főoldal!";
+$container = $testPage->createContainer($content,"Random Kedvcsináló!", "bi-shuffle");
+
+//Oldal megjelenítése
+echo $testPage->genFramedPage($container);
 ?>
-</body>
-<html>
