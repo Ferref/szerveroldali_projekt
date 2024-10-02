@@ -37,11 +37,11 @@ INSERT INTO hozzaszolasok (velemeny_id, felhasznalo_id, hozzaszolas) VALUES
 (2, 1, 'Valóban, Asimov megelőzte a korát.');
 
 -- Könyv és szerző összekapcsolása
-INSERT INTO konyv_szerzo (konyv_id, szerzo_id) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4);
+INSERT INTO konyv_szerzo (konyv_id, szerzo_id, profilkep_url) VALUES
+(1, 1, 'https://example.com/egy_polgar.jpg'),
+(2, 2, 'https://example.com/egy_polgar.jpg'),
+(3, 3, 'https://example.com/egy_polgar.jpg'),
+(4, 4, 'https://example.com/egy_polgar.jpg');
 
 -- Könyv és kategória összekapcsolása
 INSERT INTO konyv_kategoria (konyv_id, kategoria_id) VALUES
