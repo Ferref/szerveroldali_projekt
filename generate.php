@@ -1,5 +1,5 @@
 <?php
-$_SESSION["my-root"] = $_SERVER['DOCUMENT_ROOT'];
+
 class Generate{
     public $name = "Booknav";
     public $root = "./";
@@ -16,7 +16,7 @@ class Generate{
         return $element;
     }
     public function createContainer($content, $containerName, $cssIcon){
-        include_once(dirname(__FILE__)."/components/container.php");
+        include(dirname(__FILE__)."/components/container.php");
         return $element;
     }
     public function genEmptyPage($content){
