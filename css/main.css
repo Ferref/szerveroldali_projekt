@@ -111,3 +111,13 @@ body{
  .c-pointer{
     cursor: pointer;
  }
+
+ .book-card{
+    border-bottom: 3px solid #7FB2D7;
+}
+@media (min-width: 992px) {
+.col-lg-12_5 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
