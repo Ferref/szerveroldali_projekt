@@ -101,7 +101,7 @@ Színek, betűtípusok és elrendezés előre meghatározott sablon alapján koz
 1. **Adatbázis Tervezés (SQL)**
    - **Könyvek tábla**: `id`, `cim`, `szerzo_id`, `kategoria_id`, `leiras`, `kiadasi_ev`, `boritokep_url`, `link_amazon`, `link_bookline`.
    - **Kategoriak tábla**: `id`, `nev`.
-   - **Szerzok tábla**: `id`, `nev`.
+   - **Szerzok tábla**: `id`, `nev`, `profilkep_url`.
    - **Felhasznalok tábla**: `id`, `nev`, `email`, `jelszo`, `profil_kep`, `regisztracios_datum`.
    - **Velemenyek tábla**: `id`, `felhasznalo_id`, `konyv_id`, `velemeny`, `datum`.
    - **Hozzaszolasok tábla**: `id`, `velemeny_id`, `felhasznalo_id`, `hozzaszolas`, `datum`.
