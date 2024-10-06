@@ -19,6 +19,10 @@ p{
     user-select: none;
     /*"roboto"*/
 }
+a{
+    text-decoration: none;
+    color: initial;
+}
 .font-roboto{
     font-family: roboto;
  }
