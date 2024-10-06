@@ -21,7 +21,7 @@
             <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\">
                 <ul class=\"navbar-nav me-0 me-lg-auto \">
                     <li class=\"nav-item m-0 me-md-2 px-2\">
-                        <a class=\"nav-link my-light-blue p-0\" href=\"#\"><i class=\"bi bi-house-door my-blue me-1\"></i>Főoldal</a>
+                        <a class=\"nav-link my-light-blue p-0\" href=\"".$this->root."index.php\"><i class=\"bi bi-house-door my-blue me-1\"></i>Főoldal</a>
                     </li>
                     <li class=\"nav-item m-0 me-md-2 px-2\">
                         <a class=\"nav-link my-light-blue p-0\" href=\"#\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
