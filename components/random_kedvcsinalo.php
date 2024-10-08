@@ -18,8 +18,10 @@
                     </div>
                 </div>
                 <div class="col-8 col-md-2 order-2 order-md-3 d-flex flex-column align-items-center justify-content-center text-center">
-                    <p><span class="my-blue">Értékelés:</span><br><span class="my-light-blue">3.5/5</span><br>
-                        <span class="d-block"><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-half"></i><i class="my-star-yellow bi bi-star"></i></span><br></p>
+                    <p>
+                        <span class="my-blue">Értékelés:</span><br><span class="my-light-blue">3.5/5</span><br>
+                        <span class="d-block"><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-half"></i><i class="my-star-yellow bi bi-star"></i></span><br>
+                    </p>
                     <ul class="nav flex-column">
                         <li><a class="nav-link">Mentés</a></li>
                         <li><a class="nav-link">Kedvenc</a></li>
