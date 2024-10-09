@@ -1,11 +1,21 @@
 <?php
+//DATABase
+$bookName = "Narnia 2.";
+//
 $ROOT = "../";
 require_once($ROOT."generate.php");
 
-$testPage = new Generate();
-$testPage->root = $ROOT;
-$testPage->name = "Könyv Áttekintő";
-$content = "Ez egy teszt oldal!";
-$container = $testPage->createContainer($content,"Könyv Áttekintő", "bi-collection");
-echo $testPage->genFramedPage($container);
+$bookPage = new Generate();
+$bookPage->root = $ROOT;
+$bookPage->name = "Könyv: ".$bookName;
+
+//----------------------
+//      Tartalom
+//----------------------
+
+//Könyv áttekintő
+include_once($ROOT."components/book_detail.php");
+$detailContent = $bd_element;
+$detailContainer = $bookPage->createContainer($detailContent,"Könyv Áttekintő", "bi-collection");
+echo $bookPage->genFramedPage($detailContainer);
 ?>

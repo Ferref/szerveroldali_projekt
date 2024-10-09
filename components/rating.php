@@ -7,7 +7,7 @@
         $stars = floor($stars * 2) / 2;
         //echo "Osztva: $stars _ ".($stars==floor($stars));
         $element = '<p>
-        <span class="my-blue">Értékelés:</span><br><span class="my-light-blue">'.$stars.'/5</span><br>
+        <h5 class="my-blue"><span class="bi bi-star me-2"></span> Értékelés</h5><br><span class="my-light-blue">'.$stars.'/5</span><br>
         <span class="d-block">';
         //Teli csillag(ok)
         for($i=0; $i<floor($stars); $i++) $element.='<i class="my-star-yellow bi bi-star-fill"></i>';

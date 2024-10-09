@@ -14,8 +14,8 @@ $homePage->name = "Booknav"; //title attributum értéke
 //----------------------
 
 //Random kedvcsináló
-include_once($ROOT."components/random_kedvcsinalo.php");
-$kedvContent = $rk_element;
+include_once($ROOT."components/random_teaser.php");
+$kedvContent = $rt_element;
 $kedvContainer = $homePage->createContainer($kedvContent,"Random Kedvcsináló", "bi-shuffle");
 //---
 

@@ -1,14 +1,15 @@
 <?php
     //
-    // Az $rk_element változón keresztül éri el a komponens tartalmát a hivatkozó elem.
+    // Az $bd_element változón keresztül éri el a komponens tartalmát a hivatkozó elem.
     //
-    $rk_element =  '
+    include("rating.php");
+    $bd_element =  '
     <div class="col-12 d-block d-md-none"><p class="fw-bold mb-3 fs-5 my-gray-3">Narnia 2. - Az oroszlán, a boszorkány és a ruhásszekrény - Illusztrált kiadás</p></div>
             <div class="row p-2">
                 <div class="col-4 col-md-2 order-1 order-md-1">
                     <img class="w-100 rounded-20" src="https://s01.static.libri.hu/cover/f9/b/4841405_4.jpg" alt="">
                 </div>
-                <div class="col-12 col-md-8  order-3 order-md-2">
+                <div class="col-12 col-md-7  order-3 order-md-2">
                     <div class="row">
                         <div class="col-12 d-none d-md-block"><p class="fw-bold mb-2 fs-5 my-gray-3">Narnia 2. - Az oroszlán, a boszorkány és a ruhásszekrény - Illusztrált kiadás</p></div>
                         <div class="col-12">
@@ -17,18 +18,27 @@
                         <div class="col-12 p-3"><span class="my-blue fw-bold">Kategóriák:</span> <span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Fantasy</span><span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Akció</span><span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Kaland</span></div>
                     </div>
                 </div>
-                <div class="col-8 col-md-2 order-2 order-md-3 d-flex flex-column align-items-center justify-content-center text-center">
-                    <p>
-                        <span class="my-blue">Értékelés:</span><br><span class="my-light-blue">3.5/5</span><br>
-                        <span class="d-block"><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-fill"></i><i class="my-star-yellow bi bi-star-half"></i><i class="my-star-yellow bi bi-star"></i></span><br>
-                    </p>
-                    <ul class="nav flex-column">
-                        <li><a class="nav-link">Mentés</a></li>
-                        <li><a class="nav-link">Kedvenc</a></li>
-                        <li><a class="nav-link">Tovább</a></li>
-                    </ul>
+                <div class="col-6 col-md-3 order-2 order-md-3 d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="rounded-10 p-2 p-md-4 border w-100">
+                        <h5 class="my-blue text-center mb-3"><span class="bi bi-vector-pen me-2"></span>Író</h5>
+                        <div class="mx-1 mx-md-3 rounded rounded-circle p-1 bg-white shadow circle-avatar overflow-hidden mb-3 ">
+                            <img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle">
+                        </div>
+                        <p class="text-center">C. S. Lewis</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 order-2 order-md-3 d-flex flex-column align-items-center justify-content-center text-center">
+                    <div class="rounded-10 p-2 p-md-4 border w-100">
+                        
+                            '.rating(4.5).'
+                        
+                    </div>
                 </div>
             </div>
    ';
     
+   // - toast notifications
+   // - breadcrumb
+   // - pagination
 ?>
