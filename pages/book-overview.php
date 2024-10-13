@@ -5,6 +5,7 @@ $bookName = "Narnia 2.";
 $ROOT = "../";
 require_once($ROOT . "generate.php");
 include_once($ROOT . "components/book_mini.php");
+include_once($ROOT . "components/rating.php");
 
 $bookPage = new Generate();
 $bookPage->root = $ROOT;
@@ -15,8 +16,8 @@ $bookPage->name = "Könyv: " . $bookName;
 //----------------------
 
 //Könyv áttekintő
-include_once($ROOT . "components/book_detail2.php");
-$detailContent = $bd_element;
+//include_once($ROOT . "components/book_detail2.php");
+//$detailContent = $bd_element;
 //Legnépszerűbb könyvek
 $nKonyvekContent = "<div class=\"row\">
     " . book_mini(1, $ROOT) . "
