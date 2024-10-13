@@ -41,4 +41,5 @@
    // - toast notifications
    // - breadcrumb
    // - pagination
+   // - modal windows
 ?>
