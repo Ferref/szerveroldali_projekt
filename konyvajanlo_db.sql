@@ -19,7 +19,7 @@ CREATE TABLE kategoriak (
 CREATE TABLE szerzok (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nev VARCHAR(255) NOT NULL,
-    profil_kep_url VARCHAR(255)
+    profilkep_url VARCHAR(255)
 );
 
 CREATE TABLE felhasznalok (
@@ -27,7 +27,7 @@ CREATE TABLE felhasznalok (
     nev VARCHAR(255) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     jelszo VARCHAR(255) NOT NULL,
-    profil_kep VARCHAR(255),
+    profilkep_url VARCHAR(255),
     regisztracios_datum DATETIME DEFAULT NOW()
 );
 
