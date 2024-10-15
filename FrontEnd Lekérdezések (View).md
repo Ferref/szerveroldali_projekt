@@ -3,7 +3,7 @@
 - Random kedvcsináló 
 	 - Egy véletlenszerű könyv  id, cím, leírás, borítókép.
 	 - Könyv író(i) név.
-	 - Könyvhöz tartozó értékelések átlagának lekérése. (Pillanatnyilag nem létező tábla)
+	 - Könyvhöz tartozó értékelések átlagának lekérése.
 - Legnépszerűbb könyvek
 	 - Könyvhöz tartozó értékelések átlagának alapján rendezett 5 legnépszerűbb könyv 
 id, cím, borítókép.
