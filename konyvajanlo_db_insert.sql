@@ -49,3 +49,10 @@ INSERT INTO konyv_kategoria (konyv_id, kategoria_id) VALUES
 (2, 3),
 (3, 3),
 (4, 4);
+
+-- Értékelések adatainak beszúrása
+INSERT INTO ertekelesek (felhasznalo_id, konyv_id, ertekeles) VALUES
+(1, 1, 5), 
+(2, 2, 4), 
+(1, 3, 3), 
+(2, 4, 5); 

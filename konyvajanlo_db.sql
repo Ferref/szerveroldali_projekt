@@ -71,3 +71,14 @@ CREATE TABLE konyv_kategoria (
     FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE,
     FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id) ON DELETE CASCADE
 );
+
+-- Konyvek ertekelese tabla
+CREATE TABLE ertekelesek (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    felhasznalo_id INT NOT NULL,
+    konyv_id INT NOT NULL,
+    ertekeles TINYINT NOT NULL CHECK (ertekeles BETWEEN 1 AND 5),
+    datum DATETIME DEFAULT NOW(),
+    FOREIGN KEY (felhasznalo_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
+    FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE
+);
