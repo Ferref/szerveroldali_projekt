@@ -9,7 +9,7 @@ require_once($ROOT."generate.php"); //`generate.php` meghívása
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Booknav"; //title attributum értéke
-echo $ROOT."media/images/nincs-borito.jpg";
+//echo $ROOT."media/images/nincs-borito.jpg";
 //----------------------
 //      Tartalom
 //----------------------

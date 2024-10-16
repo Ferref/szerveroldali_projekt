@@ -28,9 +28,9 @@ $detailContainer =
      <div class="container-fluid container-lg mb-4">
         <div class="container-fluid pe-2">
             <div class="row ">
-                <div class="col-12 col-md-9 d-flex">
+                <div class="col-12 col-md-9 d-flex mb-3 mb-md-0">
                     <div class="pm-md-2 d-flex">
-                        <div class="row p-2 bg-white rounded-20 me-md-1 mb-sm-3 mb-md-0">
+                        <div class="row p-2 bg-white rounded-20 me-md-1 ">
                             
                             <div class="col-12 p-2"><p><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="w-100 text-center bi bi-grid my-blue"></i></span><span class="fw-bold my-blue fs-5">Áttekintés</span></p></div>
                             <div class="col-12 d-md-none"><p class="fw-bold mb-2 fs-5 my-gray-3">Narnia 2. - Az oroszlán, a boszorkány és a ruhásszekrény - Illusztrált kiadás</p></div>
