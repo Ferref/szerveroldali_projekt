@@ -4,11 +4,12 @@
 //----------------------
 
 $ROOT = "./";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
+//$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Booknav"; //title attributum értéke
-
+echo $ROOT."media/images/nincs-borito.jpg";
 //----------------------
 //      Tartalom
 //----------------------

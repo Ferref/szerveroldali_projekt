@@ -22,6 +22,7 @@ $bookPage->name = "Könyv: " . $bookName;
 $nKonyvekContent = "<div class=\"row\">
     " . book_mini(1, $ROOT) . "
 </div>";
+$id = 0;
 $detailContainer =
     '
      <div class="container-fluid container-lg mb-4">
@@ -29,11 +30,12 @@ $detailContainer =
             <div class="row ">
                 <div class="col-12 col-md-9 d-flex">
                     <div class="pm-md-2 d-flex">
-                        <div class="row p-2 bg-white rounded-20 me-md-1">
+                        <div class="row p-2 bg-white rounded-20 me-md-1 mb-sm-3 mb-md-0">
                             
                             <div class="col-12 p-2"><p><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="w-100 text-center bi bi-grid my-blue"></i></span><span class="fw-bold my-blue fs-5">Áttekintés</span></p></div>
-                        
-                            <div class="col-4 col-md-3 order-1 order-md-1">
+                            <div class="col-12 d-md-none"><p class="fw-bold mb-2 fs-5 my-gray-3">Narnia 2. - Az oroszlán, a boszorkány és a ruhásszekrény - Illusztrált kiadás</p></div>
+                                    
+                            <div class="col-6 col-md-3 order-1 order-md-1 mx-auto">
                                 <img class="w-100 rounded-20" src="https://s01.static.libri.hu/cover/f9/b/4841405_4.jpg" alt="">
                             </div>
                             <div class="col-12 col-md-9  order-3 order-md-2">
@@ -57,9 +59,9 @@ $detailContainer =
                             <div class="bg-white rounded-20 p-2 p-md-4 border w-100 mb-2">
                                 <h5 class="my-blue text-center mb-3"><i class="bi bi-vector-pen me-2"></i>Író</h5>
                                     <div class="mx-1 mx-md-3 rounded rounded-circle p-1 bg-white shadow circle-avatar overflow-hidden mb-3 ">
-                                        <img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle">
+                                        <a href="'.$ROOT.'pages/author-overview.php?id='.$id.'"><img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle"></a>
                                     </div>
-                                    <p class="text-center">C. S. Lewis</p>
+                                    <p class="text-center"><a href="'.$ROOT.'pages/author-overview.php?id='.$id.'">C. S. Lewis</ahref="'.$ROOT.'pages/author-overview.php?id='.$id.'"></p>
                             </div>
                         </div>
                         <div class="row">
