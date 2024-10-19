@@ -54,7 +54,7 @@ $detailContainer =
                 </div>
                 <div class="col-12 col-md-9 d-flex">
                     <div class="pm-md-2 d-flex w-100">
-                        <div class="row p-2 bg-white rounded-20 ms-md-1 align-items-start">
+                        <div class="row p-2 bg-white rounded-20 ms-md-1" style="align-content: start;">
                             
                             <div class="col-12 p-2"><p><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="w-100 text-center bi bi-grid my-blue"></i></span><span class="fw-bold my-blue fs-5">Könyvei</span><span class="ms-2">(x)</span></p></div>
                             <div class="col-12">

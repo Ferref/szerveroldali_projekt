@@ -57,7 +57,7 @@ $detailContainer =
                     
                         <div class="row">
                             <div class="bg-white rounded-20 p-2 p-md-4 border w-100 mb-2">
-                                <h5 class="my-blue text-center mb-3"><i class="bi bi-vector-pen me-2"></i>Író</h5>
+                                <h5 class="my-blue text-center mb-3"><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="bi bi-vector-pen"></i></span>Író</h5>
                                     <div class="mx-1 mx-md-3 rounded rounded-circle p-1 bg-white shadow circle-avatar overflow-hidden mb-3 ">
                                         <a href="'.$ROOT.'pages/author-overview.php?id='.$id.'"><img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle"></a>
                                     </div>
