@@ -37,9 +37,9 @@
                 <ul class=\"navbar-nav\">
                     <li class=\"nav-item ps-2 float-end\">
                         <span class=\"nav-link\">
-                            <a class=\"my-light-blue p-0\" href=\"#\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Belépés</a>
+                            <a class=\"my-light-blue p-0\" href=\"".$this->root."pages/login.php\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Belépés</a>
                             <span class=\"p-0 disabled my-light-gray\" >|</span>
-                            <a class=\"my-light-gray p-0\" href=\"#\"></i>Regisztráció</a>
+                            <a class=\"my-light-gray p-0\" href=\"".$this->root."pages/registration.php\"></i>Regisztráció</a>
                         </span>
                     </li>
                 </ul>
