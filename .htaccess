@@ -4,7 +4,7 @@
     #RewriteBase /szerveroldali_projekt/
 
     # Gyökér oldal átirányítása index.php-re függetlenül az elérési úttól
-    RewriteRule ^$ index.php [L]
+     RewriteRule ^$ index.php [L]
 
     # Ha nem létezik a fájl vagy mappa, akkor továbbítjuk a kérést az index.php-hoz
     # Ezáltal minden kérés kezelhető, függetlenül attól, hogy mi az aktuális gyökér útvonal
@@ -12,7 +12,15 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ./szerveroldali_projekt/index.php [R=301,L]
 
+    # Hiba oldalak
+    ErrorDocument 404 '/szerveroldali_projekt/pages/error.php?code=404'
+    ErrorDocument 403 '/szerveroldali_projekt/pages/error.php?code=403'
+    ErrorDocument 500 '/szerveroldali_projekt/pages/error.php?code=500'
+    
     # HTTPS kényszerítése minden kérelemre
     RewriteCond %{HTTPS} !=on
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    
+    
 </IfModule>
