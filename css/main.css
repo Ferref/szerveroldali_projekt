@@ -133,3 +133,15 @@ body{
     height: 100%;
     object-fit: cover;
 }
+.hover-menu-list{
+    position: absolute;
+    left: unset;
+    right: 0;
+    list-style: none;
+}
+.hover-menu-button:hover{
+    background-color: #ebebeb;
+}
+.hover-menu-button:hover .hover-menu-list{
+    display: block!important;
+}

@@ -10,7 +10,8 @@
             <link rel=\"stylesheet\" href=\"".$this->root."bootstrap/css/bootstrap.css\">
             <link rel=\"stylesheet\" href=\"".$this->root."bootstrap/icons/font/bootstrap-icons.css\">
             <link rel=\"stylesheet\" href=\"".$this->root."css/main.css\">
-            <script src=\"".$this->root."bootstrap/js/bootstrap.js\"></script>
+            <script src=\"".$this->root."bootstrap/js/bootstrap.js\" defer></script>
+            <script src=\"".$this->root."bootstrap/js/popper.min.js\"></script>
             <title>".$this->name."</title>
         </head>
     ";
