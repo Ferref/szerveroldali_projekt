@@ -145,3 +145,18 @@ body{
 .hover-menu-button:hover .hover-menu-list{
     display: block!important;
 }
+
+/* .fs-md-my{
+    font-size: 0.95em;
+} */
+
+@media (min-width: 768px) and (max-width: 991.98px){
+    .navbar-brand img{
+        height: 50px!important;
+    }
+}
+
+.category-frame{
+    border: 2px solid #4B6587;
+    color: #4B6587;
+}

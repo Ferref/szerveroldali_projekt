@@ -7,7 +7,7 @@ $ROOT = "../";                       //Az adott fájl relatív elérése a `gene
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
 $homePage = new Generate();
-$homePage->root = "https://localhost/szerveroldali_projekt/";     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
+$homePage->root = '/szerveroldali_projekt/';     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Error"; //title attributum értéke
 //echo $ROOT."media/images/nincs-borito.jpg";
 //----------------------

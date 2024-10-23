@@ -18,8 +18,8 @@
     ErrorDocument 500 '/szerveroldali_projekt/pages/error.php?code=500'
     
     # HTTPS kényszerítése minden kérelemre
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    # RewriteCond %{HTTPS} !=on
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     
     

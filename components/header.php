@@ -19,7 +19,7 @@
                 <span class=\"navbar-toggler-icon\"></span>
             </button>
             <div class=\"collapse navbar-collapse \" id=\"navbarTogglerDemo02\">
-                <div class=\"w-100 d-flex justify-content-between flex-column flex-md-row\">
+                <div class=\"w-100 d-flex justify-content-between flex-column flex-md-row fs-md-my \">
                     <ul class=\"navbar-nav me-0 me-lg-auto \">
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."index.php\"><i class=\"bi bi-house-door my-blue me-1\"></i>Főoldal</a>
@@ -38,7 +38,7 @@
                     <ul class=\"navbar-nav\">
                         <div class=\"dropdown hover-menu-button rounded-20 d-none d-md-block\">
                             <button class=\"btn  rounded\" type=\"button\">
-                                <i class=\"bi bi-person-circle my-blue me-1 fs-3\"></i>
+                                <i class=\"bi bi-person-circle my-blue fs-3\"></i>
                             </button>
                             <ul class=\"hover-menu-list d-none bg-white rounded shadow py-1 px-3\">
                                 <li class=\"nav-item m-0 px-2\">
