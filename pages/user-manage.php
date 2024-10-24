@@ -18,21 +18,24 @@ $homePage->name = "Felhasználó kezelés"; //title attributum értéke
 
 $kedvContent = '
 <style>
-    table input{
+    input[type="text"]{
     font-size: 12px;
     }
     table td{
         vertical-align: middle;
     }
 </style>
-<table class="table bg-my-blue ">
-    <tr>
-        <td>Szűrés:</td>
-        <td><input type="text" name="filterName" id="filterName" placeholder="Felhasználónév..." class="ps-2 m-1 rounded"></td>
-        <td><input type="text" name="filterEmail" id="filterEmail" placeholder="E-mail cím..." class="ps-2 m-1 rounded"></td>
-        <td>Találatok: -</td>
-    </tr>
-</table>
+
+        <div class="row mb-4">
+            <div class="col-12 my-blue d-flex justify-content-center">
+                <span class="me-3 align-items-center d-flex">Szűrés:</span>
+                <input type="text" name="filterName" id="filterName" placeholder="Felhasználónév..." class="ps-2 me-3 rounded">
+                <input type="text" name="filterEmail" id="filterEmail" placeholder="E-mail cím..." class="ps-2 me-3 rounded">
+                <input type="button" name="filterUsersSubmit" id="filterUsersSubmit" value="Keresés" class="btn btn-primary px-4 me-3 rounded">
+                <span class=" align-items-center d-flex">Találatok: -</span>
+            </div>
+        </div>
+   
 <nav class="">
   <ul class="pagination justify-content-center">
     <li class="page-item">
