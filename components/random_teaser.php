@@ -24,22 +24,40 @@
                         '.rating(3.5).'
                         
                     </p>
-                    <ul class="nav flex-column d-none d-md-block">
-                        <li><a class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"><i class="bi bi-bookmark me-2"></i>Mentés</a></li>
+                    <ul class="nav flex-column d-none d-md-block w-100">
+                        <li><a class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"  data-bs-toggle="modal" data-bs-target="#ment"><i class="bi bi-bookmark me-2"></i>Mentés</a></li>
                         <li><a class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"><i class="bi bi-heart me-2"></i>Kedvenc</a></li>
                         <li><a href="'.$ROOT.'pages/book-overview.php?id='.$id.'" class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"><i class="bi bi-arrow-right me-2"></i>Tovább</a></li>
                     </ul>
                 </div>
-                <div class="col-12 order-4 d-md-none d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="col-12 order-4 d-md-none d-flex flex-column align-items-center justify-content-center text-center p-0">
                     
-                    <ul class="row nav w-100">
-                        <li class="col-6"><a class="nav-link shadow-sm py-1 px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded"><i class="bi bi-bookmark me-2"></i>Mentés</a></li>
+                    <ul class="row nav w-100 m-0">
+                        <li class="col-6"><a class="nav-link shadow-sm py-1 px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded"  data-bs-toggle="modal" data-bs-target="#ment" ><i class="bi bi-bookmark me-2"></i>Mentés</a></li>
                         <li class="col-6"><a class="nav-link shadow-sm py-1 px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded"><i class="bi bi-heart me-2"></i>Kedvenc</a></li>
                     </ul>
-                    <ul class="row nav w-100">
+                    <ul class="row nav w-100 m-0">
                         <li class="col-12"><a href="'.$ROOT.'pages/book-overview.php?id='.$id.'" class="nav-link shadow-sm py-1 px-2 my-2 d-bock c-pointer my-blue text-center align-items-center bg-my-white-blue rounded"><i class="bi bi-arrow-right me-2"></i>Tovább</a></li>
                     </ul>
                 </div>
+
+                <!--Modal-->
+                <div class="modal fade" id="ment">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title my-blue text-center flex-fill justify-content-center" id="staticBackdropLabel"><i class="bi bi-bookmark me-2"></i>Mentés</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="row nav w-100 m-0">
+                            <li class="col-12 col-md-6"><a class="nav-link shadow-sm py-2  px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded"><i class="bi bi-journal-check me-2"></i>Olvastam</a></li>
+                            <li class="col-12 col-md-6"><a class="nav-link shadow-sm py-2  px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded"><i class="bi bi-journal-bookmark-fill me-2"></i>Várólista</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
             </div>
    ';
    /*<span class="my-blue">Értékelés:</span><br><span class="my-light-blue">3.5/5</span><br>

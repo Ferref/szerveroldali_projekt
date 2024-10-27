@@ -17,7 +17,12 @@ class Generate{
     }
     public function createContainer($content, $containerName, $cssIcon){
         include(dirname(__FILE__)."/components/container.php");
-        return $element;
+        return $container;
+    }
+    public function createEmptyContainer($content){
+        $containerName = $cssIcon = '';
+        include(dirname(__FILE__)."/components/container.php");
+        return $emptyContainer;
     }
     public function genEmptyPage($content){
         return "<!DOCTYPE html>

@@ -5,7 +5,7 @@
 
     function book_mini($id,$ROOT){
         //if($kep_url=="nincs" || empty($kep_url))
-        $kep_url = $ROOT."media/images/nincs-borito.jpg";
+        $kep_url = $ROOT."assets/images/nincs-borito.jpg";
         $cim = "Narnia 2. - Az oroszlán, a boszorkány és a ruhásszekrény - Illusztrált kiadás";
         $szerzo = "C. S. Levis";
         //Szám kerekítése .5-re vagy egészre

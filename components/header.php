@@ -12,7 +12,7 @@
 <div class=\"sticky-top container-fluid container-lg header\">
     <nav class=\"navbar navbar-expand-md navbar-light bg-white p-0 rounded-20\">
         <div class=\"container-fluid\">
-            <a class=\"navbar-brand p-0 m-0\" href=\"".$this->root."index.php\"><img class=\"ps-4 p-2\" height=\"60px\" src=\"".$this->root."media/images/booknav.svg\" alt=\"\"></a>
+            <a class=\"navbar-brand p-0 m-0\" href=\"".$this->root."index.php\"><img class=\"ps-4 p-2\" height=\"60px\" src=\"".$this->root."assets/images/booknav.svg\" alt=\"\"></a>
             <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\"
                 data-bs-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\"
                 aria-label=\"Toggle navigation\">
@@ -25,13 +25,13 @@
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."index.php\"><i class=\"bi bi-house-door my-blue me-1\"></i>Főoldal</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"#\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
+                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php?type=konyv\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"#\"><i class=\"bi bi-vector-pen my-blue me-1\"></i>Írók</a>
+                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php?type=iro\"><i class=\"bi bi-vector-pen my-blue me-1\"></i>Írók</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"#\"><i class=\"bi bi-grid my-blue me-1\"></i>Kategóriák</a>
+                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/categories.php\"><i class=\"bi bi-grid my-blue me-1\"></i>Kategóriák</a>
                         </li>
                         
                     </ul>

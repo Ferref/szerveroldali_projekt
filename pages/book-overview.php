@@ -45,7 +45,17 @@ $detailContainer =
                                             <p class="font-roboto fs-5 my-gray-3 my-2">Narnia egy jéggé dermesztett ország, ahol sohasem jár a Mikulás és nem létezik a karácsony. A négy testvér - Peter, Susan, Edmund és Lucy - egy vidéki kastélyban álló ruhásszekrényen keresztül lép be a birodalomba, hogy felvegye a harcot a Fehér Boszorkánnyal és csatlósaival. A hó is olvadásnak indul, hiszen Aslan, a Nagy Oroszlán egyre közeledik...</p>
                                     </div>
                                     <div class="col-12 p-3">
-                                        <span class="my-blue"><i class="bi bi-grid me-2"></i>Kategóriák:</span> <span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Fantasy</span><span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Akció</span><span class="badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2">Kaland</span>
+                                        <span class="my-blue"><i class="bi bi-grid me-2"></i>Kategóriák:</span>
+                                        
+                                        <label class="category-frame rounded-10 py-0 px-2 py-0 c-pointer me-1">
+                                            <span class="reveal d-flex align-items-center">Krimi<span class="badge bg-my-light-blue ms-1 lost">1574</span></span>
+                                        </label>
+                                        <label class="category-frame rounded-10 py-0 px-2 py-0 c-pointer me-1">
+                                            <span class="reveal d-flex align-items-center">Akció<span class="badge bg-my-light-blue ms-1 lost">186</span></span>
+                                        </label>
+                                        <label class="category-frame rounded-10 py-0 px-2 py-0 c-pointer me-1">
+                                            <span class="reveal d-flex align-items-center">Kaland<span class="badge bg-my-light-blue ms-1 lost">14</span></span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +71,7 @@ $detailContainer =
                                     <div class="mx-1 mx-md-3 rounded rounded-circle p-1 bg-white shadow circle-avatar overflow-hidden mb-3 ">
                                         <a href="'.$ROOT.'pages/author-overview.php?id='.$id.'"><img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle"></a>
                                     </div>
-                                    <p class="text-center"><a href="'.$ROOT.'pages/author-overview.php?id='.$id.'">C. S. Lewis</ahref="'.$ROOT.'pages/author-overview.php?id='.$id.'"></p>
+                                    <p class="text-center"><a href="'.$ROOT.'pages/author-overview.php?id='.$id.'">C. S. Lewis</a></p>
                             </div>
                         </div>
                         <div class="row">
