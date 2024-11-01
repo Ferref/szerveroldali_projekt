@@ -183,3 +183,21 @@ body{
 .reveal:hover .lost{
     display: inline-block;
 }
+.star-vote button{
+    border: none;
+    border-radius: 10px;
+    margin: 2px 2px;
+    position: relative;
+    background-color: transparent;
+}
+.star-vote button:hover{
+    /* background-color: #D5E3EB; */
+    border: 2px solid #D5E3EB;
+    margin: 0;
+}
+.star-vote button i{
+    font-size: 2rem;
+}
+.star-vote button span{
+    
+}
