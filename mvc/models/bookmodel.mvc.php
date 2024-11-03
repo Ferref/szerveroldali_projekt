@@ -11,14 +11,12 @@ class BookModel extends DatabaseHandler
 
     // Legnepszerubb konyvek (legtobb ertekeles alapjan)
     protected function getMostPopularBooks(){
-        $query = "SELECT k.id, k.cim, k.leiras, k.boritokep_url, sz.nev AS szerzo_nev, 
+        $query = "SELECT k.id, k.cim, k.leiras, k.boritokep_url, 
                          COUNT(e.ertekeles) AS ertekelesek_szama, AVG(e.ertekeles) AS atlag_ertekeles
                   FROM konyvek k
-                  JOIN konyv_szerzo ksz ON k.id = ksz.konyv_id
-                  JOIN szerzok sz ON sz.id = ksz.szerzo_id
                   JOIN ertekelesek e ON e.konyv_id = k.id
-                  GROUP BY k.id, sz.id
-                  ORDER BY ertekelesek_szama DESC
+                  GROUP BY k.id
+                  ORDER BY atlag_ertekeles DESC
                   LIMIT 5;";
 
         $result = $this->connect()->query($query);
@@ -27,14 +25,12 @@ class BookModel extends DatabaseHandler
 
     // Konyv info (konyv id alapjan)
     protected function getBookInfo($bookId){
-        $query = "SELECT k.id, k.cim, k.leiras, k.boritokep_url, k.kiadasi_ev, sz.nev AS szerzo_nev, sz.profilkep_url,
+        $query = "SELECT k.*,
                          AVG(e.ertekeles) AS atlag_ertekeles
                   FROM konyvek k
-                  JOIN konyv_szerzo ksz ON k.id = ksz.konyv_id
-                  JOIN szerzok sz ON sz.id = ksz.szerzo_id
                   LEFT JOIN ertekelesek e ON e.konyv_id = k.id
                   WHERE k.id = :konyvid
-                  GROUP BY k.id, sz.id;";
+                  GROUP BY k.id;";
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("konyvid",$bookId,PDO::PARAM_INT); 
         $stmt->execute();
@@ -99,6 +95,40 @@ class BookModel extends DatabaseHandler
         $stmt->bindValue("konyvid",$bookId,PDO::PARAM_INT); 
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function insertBook($cim, $leiras, $oldalszam, $kiadasi_ev, $boritokep_url, $link_amazon, $link_bookline) {
+        $query="INSERT INTO konyvek (cim, leiras, oldalszam, kiadasi_ev, boritokep_url, link_amazon, link_bookline) VALUES (:cim, :leiras, :oldalszam, :kiadasi_ev, :boritokep_url, :link_amazon, :link_bookline)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("cim",$cim,PDO::PARAM_STR);
+        $stmt->bindValue("leiras",$leiras,PDO::PARAM_STR);
+        $stmt->bindValue("oldalszam",$oldalszam, PDO::PARAM_INT);
+        $stmt->bindValue("kiadasi_ev",$kiadasi_ev,PDO::PARAM_INT);
+        $stmt->bindValue("boritokep_url",$boritokep_url,PDO::PARAM_STR);
+        $stmt->bindValue("link_amazon",$link_amazon,PDO::PARAM_STR);
+        $stmt->bindValue("link_bookline",$link_bookline,PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    protected function updateBook($id, $cim, $leiras, $oldalszam, $kiadasi_ev, $boritokep_url, $link_amazon, $link_bookline) {
+        $query="UPDATE konyvek SET cim=:cim, leiras=:leiras, oldalszam=:oldalszam, kiadasi_ev=:kiadasi_ev, boritokep_url=:boritokep_url, link_amazon=:link_amazon, link_bookline=:link_bookline WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id, PDO::PARAM_INT);
+        $stmt->bindValue("cim",$cim,PDO::PARAM_STR);
+        $stmt->bindValue("leiras",$leiras,PDO::PARAM_STR);
+        $stmt->bindValue("oldalszam",$oldalszam, PDO::PARAM_INT);
+        $stmt->bindValue("kiadasi_ev",$kiadasi_ev,PDO::PARAM_INT);
+        $stmt->bindValue("boritokep_url",$boritokep_url,PDO::PARAM_STR);
+        $stmt->bindValue("link_amazon",$link_amazon,PDO::PARAM_STR);
+        $stmt->bindValue("link_bookline",$link_bookline,PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    protected function deleteBook($id) {
+        $query= "DELETE FROM konyvek WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
     
 }

@@ -25,4 +25,23 @@ class CategoryModel extends DatabaseHandler
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    protected function getSpecificCategoryNumber($categoryId) {
+        $query = "SELECT COUNT(id) as kategoria_mennyiseg
+                    FROM konyv_kategoria 
+                    WHERE kategoria_id=:categoryId;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("categoryId",$categoryId,PDO::PARAM_INT); 
+        $stmt->execute();
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['kategoria_mennyiseg'];
+    }
+
+    protected function getCategories() {
+        $query = "SELECT * FROM kategoriak";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

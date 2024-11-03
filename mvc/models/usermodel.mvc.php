@@ -35,21 +35,29 @@ class UserModel extends DatabaseHandler {
         return $result['jelszo'];
     }
 
-    protected function insertUser($nev, $email, $jelszo) {
-        $query="INSERT INTO felhasznalok (nev, email, jelszo, profilkep_url, regisztracios_datum) VALUES (:nev, :email, :jelszo, '', now())";
+    protected function insertUser($nev, $email, $jelszo, $szerep) {
+        $query="INSERT INTO felhasznalok (nev, email, jelszo, szerep, profilkep_url, regisztracios_datum) VALUES (:nev, :email, :jelszo, :szerep, '', now())";
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("nev",$nev,PDO::PARAM_STR);
         $stmt->bindValue("email",$email,PDO::PARAM_STR);
         $stmt->bindValue("jelszo",password_hash($jelszo, PASSWORD_BCRYPT),PDO::PARAM_STR);
+        $stmt->bindValue("szerep",$szerep,PDO::PARAM_STR);
         return $stmt->execute();
     }
 
     protected function getUserInfo($userNev) {
-        $query = "SELECT nev, email, profilkep_url, regisztracios_datum FROM felhasznalok WHERE nev = :userNev";
+        $query = "SELECT nev, email, szerep, profilkep_url, regisztracios_datum FROM felhasznalok WHERE nev = :userNev";
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("userNev",$userNev,PDO::PARAM_STR); 
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllUserInfo() {
+        $query = "SELECT nev, email, szerep FROM felhasznalok";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
