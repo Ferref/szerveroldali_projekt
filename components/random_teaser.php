@@ -8,11 +8,6 @@
     $randomBookCategories=new CategoryView();
     $kategoriak=$randomBookCategories->showBookCategories($bookInfo["id"]);
     $ertekeles=$randomBook->showBookRating($bookInfo["id"]);
-    function kategoria($kategoriak) {
-        while ($row=$kategoriak->fetch(PDO::FETCH_ASSOC)){
-            echo "<span class=\"badge rounded-pill bg-my-light-blue fw-normal ms-1 py-2\">{$row["nev"]}</span>";
-        }
-    };
 
     $id = 1;
     $rt_element =  '

@@ -32,22 +32,36 @@
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/categories.php\"><i class=\"bi bi-grid my-blue me-1\"></i>Kategóriák</a>
-                        </li>
-                        
-                    </ul>
+                        </li>";
+                        if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='admin') {
+                            $element .=
+                            "<li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/book-manage.php\"><i class=\"bi bi-grid my-blue me-1\"></i>Könyv hozzáadás</a>
+                            </li>";  
+                        }
+$element .=        "</ul>
                     <ul class=\"navbar-nav\">
                         <div class=\"dropdown hover-menu-button rounded-20 d-none d-md-block\">
                             <button class=\"btn  rounded\" type=\"button\">
-                                <i class=\"bi bi-person-circle my-blue fs-3\"></i>
+                                <i class=\"bi bi-person-circle my-blue fs-3\">" .(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : "")."</i>
                             </button>
-                            <ul class=\"hover-menu-list d-none bg-white rounded shadow py-1 px-3\">
-                                <li class=\"nav-item m-0 px-2\">
+                            <ul class=\"hover-menu-list d-none bg-white rounded shadow py-1 px-3\">";
+                            if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='guest') {
+                                $element .="<li class=\"nav-item m-0 px-2\">
                                     <a class=\"my-light-blue p-0\" href=\"".$this->root."pages/login.php\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Belépés</a>
                                 </li>
                                 <li class=\"nav-item m-0 px-2\">
                                     <a class=\"my-light-gray p-0\" href=\"".$this->root."pages/registration.php\"></i>Regisztráció</a>
+                                </li>";}
+                            else {
+                                $element .="<li class=\"nav-item m-0 px-2\">
+                                    <a class=\"my-light-blue p-0\" href=\"".$this->root."pages/profile.php\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Profil</a>
                                 </li>
-                            </ul>
+                                <li class=\"nav-item m-0 px-2\">
+                                    <a class=\"my-light-gray p-0\" href=\"".$this->root."pages/logout.php\"></i>Kilépés</a>
+                                </li>";
+                            }
+$element .=            "</ul>
                         </div>
                         <li class=\"nav-item m-0 px-2 d-md-none\">
                             <a class=\"my-light-blue p-0\" href=\"".$this->root."pages/login.php\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Belépés</a>

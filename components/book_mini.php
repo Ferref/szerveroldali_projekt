@@ -19,9 +19,12 @@
                     <div class=\"py-2 px-2 px-md-0 px-lg-3 cover-container\">
                         <img class=\"d-block mx-auto rounded\"src=\"".$kep_url."\"/>
                     </div>
-                    <p class=\"book-title m-2\">".$cim."</p>
-                    <p class=\"font-roboto my-gray mb-2\">".$szerzo[0]['nev']."</p>
-                </div>
+                    <p class=\"book-title m-2\">".$cim."</p>";
+                    foreach ($szerzo as $sz) {
+                        $element .="<p class=\"font-roboto my-gray mb-2\">".$sz['nev']."</p>";
+                    }
+                    
+$element .=        "</div>
             </a>
         </div>
         ";
