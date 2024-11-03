@@ -17,3 +17,7 @@ function redirect($url)
         echo '</noscript>'; exit;
     }
 }
+
+function antiSql($string) {
+    return htmlspecialchars($string);
+}

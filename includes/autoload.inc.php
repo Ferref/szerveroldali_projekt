@@ -1,5 +1,10 @@
 <?php 
 session_start();
+
+if(!isset($_SESSION['user_role'])) {
+    $_SESSION['user_role']="guest";
+}
+
 require_once "functions.inc.php";
 spl_autoload_register("autoloader");
 
