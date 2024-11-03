@@ -5,6 +5,11 @@
 
 $ROOT = "../";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
 require_once($ROOT."generate.php"); //`generate.php` meghívása
+
+$kategoria=new CategoryView();
+$kategoriak=$kategoria->showCategories();
+$i=1;
+
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Kategóriák | Booknav"; //title attributum értéke
@@ -21,16 +26,15 @@ $kategoriakContent = '
         </div>
     </div>
     <div class="row mx-0 my-3">
-        <div class="col-12" id="categoriesContainer">
-            <label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2" for="kat1">
-                <input class="kat" type="checkbox" name="categories[]" value="1" id="kat1" hidden>
-                <span>Fantasy<span class="badge bg-my-light-blue ms-1">4</span></span>
-            </label>
-            <label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2" for="kat1">
-                <input class="kat" type="checkbox" name="categories[]" value="1" id="kat1" hidden>
-                <span>Krimi<span class="badge bg-my-light-blue ms-1">1574</span></span>
-            </label>
-        </div>
+        <div class="col-12" id="categoriesContainer">';
+            foreach($kategoriak as $k) {
+                $kategoriakContent .= '<label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2" for="kat'.$i.'">
+                <input class="kat" type="checkbox" name="categories[]" value="'.$i.'" id="kat'.$i.'" hidden>
+                <span>'.$k["nev"].'<span class="badge bg-my-light-blue ms-1">'.$kategoria->showSpecificCategoryNumber($k['id']).'</span></span>
+            </label>';
+            $i++;
+            }
+$kategoriakContent .='</div>
     </div>
     <script src="'.$ROOT.'assets/js/categoryFilter.js"></script>
 ';

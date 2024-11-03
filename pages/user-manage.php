@@ -6,6 +6,10 @@
 $ROOT = "../";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
+
+if(!isset($_SESSION['user_role']) ||$_SESSION['user_role']!="admin") {
+  redirect("../");
+}
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Felhasználó kezelés"; //title attributum értéke
@@ -15,6 +19,9 @@ $homePage->name = "Felhasználó kezelés"; //title attributum értéke
 //----------------------
 
 //Random kedvcsináló
+
+$users=new UserView("");
+$usersInfo=$users->showAllUserInfo();
 
 $kedvContent = '
 <style>

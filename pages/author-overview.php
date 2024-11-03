@@ -24,8 +24,11 @@ $bookPage->name = "Író: " . $iroInfo['nev'];
 
 //Az alkotó könyvei könyvek
 $konyveiContent = "<div class=\"row\">
-    ".book_mini($iroKonyvek[0], $ROOT).book_mini($iroKonyvek[0], $ROOT).book_mini($iroKonyvek[0], $ROOT).book_mini($iroKonyvek[0], $ROOT).book_mini($iroKonyvek[0], $ROOT)."
-</div>";
+    ";
+    foreach($iroKonyvek as $konyv) {
+        $konyveiContent.=book_mini($konyv, $ROOT);
+    }
+$konyveiContent .="</div>";
 
 //Alkotó
 $detailContainer =
@@ -44,9 +47,10 @@ $detailContainer =
                                     </div>
                                     <p class="text-center">'.$iroInfo['nev'].'</p>
                                     <hr class="my-3">
-                                    <p><span class="my-blue">Született:</span> <span class="float-end">'.$iroInfo['szuletesi_ido'].'</span></p>
-                                    <p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>
-                                    <p><span class="my-blue">Származása:</span> <span class="float-end">'.$iroInfo['szarmazas'].'</span></p>
+                                    <p><span class="my-blue">Született:</span> <span class="float-end">'.$iroInfo['szuletesi_ido'].'</span></p>';
+
+                                    $detailContainer .=$iroInfo['halal_ido']=="" ? '' : '<p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>';                
+$detailContainer .=                 '<p><span class="my-blue">Származása:</span> <span class="float-end">'.$iroInfo['szarmazas'].'</span></p>
                                     <hr class="my-3">
                                     <p><span class="my-blue">Kategóriák</span></p>
                             </div>

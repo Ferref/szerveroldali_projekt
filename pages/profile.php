@@ -9,12 +9,12 @@ $ROOT = "../";                       //Az adott fájl relatív elérése a `gene
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
 
-if(!isset($_SESSION['user'])) {
+if(!isset($_SESSION['user_name'])) {
     redirect("../");
 }
 
 $user=new UserView("");
-$userInfo=$user->showUserInfo($_SESSION['user']);
+$userInfo=$user->showUserInfo($_SESSION['user_name']);
 
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)

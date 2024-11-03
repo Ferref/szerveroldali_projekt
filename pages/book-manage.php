@@ -3,9 +3,35 @@
 //  Oldal változók beállítása
 //----------------------
 
+
 $ROOT = "../";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
+
+if(isset($_POST['submit']) && !isset($_GET['id'])) {
+    $insert=new BookController();
+    if($insert->insertNewBook(antiSql($_POST['cim']), antiSql($_POST['leiras']), antiSql($_POST['oldalszam']),
+    antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), antiSql($_POST['link-amazon']), antiSql($_POST['link-bookline']))) {
+        echo "Siker!";
+    }
+}
+
+if(isset($_POST['submit']) && isset($_GET['id'])) {
+    $update=new BookController();
+    if($update->updatingBook($_GET['id'],antiSql($_POST['cim']), antiSql($_POST['leiras']), antiSql($_POST['oldalszam']),
+    antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), antiSql($_POST['link-amazon']), antiSql($_POST['link-bookline']))) {
+        echo "Siker!";
+    }
+}
+
+if(isset($_POST['delete']) && isset($_GET['id'])) {
+    $delete=new BookController();
+    if($delete->removeBook($_GET['id'])) {
+        echo "Siker!";
+    }
+}
+
+
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Könyv Kezelés"; //title attributum értéke
@@ -33,7 +59,7 @@ else{
 }
 
 $konyvKezelesContent = '<div class="row">
-    <form action="" class="row">
+    <form action="book-manage.php" method="post" class="row">
         <div class="mb-3 col-12">
             <label for="cim" class="form-label my-light-blue">Cím</label>
             <input type="text" class="form-control" id="cim" name="cim" value="'.(isset($_GET['id']) ? $konyvInfo['cim'] : "").'" required>
@@ -44,7 +70,7 @@ $konyvKezelesContent = '<div class="row">
         </div>
         <div class="mb-3 col-6 col-lg-3">
             <label for="oldalszam" class="form-label my-light-blue">Oldalszám</label>
-            <input type="number" class="form-control" id="oldalszam" name="oldalszam" required>
+            <input type="number" class="form-control" id="oldalszam" name="oldalszam" value="'.(isset($_GET['id']) ? $konyvInfo['oldalszam'] : "").'" required>
         </div>
         <div class="mb-3 col-6 col-lg-3">
             <label for="kiadasev" class="form-label my-light-blue">Kiadási év</label>
@@ -52,11 +78,11 @@ $konyvKezelesContent = '<div class="row">
         </div>
         <div class="mb-3 col-12 col-md-6">
             <label for="link-amazon" class="form-label my-light-blue">Amazon link</label>
-            <input type="text" class="form-control" id="link-amazon" name="link-amazon"/>
+            <input type="text" class="form-control" id="link-amazon" name="link-amazon" value="'.(isset($_GET['id']) ? $konyvInfo['link_amazon'] : "").'"/>
         </div>
         <div class="mb-3 col-12 col-md-6">
             <label for="link-bookline" class="form-label my-light-blue">Bookline link</label>
-            <input type="text" class="form-control" id="link-bookline" name="link-bookline"/>
+            <input type="text" class="form-control" id="link-bookline" name="link-bookline" value="'.(isset($_GET['id']) ? $konyvInfo['link_bookline'] : "").'"/>
         </div>
         <div class="mb-3 col-12 col-lg-6">
             <label for="borito" class="form-label my-light-blue">Borító</label>
@@ -84,9 +110,9 @@ $konyvKezelesContent = '<div class="row">
 
         <div class="row">
             <div class="col-12 col-md-5 col-lg-4">
-                <div class="row">
-                    <div class="col-6"><button type="submit" class="w-100 btn btn-danger my-3 shadow">Törlés</button></div>
-                    <div class="col-6"><button type="submit" class="w-100 btn my-3 shadow bg-my-blue my-white-blue">Feltöltés</button></div>
+                <div class="row">';
+$konyvKezelesContent.= isset($_GET['id']) ? '<div class="col-6"><button type="submit" class="w-100 btn btn-danger my-3 shadow" name="delete">Könyv Törlése</button></div>' : '';
+$konyvKezelesContent.='<div class="col-6"><button type="submit" class="w-100 btn my-3 shadow bg-my-blue my-white-blue" name="submit">'.(isset($_GET['id']) ? "Módosítás" : "Feltöltés").'</button></div>
                 </div>
             </div>
         </div>
