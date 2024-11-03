@@ -1,84 +1,86 @@
-CREATE DATABASE IF NOT EXISTS konyvajanlo;
-USE konyvajanlo;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Nov 03. 21:54
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
-CREATE TABLE konyvek (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cim VARCHAR(255) NOT NULL,
-    leiras TEXT,
-    kiadasi_ev INT,
-    boritokep_url VARCHAR(255),
-    link_amazon VARCHAR(255),
-    link_bookline VARCHAR(255)
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE kategoriak (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nev VARCHAR(255) NOT NULL
-);
 
-CREATE TABLE szerzok (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nev VARCHAR(255) NOT NULL,
-    profilkep_url VARCHAR(255)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE felhasznalok (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nev VARCHAR(255) UNIQUE NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    jelszo VARCHAR(255) NOT NULL,
-    profilkep_url VARCHAR(255),
-    regisztracios_datum DATETIME DEFAULT NOW()
-);
+--
+-- Adatbázis: `konyvajanlo`
+--
 
-CREATE TABLE velemenyek (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    felhasznalo_id INT NOT NULL,
-    konyv_id INT NOT NULL,
-    velemeny TEXT NOT NULL,
-    datum DATETIME DEFAULT NOW(),
-    -- Ha egy felhasználó törlődik, a kapcsolódó vélemények is törlődjenek
-    FOREIGN KEY (felhasznalo_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
-    FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE
-);
+-- --------------------------------------------------------
 
-CREATE TABLE hozzaszolasok (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    velemeny_id INT,
-    felhasznalo_id INT,
-    hozzaszolas TEXT NOT NULL,
-    datum DATETIME DEFAULT NOW(),
-    -- Ha egy vélemény törlődik, a hozzászólások is törlődjenek
-    FOREIGN KEY (velemeny_id) REFERENCES velemenyek(id) ON DELETE CASCADE,
-    -- Ha egy felhasználó törlődik, a kapcsolódó hozzászólások is törlődjenek
-    FOREIGN KEY (felhasznalo_id) REFERENCES felhasznalok(id) ON DELETE CASCADE
-);
+--
+-- Tábla szerkezet ehhez a táblához `konyv_kategoria`
+--
 
--- Összekötő tábla a könyvek és szerzők között a N-N kapcsolat kezelésére
-CREATE TABLE konyv_szerzo (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    konyv_id INT,
-    szerzo_id INT,
-    FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE,
-    FOREIGN KEY (szerzo_id) REFERENCES szerzok(id) ON DELETE CASCADE
-);
+CREATE TABLE `konyv_kategoria` (
+  `id` int(11) NOT NULL,
+  `konyv_id` int(11) DEFAULT NULL,
+  `kategoria_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Összekötő tábla a könyvek és kategóriák között a N-N kapcsolat kezelésére
-CREATE TABLE konyv_kategoria (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    konyv_id INT,
-    kategoria_id INT,
-    FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE,
-    FOREIGN KEY (kategoria_id) REFERENCES kategoriak(id) ON DELETE CASCADE
-);
+--
+-- A tábla adatainak kiíratása `konyv_kategoria`
+--
 
--- Konyvek ertekelese tabla
-CREATE TABLE ertekelesek (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    felhasznalo_id INT NOT NULL,
-    konyv_id INT NOT NULL,
-    ertekeles TINYINT NOT NULL CHECK (ertekeles BETWEEN 1 AND 5),
-    datum DATETIME DEFAULT NOW(),
-    FOREIGN KEY (felhasznalo_id) REFERENCES felhasznalok(id) ON DELETE CASCADE,
-    FOREIGN KEY (konyv_id) REFERENCES konyvek(id) ON DELETE CASCADE
-);
+INSERT INTO `konyv_kategoria` (`id`, `konyv_id`, `kategoria_id`) VALUES
+(1, 1, 1),
+(2, 2, 3),
+(3, 3, 3),
+(4, 4, 4),
+(5, 1, 3),
+(6, 2, 1),
+(7, 3, 4),
+(8, 4, 3);
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `konyv_kategoria`
+--
+ALTER TABLE `konyv_kategoria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `konyv_id` (`konyv_id`),
+  ADD KEY `kategoria_id` (`kategoria_id`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `konyv_kategoria`
+--
+ALTER TABLE `konyv_kategoria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `konyv_kategoria`
+--
+ALTER TABLE `konyv_kategoria`
+  ADD CONSTRAINT `konyv_kategoria_ibfk_1` FOREIGN KEY (`konyv_id`) REFERENCES `konyvek` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `konyv_kategoria_ibfk_2` FOREIGN KEY (`kategoria_id`) REFERENCES `kategoriak` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
