@@ -14,8 +14,8 @@ class UserController extends UserModel {
        return $this->userPassword($userNev);
     } 
 
-    public function registerUser ($nev, $email, $jelszo) {
-        return $this->insertUser($nev, $email, $jelszo);
+    public function registerUser ($nev, $email, $jelszo, $szerep) {
+        return $this->insertUser($nev, $email, $jelszo, $szerep);
     } 
 
 }
