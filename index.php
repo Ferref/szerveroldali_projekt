@@ -38,6 +38,11 @@ $kedvContent = $rt_element;
 $kedvContainer = $homePage->createContainer($kedvContent,"Random Kedvcsináló", "bi-shuffle");
 //---
 
+
+$legnepszerubbKonyvek=new BookView();
+$legnepszerubbKonyvek=$legnepszerubbKonyvek->showMostPopularBooks();
+
+
 //Legnépszerűbb könyvek
 $nKonyvekContent = "<div class=\"row\">
     <div class=\"col-12 col-sm-6 col-md-4 col-lg-12_5 p-3\">
@@ -84,7 +89,7 @@ $nKonyvekContent = "<div class=\"row\">
             </div>
         </a>
     </div>
-    ".book_mini(1,$ROOT)."
+    ".book_mini($legnepszerubbKonyvek[0],$ROOT)."
 </div>";
 $nKonyvekContainer = $homePage->createContainer($nKonyvekContent,"Legnépszerűbb könyvek", "bi-book");
 //---

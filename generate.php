@@ -1,5 +1,6 @@
 <?php
 
+require_once("includes/autoload.inc.php");
 class Generate{
     public $name = "Booknav";
     public $root = "./";
@@ -41,4 +42,3 @@ $content = "Ez egy teszt oldal!";
 $container = $testPage->createContainer($content,"Teszt Elek Blokk", "bi-book");
 echo $testPage->genFramedPage($container);
 */
-?>
