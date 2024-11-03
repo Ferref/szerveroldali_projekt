@@ -19,7 +19,7 @@ class BookController
 
         // Ha nincs konyv, akkor ne jelenitsen meg semmit
         if($book){
-            include 'views/book_view.php';
+            include 'views/book_random_view.php';
         }
         else {
             echo "Nincs elérhető könyv!";
@@ -32,7 +32,7 @@ class BookController
 
         // Ha vannak konyvek jelenitsuk meg, ha nincs akkor ne
         if ($popularBooks) {
-            include 'views/popular_books_view.php';
+            include 'views/books_popular_view.php';
         } else {
             echo "Nincs elérhető népszerű könyv.";
         }
@@ -60,7 +60,7 @@ class BookController
 
         // Ha vannak velemenyek, jelenitsuk meg
         if ($reviews) {
-            include 'views/reviews_view.php';
+            include 'views/book_reviews_view.php';
         } else {
             echo "Ehhez a könyvhöz még nincsenek vélemények.";
         }
@@ -70,10 +70,9 @@ class BookController
     {
         // Hasonlo konyvek lekerese
         $similarBooks = $this->bookModel->getSimilarBooks($bookId);
-
         // Ha vannak hasonlo konyvek
         if ($similarBooks) {
-            include 'views/similar_books_view.php';
+            include 'views/books_similar_view.php';
         } else {
             echo "Nincsenek hasonló könyvek.";
         }
