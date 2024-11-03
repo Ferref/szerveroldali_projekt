@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['registration'])) {
         redirect("../pages/registration.php");
     }
 
-    $user->registerUser($_POST['username'], $_POST['email'], $_POST['password'], );
+    $user->registerUser($_POST['username'], $_POST['email'], $_POST['password'], "user");
 
     redirect("../");
 

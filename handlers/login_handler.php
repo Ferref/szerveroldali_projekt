@@ -13,8 +13,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['login'])) {
         redirect("../pages/login.php");
     }
 
+    $user=new UserView("");
+    $userInfo=$user->showUserInfo($_POST['username']);
 
-    $_SESSION["user"]=$_POST['username'];
+    $_SESSION["user_id"]=$userInfo['id'];
+    $_SESSION["user_name"]=$userInfo['nev'];
+    $_SESSION["user_role"]=$userInfo['szerep'];
+    $_SESSION["user_profilkep"]=$userInfo['profilkep_url'];
 
     redirect("../");
 
