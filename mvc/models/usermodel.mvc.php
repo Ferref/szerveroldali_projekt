@@ -53,11 +53,19 @@ class UserModel extends DatabaseHandler {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    protected function getAllUserInfo() {
-        $query = "SELECT nev, email, szerep FROM felhasznalok";
+    protected function getAllUserInfo($page) {
+        $query = "SELECT id, nev, email, szerep FROM felhasznalok LIMIT :page,10;";
         $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllUserInfoPageNumber() {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM felhasznalok;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
