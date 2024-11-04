@@ -6,7 +6,11 @@ class UserView extends UserModel {
         return $this->getUserInfo($userId);
     }
 
-    public function showAllUserInfo() {
-        return $this->getAllUserInfo();
+    public function showAllUserInfo($page) {
+        return $this->getAllUserInfo($page);
+    }
+
+    public function showAllUserInfoPageNumber() {
+        return $this->getAllUserInfoPageNumber();
     }
 }
