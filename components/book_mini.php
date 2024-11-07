@@ -3,28 +3,38 @@
     // $id   | int
     // $ROOT | string
 
-    function book_mini($konyv,$ROOT){
+    function book_mini($konyv, $ROOT) {
         //if($kep_url=="nincs" || empty($kep_url))
+        
+        // Csak olyan kepeket jelenitsunk meg aminek minden erteke megvan
+        if (!is_array($konyv) || !isset($konyv['id'], $konyv['boritokep_url'], $konyv['cim'])) {
+            return "";
+        }
+
         $kep_url = $konyv['boritokep_url'];
         $cim = $konyv['cim'];
         $szerzo = new AuthorView();
-        $szerzo=$szerzo->showBookAuthors($konyv['id']);
+        $szerzo = $szerzo->showBookAuthors($konyv['id']);
         //Szám kerekítése .5-re vagy egészre
-        
+
         $element = "
         
         <div class=\"col-12 col-sm-6 col-md-4 col-lg-12_5 p-3\">
             <a href=\"".$ROOT."pages/book-overview.php?id=".$konyv['id']."\">
                 <div class=\"book-card d-flex flex-column align-items-center text-center c-pointer\">
                     <div class=\"py-2 px-2 px-md-0 px-lg-3 cover-container\">
-                        <img class=\"d-block mx-auto rounded\"src=\"".$kep_url."\"/>
+                        <img class=\"d-block mx-auto rounded\" src=\"".$kep_url."\" />
                     </div>
                     <p class=\"book-title m-2\">".$cim."</p>";
-                    foreach ($szerzo as $sz) {
-                        $element .="<p class=\"font-roboto my-gray mb-2\">".$sz['nev']."</p>";
+                    if (is_array($szerzo)) {
+                        foreach ($szerzo as $sz) {
+                            // 'nev' check
+                            if (isset($sz['nev'])) {
+                                $element .= "<p class=\"font-roboto my-gray mb-2\">".$sz['nev']."</p>";
+                            }
+                        }
                     }
-                    
-$element .=        "</div>
+        $element .= "</div>
             </a>
         </div>
         ";
