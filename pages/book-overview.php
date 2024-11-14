@@ -87,17 +87,49 @@ $detailContainer =
 
 $velemenyekContent = '
 <div class="row">
-    
+
     <div class="col-12">
         <div class="py-1 px-3">
-            <div class="pb-4 p-3 rounded border-bottom border-2">
+            <div class="pb-4 px-3 rounded">
                 <div class="row">
                     <div class="col-3 col-md-2 col-lg-1" >
                         <div class="circle-avatar">
                             <img class="border rounded-circle avatar-img" src="https://divineyouwellness.com/wp-content/uploads/2021/11/signs-of-an-Inteligent-person.jpg" alt=""/>
                         </div>
                     </div>
-                    <div class="col-9 col-md-10 col-lg-11" >
+                    <div class="col-9 col-md-10 col-lg-11 border-bottom border-2 pb-3" >
+                        <div class="row">
+                            <div class="col-12 mb-2"><span class="my-blue fw-bold">/*logged in username*/</span></div>
+                            <div class="col-12 font-roboto fs-5">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <textarea placeholder="Írd meg saját véleményed..." class="form-control" rows="5" name="commentText" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end pt-3">
+                                        <div class="col-6 col-md-3"><button type="button" class="d-block w-100 btn btn-outline-primary my-light-blue my-light-blue-border" data-bs-dismiss="modal">Mégsem</button></div>
+                                        <div class="col-6 col-md-3"><button type="submit" class="d-block w-100 btn btn-primary my-blue-border bg-my-blue text-white">Küldés</button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="py-1 px-3">
+            <div class="pb-4 px-3 rounded ">
+                <div class="row">
+                    <div class="col-3 col-md-2 col-lg-1" >
+                        <div class="circle-avatar">
+                            <img class="border rounded-circle avatar-img" src="https://divineyouwellness.com/wp-content/uploads/2021/11/signs-of-an-Inteligent-person.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-11 border-bottom border-2 pb-3" >
                         <div class="row">
                             <div class="col-12 mb-2"><span class="my-blue fw-bold">Anna</span> - 2024.04.11.</div>
                             <div class="col-12 font-roboto fs-5">Totális kedvenc ez a könyv. Minden percét elveztem. A film igazán eltörpül mellette. A karakterek kidolgozottsága és az a sok apró részlet. Ajánlom mindenkinek!</div>
@@ -110,14 +142,14 @@ $velemenyekContent = '
 
     <div class="col-12">
         <div class="py-1 px-3">
-            <div class="pb-4 p-3 rounded border-bottom border-2">
+            <div class="pb-4 px-3 rounded ">
                 <div class="row">
                     <div class="col-3 col-md-2 col-lg-1" >
                         <div class="circle-avatar">
                             <img class="border rounded-circle avatar-img" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2024/10/why-gandalf-needs-a-staff-in-the-lord-of-the-rings.jpg" alt=""/>
                         </div>
                     </div>
-                    <div class="col-9 col-md-10 col-lg-11" >
+                    <div class="col-9 col-md-10 col-lg-11 border-bottom border-2 pb-3" >
                         <div class="row">
                             <div class="col-12 mb-2"><span class="my-blue fw-bold">Varázsló</span> - 2024.02.01.</div>
                             <div class="col-12 font-roboto fs-5">Totális kedvenc ez a könyv. Minden percét elveztem. A film igazán eltörpül mellette. A karakterek kidolgozottsága és az a sok apró részlet. Ajánlom mindenkinek!</div>
