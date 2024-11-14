@@ -85,6 +85,50 @@ $detailContainer =
         </div>
     </div>';
 
+$velemenyekContent = '
+<div class="row">
+    
+    <div class="col-12">
+        <div class="py-1 px-3">
+            <div class="pb-4 p-3 rounded border-bottom border-2">
+                <div class="row">
+                    <div class="col-3 col-md-2 col-lg-1" >
+                        <div class="circle-avatar">
+                            <img class="border rounded-circle avatar-img" src="https://divineyouwellness.com/wp-content/uploads/2021/11/signs-of-an-Inteligent-person.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-11" >
+                        <div class="row">
+                            <div class="col-12 mb-2"><span class="my-blue fw-bold">Anna</span> - 2024.04.11.</div>
+                            <div class="col-12 font-roboto fs-5">Totális kedvenc ez a könyv. Minden percét elveztem. A film igazán eltörpül mellette. A karakterek kidolgozottsága és az a sok apró részlet. Ajánlom mindenkinek!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="py-1 px-3">
+            <div class="pb-4 p-3 rounded border-bottom border-2">
+                <div class="row">
+                    <div class="col-3 col-md-2 col-lg-1" >
+                        <div class="circle-avatar">
+                            <img class="border rounded-circle avatar-img" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2024/10/why-gandalf-needs-a-staff-in-the-lord-of-the-rings.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-11" >
+                        <div class="row">
+                            <div class="col-12 mb-2"><span class="my-blue fw-bold">Varázsló</span> - 2024.02.01.</div>
+                            <div class="col-12 font-roboto fs-5">Totális kedvenc ez a könyv. Minden percét elveztem. A film igazán eltörpül mellette. A karakterek kidolgozottsága és az a sok apró részlet. Ajánlom mindenkinek!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>';
+$velemenyGomb = "<button class='btn float-end shadow-sm py-1 px-3 my-blue d-flex justify-content-around align-items-center bg-my-white-blue rounded'><i class='bi bi-plus-square-dotted me-2'></i>vélemény írása</button>";
 $detailContainer .= $bookPage->createContainer($nKonyvekContent, "Hasonló könyvek", "bi-book");
-$detailContainer .= $bookPage->createContainer("", "Vélemények", "bi-chat-left-text");
+$detailContainer .= $bookPage->createContainer($velemenyekContent, "Vélemények".$velemenyGomb, "bi-chat-left-text");
 echo $bookPage->genFramedPage($detailContainer);
