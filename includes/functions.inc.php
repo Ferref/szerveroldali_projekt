@@ -21,3 +21,9 @@ function redirect($url)
 function antiSql($string) {
     return htmlspecialchars($string);
 }
+
+function unsetMessages() {
+    if(isset($_SESSION['message'])) unset($_SESSION['message']);
+    if(isset($_SESSION['error'])) unset($_SESSION['error']);
+}
+
