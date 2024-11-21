@@ -3,7 +3,7 @@ require_once("../includes/autoload.inc.php");
 
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['login'])) {
 
-    $user=new UserController("");
+    $user=new UserController();
 
     if(!$user->isUserExists($_POST['username'])) {
         redirect("../pages/login.php");
@@ -13,13 +13,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['login'])) {
         redirect("../pages/login.php");
     }
 
-    $user=new UserView("");
+    $user=new UserView();
     $userInfo=$user->showUserInfo($_POST['username']);
 
-    $_SESSION["user_id"]=$userInfo['id'];
-    $_SESSION["user_name"]=$userInfo['nev'];
-    $_SESSION["user_role"]=$userInfo['szerep'];
-    $_SESSION["user_profilkep"]=$userInfo['profilkep_url'];
+    $_SESSION["user"]=$userInfo;
 
     redirect("../");
 
