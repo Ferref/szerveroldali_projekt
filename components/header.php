@@ -28,12 +28,12 @@
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php?type=konyv\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php?type=iro\"><i class=\"bi bi-vector-pen my-blue me-1\"></i>Írók</a>
+                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/authors.php\"><i class=\"bi bi-vector-pen my-blue me-1\"></i>Írók</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/categories.php\"><i class=\"bi bi-grid my-blue me-1\"></i>Kategóriák</a>
                         </li>";
-                        if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='admin') {
+                        if(isset($_SESSION['user']) && $_SESSION['user']['szerep']=='admin') {
                             $element .=
                             "<li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
                                 <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/book-manage.php\"><i class=\"bi bi-grid my-blue me-1\"></i>Könyv hozzáadás</a>
@@ -43,10 +43,10 @@ $element .=        "</ul>
                     <ul class=\"navbar-nav\">
                         <div class=\"dropdown hover-menu-button rounded-20 d-none d-md-block\">
                             <button class=\"btn  rounded\" type=\"button\">
-                                <i class=\"bi bi-person-circle my-blue fs-3\">" .(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : "")."</i>
+                                <i class=\"bi bi-person-circle my-blue fs-3\"> ".(isset($_SESSION['user']['nev']) ? $_SESSION['user']['nev'] : ""). "</i>
                             </button>
                             <ul class=\"hover-menu-list d-none bg-white rounded shadow py-1 px-3\">";
-                            if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='guest') {
+                            if(!isset($_SESSION['user'])) {
                                 $element .="<li class=\"nav-item m-0 px-2\">
                                     <a class=\"my-light-blue p-0\" href=\"".$this->root."pages/login.php\"><i class=\"bi bi-box-arrow-in-right my-blue me-1\"></i>Belépés</a>
                                 </li>
