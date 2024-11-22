@@ -1,12 +1,10 @@
 <?php
     // A könyvek értékelésének csillaggal és számértékkel való megjelenítése
     // $stars | float vagy int
-    // $ROOT értéke a baágyazó oldalból jön
-    
     function rating($stars){
         $ROOT = '/szerveroldali_projekt/';
         //Szám kerekítése .5-re vagy egészre
-        $stars = floor($stars * 2) / 2;
+        $stars = floor($stars['atlag_ertekeles'] * 2) / 2;
         //echo "Osztva: $stars _ ".($stars==floor($stars));
         $element = '
         <p>
@@ -61,4 +59,3 @@
         </p>';
         return $element;
     }
-?>
