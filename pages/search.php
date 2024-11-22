@@ -34,10 +34,14 @@ $searchContainer = $homePage->createEmptyContainer($searchContent);
 //---
 
 //Találatok
-$talalatokContent = '
-    <div class="row">
-        '.book_mini(1, $ROOT).'
-    </div>
+$konyvek=new BookView();
+$talaltkonyvek=$konyvek->showAllBook();
+
+$talalatokContent = '<div class="row">';
+foreach($talaltkonyvek as $konyv) {
+    $talalatokContent.=book_mini($konyv,$ROOT);
+}
+$talalatokContent .='</div>
 ';
 $talalatokContainer = $homePage->createContainer($talalatokContent,"Találatok", "bi-search");
 //---
@@ -48,4 +52,3 @@ $allContent = $searchContainer.$talalatokContainer;
 
 //Oldal megjelenítése
 echo $homePage->genFramedPage($allContent);
-?>

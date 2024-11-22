@@ -1,15 +1,22 @@
 <?php
-//DATABase
-$authorName = "C. S. Lewis";
+if (!isset($_GET['id'])) {
+    header("Location: ../");
+}
 //
 $ROOT = "../";
 require_once($ROOT . "generate.php");
 include_once($ROOT . "components/book_mini.php");
 include_once($ROOT . "components/rating.php");
 
+$iro=new AuthorView();
+$iroInfo=$iro->showAuthorInfo($_GET['id']);
+$iroKonyvek=$iro->showAuthorBooks($_GET['id']);
+$ertekeles=$iro->showAuthorBooksAvgRating($_GET['id']);
+$kategoriak=$iro->showWriterCategories($_GET['id']);
+
 $bookPage = new Generate();
 $bookPage->root = $ROOT;
-$bookPage->name = "Író: " . $authorName;
+$bookPage->name = "Író: " . $iroInfo['nev'];
 
 //----------------------
 //      Tartalom
@@ -17,8 +24,11 @@ $bookPage->name = "Író: " . $authorName;
 
 //Az alkotó könyvei könyvek
 $konyveiContent = "<div class=\"row\">
-    ".book_mini(1, $ROOT).book_mini(1, $ROOT).book_mini(1, $ROOT).book_mini(1, $ROOT).book_mini(1, $ROOT)."
-</div>";
+    ";
+    foreach($iroKonyvek as $konyv) {
+        $konyveiContent.=book_mini($konyv, $ROOT);
+    }
+$konyveiContent .="</div>";
 
 //Alkotó
 $detailContainer =
@@ -33,21 +43,22 @@ $detailContainer =
                             <div class="bg-white rounded-20 p-4 p-md-4 border w-100 mb-2">
                                 <h5 class="my-blue text-center mb-3"><i class="bi bi-vector-pen me-2"></i>Író</h5>
                                     <div class="mx-5 mx-md-3 rounded rounded-circle p-1 bg-white shadow circle-avatar overflow-hidden mb-3 ">
-                                        <img src="https://totallyhistory.com/wp-content/uploads/2013/07/CS-Lewis.jpg" alt="" class="rounded-circle">
+                                        <img src="'.$iroInfo['profilkep_url'].'" alt="" class="rounded-circle">
                                     </div>
-                                    <p class="text-center">C. S. Lewis</p>
+                                    <p class="text-center">'.$iroInfo['nev'].'</p>
                                     <hr class="my-3">
-                                    <p><span class="my-blue">Született:</span> <span class="float-end">1898.11.29.</span></p>
-                                    <p><span class="my-blue">Elhunyt:</span> <span class="float-end">1963.11.22.</span></p>
-                                    <p><span class="my-blue">Származása:</span> <span class="float-end">Britt</span></p>
+                                    <p><span class="my-blue">Született:</span> <span class="float-end">'.$iroInfo['szuletesi_ido'].'</span></p>';
+
+                                    $detailContainer .=$iroInfo['halal_ido']=="" ? '' : '<p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>';                
+$detailContainer .=                 '<p><span class="my-blue">Származása:</span> <span class="float-end">'.$iroInfo['szarmazas'].'</span></p>
                                     <hr class="my-3">
                                     <p><span class="my-blue">Kategóriák</span></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="bg-white rounded-20 p-2 p-md-4 border w-100 mt-2">
-                            ' . rating(4.5) . '
-                             X könyv Y értékelése alapján.
+                            ' . rating($ertekeles) . '
+                             '.count($iroKonyvek).' könyv '.$ertekeles['ertekelesek_szama'].' értékelése alapján.
                             </div>
                         </div>
                    

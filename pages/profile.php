@@ -3,9 +3,19 @@
 //  Oldal változók beállítása
 //----------------------
 
+
+
 $ROOT = "../";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
+
+if(!isset($_SESSION['user'])) {
+    redirect("../");
+}
+
+$user=new UserView();
+$userInfo=$user->showUserInfo($_SESSION['user']['nev']);
+
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
 $homePage->name = "Profil"; //title attributum értéke
@@ -31,9 +41,9 @@ $kedvContent = '
                                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" class="rounded-10 img-fluid">
                                     </div>
                                     <div class="col-12 col-md-6 col-lg-9 mt-4 mt-md-0">
-                                        <p class="mb-2"><b class="my-blue">Felhasználónév:</b> Sensei</p>
-                                        <p class="mb-2"><b class="my-blue">E-mail:</b> valami@gmail.com</p>
-                                        <p class="mb-2"><b class="my-blue">Regisztrálva:</b> 2024.10.23.</p>
+                                        <p class="mb-2"><b class="my-blue">Felhasználónév:</b> '.$userInfo['nev'].'</p>
+                                        <p class="mb-2"><b class="my-blue">E-mail:</b> '.$userInfo['email'].'</p>
+                                        <p class="mb-2"><b class="my-blue">Regisztrálva:</b> '.$userInfo['regisztracios_datum'].'</p>
                                         <br>
                                         <p class="mb-2"><b class="my-blue">Kedvenc:</b> 12 <sub class="my-light-blue">db</sub></p>
                                         <p class="mb-2"><b class="my-blue">Olvasott:</b> 52 <sub class="my-light-blue">db</sub></p>
@@ -88,4 +98,3 @@ $allContent = $kedvContainer;
 
 //Oldal megjelenítése
 echo $homePage->genFramedPage($allContent);
-?>
