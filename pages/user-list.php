@@ -71,7 +71,8 @@ if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
 }
 
 $href=($userPage<=1 || $_GET["page"]==$userPage) ? "#" : ($ROOT.'pages/user-list.php'."?page=".$_GET['page']+1 . (isset($_GET['filterName']) ? "&filterName=".$_GET['filterName'] : "").(isset($_GET['filterEmail']) ? "&filterEmail=".$_GET['filterEmail'] : ""));
-$_SESSION["currentPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".$_GET['filterName'] : "").(isset($_GET['filterEmail']) ? "&filterEmail=".$_GET['filterEmail'] : "");
+
+$_SESSION["rememberPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".$_GET['filterName'] : "").(isset($_GET['filterEmail']) ? "&filterEmail=".$_GET['filterEmail'] : "");
 
 $kedvContent = '
 <style>
@@ -117,15 +118,18 @@ $kedvContent .=
       </a>
     </li>
   </ul>
-</nav>
-<table class="table table-striped table-hover table-primary ">
+</nav>';
+
+$kedvContent .= ((isset($_SESSION['error']) && !empty($_SESSION['error'])) ? '<div class="alert alert-danger" role="alert">'.$_SESSION['error'].'</div>' : "");
+$kedvContent .= ((isset($_SESSION['message']) && !empty($_SESSION['message'])) ? '<div class="alert alert-success" role="alert">'.$_SESSION['message'].'</div>' : "");
+$kedvContent .='<table class="table table-striped table-hover table-primary ">
     <thead>
         <tr class="table-light"><th>#</th><th>Id</th><th>Név</th><th>E-mail</th><th>Szerep</th><th>Módosítás</th></tr>
     </thead>
     <tbody>';
     $j=1;
     foreach($usersInfo as $u) {
-      $kedvContent .='<tr><td>'.$j.'</td><td>'.$u['id'].'</td><td>'.$u['nev'].'</td><td>'.$u['email'].'</td><td>'.$u['szerep'].'</td><td><a href="user-manage.php?id='.$u['id'].'" class="btn btn-outline-primary me-2">Szerk</a><input type="submit" value="Törlés" class="btn btn-outline-danger"></td></tr>';
+      $kedvContent .='<tr><td>'.$j.'</td><td>'.$u['id'].'</td><td>'.$u['nev'].'</td><td>'.$u['email'].'</td><td>'.$u['szerep'].'</td><td><a href="user-manage.php?id='.$u['id'].'" class="btn btn-outline-primary me-2">Szerk</a><a href="'.$ROOT.'/handlers/delete_handler.php?deleteUser='.$u['id'].'" class="btn btn-outline-danger">Törlés</a></td></tr>';
       $j++;
     }
 $kedvContent .=
@@ -161,7 +165,7 @@ $kedvContainer = $homePage->createContainer($kedvContent,"Felhasználók", "bi-p
 
 
 //---
-
+unsetMessages();
 
 //Tartalom öszefűzése
 $allContent = $kedvContainer;

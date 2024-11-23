@@ -30,4 +30,9 @@ class UserController extends UserModel {
         return $this->updateUserWithPassword($id, $nev, $email, $jelszo,$profilkep_url);
     } 
 
+    public function removeUser ($id) {
+        return $this->deleteUser($id);
+    } 
+
+
 }

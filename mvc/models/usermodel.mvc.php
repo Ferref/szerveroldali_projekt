@@ -162,4 +162,11 @@ class UserModel extends DatabaseHandler {
         return $stmt->execute();
     }
 
+    protected function deleteUser($id) {
+        $query= "DELETE FROM felhasznalok WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 }
