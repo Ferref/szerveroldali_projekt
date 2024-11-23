@@ -38,7 +38,7 @@ $kedvContent = '
                             <div class="col-12">
                                 <div class="row justify-content-center">
                                     <div class="col-8 col-md-4 col-lg-3">
-                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" class="rounded-10 img-fluid">
+                                        <img src="'.($userInfo['profilkep_url']!="" ? $userInfo['profilkep_url'] : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png").'" alt="" class="rounded-10 img-fluid">
                                     </div>
                                     <div class="col-12 col-md-6 col-lg-9 mt-4 mt-md-0">
                                         <p class="mb-2"><b class="my-blue">Felhasználónév:</b> '.$userInfo['nev'].'</p>
@@ -52,7 +52,7 @@ $kedvContent = '
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <button class="btn my-blue"><i class="bi bi-pencil me-2"></i>Szerkesztés</button>
+                                        <a href="user-manage.php?id='.$_SESSION['user']['id'].'" class="btn my-blue"><i class="bi bi-pencil me-2"></i>Szerkesztés</a>
                                     </div>
                                 </div>
                             </div>

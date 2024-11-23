@@ -3,132 +3,94 @@
 //  Oldal változók beállítása
 //----------------------
 
+
 $ROOT = "../";                       //Az adott fájl relatív elérése a `generate.php`-hoz képest.
 //$SRC = "https://localhost/szerveroldali_projekt/";
 require_once($ROOT."generate.php"); //`generate.php` meghívása
 
-if(!isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin") {
-  redirect($ROOT);
+$userController=new UserController();
+
+if(!isset($_SESSION['user']) || !isset($_GET['id']) || (isset($_GET['id']) && !($userController->isIdExists($_GET['id']))) || ($_SESSION['user']['id']!=$_GET['id'] && $_SESSION['user']['szerep']!='admin')){
+    redirect($ROOT);
 }
 
-if(!isset($_GET['page'])) {
-  $_GET['page']=1;
-}
+
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
-$homePage->name = "Felhasználó kezelés"; //title attributum értéke
+$homePage->name = "Felhasználó Kezelés"; //title attributum értéke
+
+if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && isset($_GET['id'])) {
+    try {
+        if($_POST['jelszo'] == "") {
+            if(!$userController->modifyUserWithoutPassword($_GET['id'], antiSql($_POST['nev']), antiSql($_POST['email']), antiSql($_POST['profilkep_url']))) {
+                throw new HibaException();
+            }
+            $_SESSION['message']="A felhasználó szerkesztése sikeres!";
+        } else {
+            if(!$userController->modifyUserWithPassword($_GET['id'], antiSql($_POST['nev']), antiSql($_POST['email']), antiSql($_POST['jelszo']), antiSql($_POST['profilkep_url']))) {
+                throw new HibaException();
+            }
+            $_SESSION['message']="A felhasználó szerkesztése sikeres!";
+        }
+    }catch (HibaException $e) {
+        $_SESSION['error']=nl2br("A felhasználó szerkesztése nem sikerült! \n").$e->getMessage();
+    }
+    
+}
+
 //echo $ROOT."media/images/nincs-borito.jpg";
 //----------------------
 //      Tartalom
 //----------------------
 
-//Random kedvcsináló
-if(isset($_GET["page"])) {
-  $page=$_GET["page"];
-}else {
-  $page="";
-}
+// Könyvek kezelése
 
-if ($page=="" || $page==1) {
-  $page_1=0;
-} else {
-  $page_1= ($page*10)-10;
-}
+// Új vagy Szerkesztés vagy NotFound!
+    // Adatbázis ellenörzés, hogy létezik-e a könyv
+    // Ha igen, akkor SZERKESZTÉS
+    // Ha nem,  akkor NotFound!
+$userView=new UserView();
+$userInfo=$userView->showUserInfoById($_GET['id']);
+$cim = "Felhasználó szerkesztése: ".$userInfo['nev'];
 
-$users=new UserView();
-$usersInfo=$users->showAllUserInfo($page_1);
-$userPage=$users->showAllUserInfoPageNumber();
-$userPage=ceil(($userPage['oldalak_szama'])/10);
 
-$kedvContent = '
-<style>
-    input[type="text"]{
-    font-size: 12px;
-    }
-    table td{
-        vertical-align: middle;
-    }
-</style>
+$userKezelesContent = '<div class="row">';
+    $userKezelesContent .= ((isset($_SESSION['error']) && !empty($_SESSION['error'])) ? '<div class="alert alert-danger" role="alert">'.$_SESSION['error'].'</div>' : "");
+    $userKezelesContent .= ((isset($_SESSION['message']) && !empty($_SESSION['message'])) ? '<div class="alert alert-success" role="alert">'.$_SESSION['message'].'</div>' : "");
+$userKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_GET['id']) ? "?id={$_GET['id']}" : "").'" method="post" class="row">
+        <div class="mb-3 col-12">
+            <label for="nev" class="form-label my-light-blue">Név</label>
+            <input type="text" class="form-control" id="nev" name="nev" value="'.$userInfo['nev'].'" required>
+        </div>
+        <div class="mb-3 col-12">
+            <label for="email" class="form-label my-light-blue">E-mail cím</label>
+            <input type="text" class="form-control" id="email" name="email" value="'.$userInfo['email'].'" required>
+        </div>
+        <div class="mb-3 col-12">
+            <label for="profilkep_url" class="form-label my-light-blue">Profilkép url</label>
+            <input type="text" class="form-control" id="profilkep_url" name="profilkep_url" value="'.$userInfo['profilkep_url'].'">
+        </div>
+        <div class="mb-3 col-12">
+            <label for="jelszo" class="form-label my-light-blue">Új jelszó</label>
+            <input type="text" class="form-control" id="jelszo" name="jelszo" value=""/>
+        </div>';
 
-        <div class="row mb-4">
-            <div class="col-12 my-blue d-flex justify-content-center">
-                <span class="me-3 align-items-center d-flex">Szűrés:</span>
-                <input type="text" name="filterName" id="filterName" placeholder="Felhasználónév..." class="ps-2 me-3 rounded">
-                <input type="text" name="filterEmail" id="filterEmail" placeholder="E-mail cím..." class="ps-2 me-3 rounded">
-                <input type="button" name="filterUsersSubmit" id="filterUsersSubmit" value="Keresés" class="btn btn-primary px-4 me-3 rounded">
-                <span class=" align-items-center d-flex">Találatok: -</span>
+$userKezelesContent.='<div class="row">
+            <div class="col-12 col-md-5 col-lg-4">
+                <div class="row">';
+$userKezelesContent.='<div class="col-6"><button type="submit" class="w-100 btn my-3 shadow bg-my-blue my-white-blue" name="submit">Módosítás</button></div>';
+$userKezelesContent.= '
+                </div>
             </div>
         </div>
-   
-<nav class="">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="'.($_GET["page"]==1 ? "#" : $ROOT.'pages/user-manage.php'."?page=".$_GET['page']-1).'" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>';
-    for ($i=1; $i<=$userPage;$i++){
-      if ($i==$page) {
-        $kedvContent .='<li class="page-item"><a class="page-link page-active" href="'.$ROOT.'pages/user-manage.php?page='.$i.'">'.$i.'</a></li>';
-      } else {
-      $kedvContent .='<li class="page-item"><a class="page-link" href="'.$ROOT.'pages/user-manage.php?page='.$i.'">'.$i.'</a></li>';
-      }
-    }
+    </form>
+</div>';
 
-$kedvContent .= 
-    '<li class="page-item">
-      <a class="page-link" href="'.(($userPage<=1 || $_GET["page"]==$userPage) ? "#" : $ROOT.'pages/user-manage.php'."?page=".$_GET['page']+1).'" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-<table class="table table-striped table-hover table-primary ">
-    <thead>
-        <tr class="table-light"><th>#</th><th>Id</th><th>Név</th><th>E-mail</th><th>Szerep</th><th>Módosítás</th></tr>
-    </thead>
-    <tbody>';
-    $j=1;
-    foreach($usersInfo as $u) {
-      $kedvContent .='<tr><td>'.$j.'</td><td>'.$u['id'].'</td><td>'.$u['nev'].'</td><td>'.$u['email'].'</td><td>'.$u['szerep'].'</td><td><input type="button" value="Szerk" class="btn btn-outline-primary me-2"><input type="submit" value="Törlés" class="btn btn-outline-danger"></td></tr>';
-      $j++;
-    }
-$kedvContent .=
-    '</tbody>
+unsetMessages();
 
-</table>
-<nav class="">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="'.($_GET["page"]==1 ? "#" : $ROOT.'pages/user-manage.php'."?page=".$_GET['page']-1).'" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>';
-    for ($i=1; $i<=$userPage;$i++){
-      if ($i==$page) {
-        $kedvContent .='<li class="page-item"><a class="page-link page-active" href="'.$ROOT.'pages/user-manage.php?page='.$i.'">'.$i.'</a></li>';
-      } else {
-      $kedvContent .='<li class="page-item"><a class="page-link" href="'.$ROOT.'pages/user-manage.php?page='.$i.'">'.$i.'</a></li>';
-      }
-    }
-$kedvContent .= 
-    '<li class="page-item">
-      <a class="page-link" href="'.(($userPage<=1 || $_GET["page"]==$userPage) ? "#" : $ROOT.'pages/user-manage.php'."?page=".$_GET['page']+1).'" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-';
-$kedvContainer = $homePage->createContainer($kedvContent,"Felhasználók", "bi-person-lines-fill");
+$userKezelesContainer = $homePage->createContainer($userKezelesContent,$cim, "bi-book");
 //---
 
-
-//---
-
-
-//Tartalom öszefűzése
-$allContent = $kedvContainer;
 
 //Oldal megjelenítése
-echo $homePage->genFramedPage($allContent);
+echo $homePage->genFramedPage($userKezelesContainer);
