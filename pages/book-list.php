@@ -58,8 +58,7 @@ if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
   $irokPage=ceil(($irokPage['oldalak_szama'])/10);
 }
 
-$hrefBack=($_GET["page"]==1 ? "#" : $ROOT.'pages/author-list.php'."?page=".$_GET['page']-1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
-$hrefForward=(($irokPage<=1 || $_GET["page"]==$irokPage) ? "#" : $ROOT.'pages/author-list.php'."?page=".$_GET['page']+1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+$href=($irokPage<=1 || $_GET["page"]==$irokPage) ? "#" : ($ROOT.'pages/author-list.php'."?page=".$_GET['page']+1 . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : ""));
 
 $_SESSION["rememberPage"]=$ROOT.'pages/author-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
 
@@ -86,7 +85,7 @@ $kedvContent = '
 <nav class="">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="'.$hrefBack.'" aria-label="Previous">
+      <a class="page-link" href="'.$href.'" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
@@ -101,7 +100,7 @@ $kedvContent = '
 
 $kedvContent .= 
     '<li class="page-item">
-      <a class="page-link" href="'.$hrefForward.'" aria-label="Next">
+      <a class="page-link" href="'.$href.'" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -128,7 +127,7 @@ $kedvContent .=
 <nav class="">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="'.$hrefBack.'" aria-label="Previous">
+      <a class="page-link" href="'.$href.'" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
@@ -142,7 +141,7 @@ $kedvContent .=
       }
 $kedvContent .= 
     '<li class="page-item">
-      <a class="page-link" href="'.$hrefForward.'" aria-label="Next">
+      <a class="page-link" href="'.$href.'" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

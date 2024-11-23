@@ -76,7 +76,8 @@ if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
   $userPage=ceil(($userPage['oldalak_szama'])/10);
 }
 
-$href=($userPage<=1 || $_GET["page"]==$userPage) ? "#" : ($ROOT.'pages/user-list.php'."?page=".$_GET['page']+1 . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : ""));
+$hrefBack=($_GET["page"]==1 ? "#" : $ROOT.'pages/user-list.php'."?page=".$_GET['page']-1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
+$hrefForward=(($userPage<=1 || $_GET["page"]==$userPage) ? "#" : $ROOT.'pages/user-list.php'."?page=".$_GET['page']+1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
 
 $_SESSION["rememberPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
 
@@ -104,7 +105,7 @@ $kedvContent = '
 <nav class="">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="'.$href.'" aria-label="Previous">
+      <a class="page-link" href="'.$hrefBack.'" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
@@ -119,7 +120,7 @@ $kedvContent = '
 
 $kedvContent .= 
     '<li class="page-item">
-      <a class="page-link" href="'.$href.'" aria-label="Next">
+      <a class="page-link" href="'.$hrefForward.'" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -145,7 +146,7 @@ $kedvContent .=
 <nav class="">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="'.$href.'" aria-label="Previous">
+      <a class="page-link" href="'.$hrefBack.'" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
@@ -159,7 +160,7 @@ $kedvContent .=
     }
 $kedvContent .= 
     '<li class="page-item">
-      <a class="page-link" href="'.$href.'" aria-label="Next">
+      <a class="page-link" href="'.$hrefForward.'" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
