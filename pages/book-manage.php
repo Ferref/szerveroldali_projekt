@@ -122,7 +122,7 @@ $konyvKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_
         </div>
         <div class="mb-3 col-12">
             <label for="leiras" class="form-label my-light-blue">Leírás</label>
-            <textarea class="form-control" id="leiras" name="leiras" required>'.(isset($_GET['id']) ? $konyvInfo['leiras'] : "").'</textarea>
+            <textarea class="form-control" id="leiras" name="leiras" rows="7" required>'.(isset($_GET['id']) ? $konyvInfo['leiras'] : "").'</textarea>
         </div>
         <div class="mb-3 col-6 col-lg-3">
             <label for="oldalszam" class="form-label my-light-blue">Oldalszám</label>

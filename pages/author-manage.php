@@ -14,7 +14,6 @@ if(!isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || (isset($
     redirect($ROOT);
 }
 
-$_SESSION["rememberPage"]=$ROOT.'pages/author-manage.php' . (isset($_GET['id']) ? '?id='.$_GET['id'] : "");
 
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
