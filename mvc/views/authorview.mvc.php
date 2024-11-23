@@ -43,11 +43,11 @@ class AuthorView extends AuthorModel {
     }
 
     function showAllWriterInfoName($page) {
-        return $this->getAllWriterInfoName($page);
+        return $this->getAllWriterInfo($page);
     }
 
-    public function showAllWriterInfoNamePageNumber() {
-        return $this->getAllWriterInfoNamePageNumber();
+    public function showAllWriterInfoPageNumber() {
+        return $this->getAllWriterInfoPageNumber();
     }
 
 

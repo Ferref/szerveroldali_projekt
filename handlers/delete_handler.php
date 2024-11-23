@@ -38,6 +38,25 @@ if(isset($_GET['deleteAuthor']) && $_GET['deleteAuthor']!="" && isset($_SESSION[
     }
 }
 
+
+if(isset($_GET['deleteBook']) && $_GET['deleteBook']!="" && isset($_SESSION['user']) && $_SESSION['user']['szerep']=="admin") {
+    try {
+        $bookController=new BookController();
+        if(!($bookController->removeBook(antiSql($_GET['deleteBook'])))) {
+            throw new HibaException();
+        }
+        $_SESSION['message']="A könyv törlése sikerült!";
+        
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
+        redirect($_SERVER['PHP_SELF']);
+    }catch (HibaException $e) {
+        $_SESSION['error']="A könyv törlése nem sikerült!";
+    }
+}
+
 if(isset($_SESSION['rememberPage'])) {
     redirect($_SESSION['rememberPage']);
 }

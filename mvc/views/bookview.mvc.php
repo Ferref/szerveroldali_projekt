@@ -28,4 +28,20 @@ class BookView extends BookModel {
     public function showBookRating($bookId) {
         return $this->getBookRating($bookId);
     }
+
+    public function showAllBookInfo($page) {
+        return $this->getAllBookInfo($page);
+    }
+    
+    public function showAllBookInfoPageNumber() {
+        return $this->getAllBookInfoPageNumber();
+    }
+
+    public function showBookInfoName($name,$page) {
+        return $this->getBookInfoName($name,$page);
+    }
+    
+    public function showBookInfoNamePageNumber($name) {
+        return $this->getBookInfoNamePageNumber($name);
+    }
 }

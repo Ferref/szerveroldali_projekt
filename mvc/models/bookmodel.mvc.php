@@ -156,5 +156,37 @@ class BookModel extends DatabaseHandler
             return false;
         }
     }
+
+    protected function getBookInfoName($name,$page) {
+        $query = "SELECT id, cim, oldalszam, kiadasi_ev FROM konyvek WHERE cim LIKE :cim LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("cim",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getBookInfoNamePageNumber($name) {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM konyvek WHERE cim LIKE :cim;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("cim",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllBookInfo($page) {
+        $query = "SELECT id, cim, oldalszam, kiadasi_ev FROM konyvek LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllBookInfoPageNumber() {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM konyvek;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
 }

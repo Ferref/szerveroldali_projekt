@@ -53,7 +53,7 @@ if(isset($_GET['filterName']) && $_GET['filterName']!=""){
 
 if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
   $irokInfo=$irok->showAllWriterInfoName($page_1);
-  $irokPage=$irok->showAllWriterInfoNamePageNumber();
+  $irokPage=$irok->showAllWriterInfoPageNumber();
   $talalatok=$irokPage['oldalak_szama'];
   $irokPage=ceil(($irokPage['oldalak_szama'])/10);
 }

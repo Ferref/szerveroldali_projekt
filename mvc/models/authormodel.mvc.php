@@ -166,7 +166,7 @@ class AuthorModel extends DatabaseHandler
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    protected function getAllWriterInfoName($page) {
+    protected function getAllWriterInfo($page) {
         $query = "SELECT id, nev, szarmazas FROM szerzok LIMIT :page,10;";
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("page",$page,PDO::PARAM_INT); 
@@ -174,7 +174,7 @@ class AuthorModel extends DatabaseHandler
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    protected function getAllWriterInfoNamePageNumber() {
+    protected function getAllWriterInfoPageNumber() {
         $query = "SELECT COUNT(id) as oldalak_szama FROM szerzok;";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();

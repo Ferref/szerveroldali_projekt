@@ -50,6 +50,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && !isset($_GET
 
         $_SESSION['message']="A könyv hozzáadása sikeres!";
 
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
     }catch (HibaException $e) {
         $_SESSION['error']=nl2br("A könyv hozzáadása nem sikerült! \n").$e->getMessage();
     }
@@ -77,22 +81,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && isset($_GET[
         }
 
         $_SESSION['message']="A könyv szerkesztése sikeres!";
+
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
     }catch (HibaException $e) {
         $_SESSION['error']=nl2br("A könyv szerkesztése nem sikerült! \n").$e->getMessage();
     }
     
-}
-
-if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['delete']) && isset($_GET['id'])) {
-    try {
-        if(!($bookController->removeBook($_GET['id']))) {
-            throw new HibaException();
-        }
-        $_SESSION['message']="A könyv törlése sikerült!";
-        redirect($_SERVER['PHP_SELF']);
-    }catch (HibaException $e) {
-        $_SESSION['error']="A könyv törlése nem sikerült!";
-    }
 }
 
 //echo $ROOT."media/images/nincs-borito.jpg";
@@ -225,7 +221,7 @@ $konyvKezelesContent.='<div class="row">
             <div class="col-12 col-md-5 col-lg-4">
                 <div class="row">';
 $konyvKezelesContent.='<div class="col-6"><button type="submit" class="w-100 btn my-3 shadow bg-my-blue my-white-blue" name="submit">'.(isset($_GET['id']) ? "Módosítás" : "Feltöltés").'</button></div>';
-$konyvKezelesContent.= isset($_GET['id']) ? '<div class="col-6"><button type="submit" class="w-100 btn btn-danger my-3 shadow" name="delete">Könyv Törlése</button></div>' : ''.'
+$konyvKezelesContent.= '
                 </div>
             </div>
         </div>
