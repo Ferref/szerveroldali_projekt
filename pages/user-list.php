@@ -39,26 +39,32 @@ $users=new UserView();
 
 if(isset($_GET['filterName']) && isset($_GET['filterEmail'])){
 
+  if($_GET['filterName']=="" && $_GET['filterEmail']=="") {
+    redirect($ROOT.'pages/user-list.php?page='.$page);
+  }
+
   if($_GET['filterName']!="" && $_GET['filterEmail']=="") {
-    $usersInfo=$users->showUserInfoName($_GET['filterName'],$page_1);
-    $userPage=$users->showUserInfoNamePageNumber($_GET['filterName']);
+    $usersInfo=$users->showUserInfoName(antiSql($_GET['filterName']),$page_1);
+    $userPage=$users->showUserInfoNamePageNumber(antiSql($_GET['filterName']));
     $talalatok=$userPage['oldalak_szama'];
     $userPage=ceil(($userPage['oldalak_szama'])/10);
   }
   
   if($_GET['filterName']=="" && $_GET['filterEmail']!="") {
-    $usersInfo=$users->showUserInfoEmail($_GET['filterEmail'],$page_1);
-    $userPage=$users->showUserInfoEmailPageNumber($_GET['filterEmail']);
+    $usersInfo=$users->showUserInfoEmail(antiSql($_GET['filterEmail']),$page_1);
+    $userPage=$users->showUserInfoEmailPageNumber(antiSql($_GET['filterEmail']));
     $talalatok=$userPage['oldalak_szama'];
     $userPage=ceil(($userPage['oldalak_szama'])/10);
   }
   
   if($_GET['filterName']!="" && $_GET['filterEmail']!="") {
-    $usersInfo=$users->showUserInfoNameEmail($_GET['filterName'],$_GET['filterEmail'],$page_1);
-    $userPage=$users->showUserInfoNameEmailPageNumber($_GET['filterName'],$_GET['filterEmail']);
+    $usersInfo=$users->showUserInfoNameEmail(antiSql($_GET['filterName']),antiSql($_GET['filterEmail']),$page_1);
+    $userPage=$users->showUserInfoNameEmailPageNumber(antiSql($_GET['filterName']),antiSql($_GET['filterEmail']));
     $talalatok=$userPage['oldalak_szama'];
     $userPage=ceil(($userPage['oldalak_szama'])/10);
   }
+
+
 }
 
 
@@ -70,9 +76,9 @@ if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
   $userPage=ceil(($userPage['oldalak_szama'])/10);
 }
 
-$href=($userPage<=1 || $_GET["page"]==$userPage) ? "#" : ($ROOT.'pages/user-list.php'."?page=".$_GET['page']+1 . (isset($_GET['filterName']) ? "&filterName=".$_GET['filterName'] : "").(isset($_GET['filterEmail']) ? "&filterEmail=".$_GET['filterEmail'] : ""));
+$href=($userPage<=1 || $_GET["page"]==$userPage) ? "#" : ($ROOT.'pages/user-list.php'."?page=".$_GET['page']+1 . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : ""));
 
-$_SESSION["rememberPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".$_GET['filterName'] : "").(isset($_GET['filterEmail']) ? "&filterEmail=".$_GET['filterEmail'] : "");
+$_SESSION["rememberPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
 
 $kedvContent = '
 <style>

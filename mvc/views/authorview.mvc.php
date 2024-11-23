@@ -34,5 +34,21 @@ class AuthorView extends AuthorModel {
         return $this->getSpecificWriterBookNumber($writerId);
     }
 
+    function showWriterInfoName($name,$page) {
+        return $this->getWriterInfoName($name,$page);
+    }
+
+    public function showWriterInfoNamePageNumber($name) {
+        return $this->getWriterInfoNamePageNumber($name);
+    }
+
+    function showAllWriterInfoName($page) {
+        return $this->getAllWriterInfoName($page);
+    }
+
+    public function showAllWriterInfoNamePageNumber() {
+        return $this->getAllWriterInfoNamePageNumber();
+    }
+
 
 }

@@ -14,7 +14,7 @@ if(!isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || (isset($
     redirect($ROOT);
 }
 
-$_SESSION["rememberPage"]=$ROOT.'pages/author-manage.php?id=' . (isset($_GET['id']) ? $_GET['id'] : "");
+$_SESSION["rememberPage"]=$ROOT.'pages/author-manage.php' . (isset($_GET['id']) ? '?id='.$_GET['id'] : "");
 
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
@@ -30,6 +30,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && !isset($_GET
 
         $_SESSION['message']="A szerző hozzáadása sikeres!";
 
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
     }catch (HibaException $e) {
         $_SESSION['error']=nl2br("A szerző hozzáadása nem sikerült! \n").$e->getMessage();
     }
@@ -43,22 +47,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && isset($_GET[
         }
 
         $_SESSION['message']="A szerző szerkesztése sikeres!";
+
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
     }catch (HibaException $e) {
         $_SESSION['error']=nl2br("A szerző szerkesztése nem sikerült! \n").$e->getMessage();
     }
     
-}
-
-if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['delete']) && isset($_GET['id'])) {
-    try {
-        if(!($iroController->removeWriter($_GET['id']))) {
-            throw new HibaException();
-        }
-        $_SESSION['message']="A szerző törlése sikerült!";
-        redirect($_SERVER['PHP_SELF']);
-    }catch (HibaException $e) {
-        $_SESSION['error']="A szerző törlése nem sikerült!";
-    }
 }
 
 //echo $ROOT."media/images/nincs-borito.jpg";
@@ -100,7 +96,7 @@ $iroKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_GE
         </div>
         <div class="mb-3 col-12 col-md-6">
             <label for="profilkep_url" class="form-label my-light-blue">Profilkép url</label>
-            <input type="text" class="form-control" id="profilkep_url" name="profilkep_url" value="'.(isset($_GET['id']) ? $iroInfo['profilkep_url'] : "").'"/>
+            <input type="text" class="form-control" id="profilkep_url" name="profilkep_url" value="'.(isset($_GET['id']) ? $iroInfo['profilkep_url'] : "").'" required>
         </div>
         <div class="mb-3 col-12 col-md-6">
             <label for="szarmazas" class="form-label my-light-blue">Származás</label>
@@ -111,7 +107,7 @@ $iroKezelesContent.='<div class="row">
             <div class="col-12 col-md-5 col-lg-4">
                 <div class="row">';
 $iroKezelesContent.='<div class="col-6"><button type="submit" class="w-100 btn my-3 shadow bg-my-blue my-white-blue" name="submit">'.(isset($_GET['id']) ? "Módosítás" : "Feltöltés").'</button></div>';
-$iroKezelesContent.= isset($_GET['id']) ? '<div class="col-6"><button type="submit" class="w-100 btn btn-danger my-3 shadow" name="delete">Szerző Törlése</button></div>' : ''.'
+$iroKezelesContent.= '
                 </div>
             </div>
         </div>

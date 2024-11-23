@@ -148,5 +148,37 @@ class AuthorModel extends DatabaseHandler
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
         return $result['konyv_mennyiseg'];
     }
+
+    protected function getWriterInfoName($name,$page) {
+        $query = "SELECT id, nev, szarmazas FROM szerzok WHERE nev LIKE :nev LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getWriterInfoNamePageNumber($name) {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM szerzok WHERE nev LIKE :nev;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllWriterInfoName($page) {
+        $query = "SELECT id, nev, szarmazas FROM szerzok LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllWriterInfoNamePageNumber() {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM szerzok;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
