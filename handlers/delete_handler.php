@@ -57,6 +57,24 @@ if(isset($_GET['deleteBook']) && $_GET['deleteBook']!="" && isset($_SESSION['use
     }
 }
 
+if(isset($_GET['deleteReview']) && $_GET['deleteReview']!="" && isset($_SESSION['user']) && $_SESSION['user']['szerep']=="admin") {
+    try {
+        $reviewController=new ReviewController();
+        if(!($reviewController->removeReview(antiSql($_GET['deleteReview'])))) {
+            throw new HibaException();
+        }
+        $_SESSION['message']="A vélemény törlése sikerült!";
+        
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
+        redirect($_SERVER['PHP_SELF']);
+    }catch (HibaException $e) {
+        $_SESSION['error']="A vélemény törlése nem sikerült!";
+    }
+}
+
 if(isset($_SESSION['rememberPage'])) {
     redirect($_SESSION['rememberPage']);
 }
