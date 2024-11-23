@@ -14,10 +14,10 @@ class UserModel extends DatabaseHandler {
         }
     }
 
-    protected function emailExists($userNev) {
-        $query = "SELECT email FROM felhasznalok WHERE nev = :userNev";
+    protected function emailExists($userEmail) {
+        $query = "SELECT email FROM felhasznalok WHERE email = :userEmail";
         $stmt = $this->connect()->prepare($query);
-        $stmt->bindValue("userNev",$userNev,PDO::PARAM_STR); 
+        $stmt->bindValue("userEmail",$userEmail,PDO::PARAM_STR); 
         $stmt->execute();
         if ($stmt->rowCount()>0){
             return true;

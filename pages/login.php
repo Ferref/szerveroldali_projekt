@@ -19,7 +19,9 @@ $loginContent = '
  <div class="container-fluid container-lg">
      <div class="row m-0">
          <div class="col-12 bg-white rounded-20 p-3">
-             <div class="row m-0">
+             <div class="row m-0">';
+                $loginContent .= ((isset($_SESSION['error']) && !empty($_SESSION['error'])) ? '<div class="alert alert-danger" role="alert">'.$_SESSION['error'].'</div>' : "");
+$loginContent .= '
                  <div class="col-12 col-md-6 py-4 px-3 px-lg-5 bg-blue-wave rounded-10">
                      <form method="post" action="../handlers/login_handler.php" id="login-form" class="w-100 max-w-500px">
                         <h2 class="mb-4 text-center text-white">Bejelentkezés</h2>    
@@ -51,6 +53,7 @@ $loginContent = '
 ';
 
 //---
+unsetMessages();
 
 //Oldal megjelenítése
 echo $homePage->genFramedPage($loginContent);

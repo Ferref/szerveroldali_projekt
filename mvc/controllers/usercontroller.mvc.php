@@ -6,8 +6,8 @@ class UserController extends UserModel {
         return $this->userExists($userNev);
     } 
 
-    public function isEmailExists ($userNev) {
-       return $this->emailExists($userNev);
+    public function isEmailExists ($userEmail) {
+       return $this->emailExists($userEmail);
     } 
 
     public function isIdExists ($userId) {

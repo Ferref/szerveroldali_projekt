@@ -72,7 +72,7 @@ $userKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_G
         </div>
         <div class="mb-3 col-12">
             <label for="jelszo" class="form-label my-light-blue">Új jelszó</label>
-            <input type="text" class="form-control" id="jelszo" name="jelszo" value=""/>
+            <input type="password" class="form-control" id="jelszo" name="jelszo" value=""/>
         </div>';
 
 $userKezelesContent.='<div class="row">
