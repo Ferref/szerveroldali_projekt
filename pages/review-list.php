@@ -130,7 +130,7 @@ $kedvContent .= ((isset($_SESSION['error']) && !empty($_SESSION['error'])) ? '<d
 $kedvContent .= ((isset($_SESSION['message']) && !empty($_SESSION['message'])) ? '<div class="alert alert-success" role="alert">'.$_SESSION['message'].'</div>' : "");
 $kedvContent .='<table class="table table-striped table-hover table-primary ">
     <thead>
-        <tr class="table-light"><th>#</th><th>Id</th><th>Vélemények</th><th>Könyv</th><th>Dátum</th><th>Módosítás</th></tr>
+        <tr class="table-light"><th>#</th><th>Id</th><th>Felhasználó</th><th>Könyv</th><th>Dátum</th><th>Módosítás</th></tr>
     </thead>
     <tbody>';
     $j=1;
