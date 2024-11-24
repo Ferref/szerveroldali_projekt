@@ -72,4 +72,16 @@ class CategoryModel extends DatabaseHandler
         return $stmt->execute();
     }
 
+    protected function isCategoryExist($categoryId) {
+        $query = "SELECT id FROM kategoriak WHERE id=:categoryId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("categoryId",$categoryId,PDO::PARAM_INT); 
+        $stmt->execute();
+        if ($stmt->rowCount()!=0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

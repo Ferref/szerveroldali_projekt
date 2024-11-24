@@ -3,19 +3,19 @@ class BookModel extends DatabaseHandler
 {
 
     // Random konyv a kezdooldalra
-     function getRandomBook(){
+    protected function getRandomBook(){
         $query = "SELECT * FROM konyvek ORDER BY RAND() LIMIT 1;";
         $result = $this->connect()->query($query);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    function getAllBook(){
+    protected function getAllBook(){
         $query = "SELECT * FROM konyvek ORDER BY RAND();";
         $result = $this->connect()->query($query);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function getLatestBookId(){
+    protected function getLatestBookId(){
         $query = "SELECT id FROM konyvek ORDER BY id DESC LIMIT 1;";
         $result = $this->connect()->query($query);
         return $result->fetch(PDO::FETCH_ASSOC);
@@ -187,6 +187,30 @@ class BookModel extends DatabaseHandler
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getBookBySearch($kereses){
+        $query = "SELECT k.* 
+                    FROM konyvek k 
+                    INNER JOIN konyv_szerzo ksz ON ksz.konyv_id=k.id
+                    INNER JOIN szerzok sz ON ksz.szerzo_id=sz.id
+                    WHERE k.cim LIKE :kereses OR sz.nev LIKE :kereses;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("kereses",'%'.$kereses.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getBookByCategorySearch($keresesId){
+        $query = "SELECT k.* 
+                    FROM konyvek k 
+                    INNER JOIN konyv_kategoria kk ON kk.konyv_id=k.id
+                    INNER JOIN kategoriak ka ON kk.kategoria_id=ka.id
+                    WHERE ka.id=:keresesId;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("keresesId",$keresesId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
 }

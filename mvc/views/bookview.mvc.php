@@ -44,4 +44,12 @@ class BookView extends BookModel {
     public function showBookInfoNamePageNumber($name) {
         return $this->getBookInfoNamePageNumber($name);
     }
+
+    public function showBookBySearch($kereses) {
+        return $this->getBookBySearch($kereses);
+    }
+
+    public function showBookByCategorySearch($keresesId) {
+        return $this->getBookByCategorySearch($keresesId);
+    }
 }

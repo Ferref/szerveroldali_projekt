@@ -132,6 +132,11 @@ $konyvKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_
             <label for="kiadasev" class="form-label my-light-blue">Kiadási év</label>
             <input type="number" class="form-control" id="kiadasev" name="kiadasev" value="'.(isset($_GET['id']) ? $konyvInfo['kiadasi_ev'] : "").'" required>
         </div>
+
+        <div class="mb-3 col-12 col-lg-6">
+            <label for="borito" class="form-label my-light-blue">Borító</label>
+            <input type="text" class="form-control" id="borito" name="borito" value="'.(isset($_GET['id']) ? $konyvInfo['boritokep_url'] : "").'" required>
+        </div>
         <div class="mb-3 col-12 col-md-6">
             <label for="link-amazon" class="form-label my-light-blue">Amazon link</label>
             <input type="text" class="form-control" id="link-amazon" name="link-amazon" value="'.(isset($_GET['id']) ? $konyvInfo['link_amazon'] : "").'"/>
@@ -139,10 +144,6 @@ $konyvKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_
         <div class="mb-3 col-12 col-md-6">
             <label for="link-bookline" class="form-label my-light-blue">Bookline link</label>
             <input type="text" class="form-control" id="link-bookline" name="link-bookline" value="'.(isset($_GET['id']) ? $konyvInfo['link_bookline'] : "").'"/>
-        </div>
-        <div class="mb-3 col-12 col-lg-6">
-            <label for="borito" class="form-label my-light-blue">Borító</label>
-            <input type="text" class="form-control" id="borito" name="borito" value="'.(isset($_GET['id']) ? $konyvInfo['boritokep_url'] : "").'" required>
         </div>
 
         <div class="mb-3 col-12">

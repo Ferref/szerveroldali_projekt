@@ -10,4 +10,8 @@ class CategoryController extends CategoryModel {
         return $this->deleteBookCategories($bookid);
     }
 
+    public function getIsCategoryExist($categoryId) {
+        return $this->isCategoryExist($categoryId);
+    }
+
 }

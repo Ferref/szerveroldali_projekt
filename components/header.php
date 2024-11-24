@@ -25,7 +25,7 @@
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."index.php\"><i class=\"bi bi-house-door my-blue me-1\"></i>Főoldal</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php?type=konyv\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
+                            <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/search.php\"><i class=\"bi bi-book my-blue me-1\"></i>Könyvek</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
                             <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/authors.php\"><i class=\"bi bi-vector-pen my-blue me-1\"></i>Írók</a>

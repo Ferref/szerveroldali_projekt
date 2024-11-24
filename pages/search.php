@@ -20,13 +20,15 @@ include_once($ROOT."components/book_mini.php");
 $searchContent = '
 <div class="row m-0">
 <div class="col-12 bg-book p-4 rounded-10 d-flex align-items-center" style="height: 150px;">
-    <div class="row d-flex justify-content-center w-100 m-0">
-        <div class="col-12 col-md-9 col-lg-5  mb-3" >
-            <div class="input-group" style="height: 30px; ">
-                <input type="text" class="form-control" placeholder="Keresés" style="background-color: rgba(240,240,250,0.8);">
-                <button class="btn btn-outline-secondary text-white bg-my-light-blue" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+    <div class="row d-flex w-100 m-0">
+        <form action="'.antiSql($_SERVER['PHP_SELF']).'" method="post">
+            <div class="col-12 col-md-9 col-lg-5  mb-3" >
+                <div class="input-group" style="height: 30px; ">
+                    <input name="kereses" type="text" class="form-control" placeholder="Keresés" style="background-color: rgba(240,240,250,0.8);">
+                    <button class="btn btn-outline-secondary text-white bg-my-light-blue" type="submit" name="keresesKuldese" id="button-addon2"><i class="bi bi-search"></i></button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </div>';
@@ -34,8 +36,31 @@ $searchContainer = $homePage->createEmptyContainer($searchContent);
 //---
 
 //Találatok
+
 $konyvek=new BookView();
-$talaltkonyvek=$konyvek->showAllBook();
+
+if(isset($_GET['categoryId']) && !empty($_GET['categoryId'])){
+
+    $categoryController=new CategoryController();
+    if($categoryController->getIsCategoryExist(antiSql($_GET['categoryId']))){
+        $talaltkonyvek=$konyvek->showBookByCategorySearch(antiSql($_GET['categoryId']));
+    } else {
+        $talaltkonyvek=$konyvek->showAllBook();
+    }
+}
+else {
+    
+    if(isset($_POST['keresesKuldese']) && !empty($_POST['kereses'])) {
+        $talaltkonyvek=$konyvek->showBookBySearch(antiSql($_POST['kereses']));
+    }
+    
+    if(!isset($_POST['keresesKuldese']) || empty($_POST['kereses'])) {
+        $talaltkonyvek=$konyvek->showAllBook();
+    }
+}
+
+
+
 
 $talalatokContent = '<div class="row">';
 foreach($talaltkonyvek as $konyv) {

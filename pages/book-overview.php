@@ -9,7 +9,7 @@ require_once($ROOT . "generate.php");
 include_once($ROOT . "components/book_mini.php");
 include_once($ROOT . "components/rating.php");
 
-if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['velemenyKuldese']) && isset($_GET['id']) && isset($_SESSION['user'])) {
+if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['velemenyKuldese']) && $_POST['velemenyKuldese']!="" && isset($_GET['id']) && isset($_SESSION['user'])) {
     
     $reviewController=new ReviewController();
 

@@ -8,6 +8,12 @@ require_once($ROOT . "generate.php");
 include_once($ROOT . "components/book_mini.php");
 include_once($ROOT . "components/rating.php");
 
+$iroController=new AuthorController();
+
+if (!isset($_GET['id']) || !$iroController->getIsWriterExist($_GET['id'])) {
+    header("Location: ../");
+}
+
 $iro=new AuthorView();
 $iroInfo=$iro->showAuthorInfo($_GET['id']);
 $iroKonyvek=$iro->showAuthorBooks($_GET['id']);
