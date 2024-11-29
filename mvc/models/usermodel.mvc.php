@@ -169,4 +169,234 @@ class UserModel extends DatabaseHandler {
         return $stmt->execute();
     }
 
+    protected function isBookFavourite($userId, $bookId) {
+        $query = "SELECT id FROM kedvencek WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        $stmt->execute();
+        if ($stmt->rowCount()>0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function deleteBookFavourite($userId, $bookId) {
+        $query = "DELETE FROM kedvencek WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        return $stmt->execute();
+    }
+
+    protected function insertBookFavourite($userId, $bookId) {
+        $query="INSERT INTO kedvencek (felhasznalo_id, konyv_id) VALUES (:userId, :bookId)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function isBookRead($userId, $bookId) {
+        $query = "SELECT id FROM olvasott WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        $stmt->execute();
+        if ($stmt->rowCount()>0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function deleteBookRead($userId, $bookId) {
+        $query = "DELETE FROM olvasott WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        return $stmt->execute();
+    }
+
+    protected function insertBookRead($userId, $bookId) {
+        $query="INSERT INTO olvasott (felhasznalo_id, konyv_id) VALUES (:userId, :bookId)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function isBookWaited($userId, $bookId) {
+        $query = "SELECT id FROM varolistak WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        $stmt->execute();
+        if ($stmt->rowCount()>0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function deleteBookWaited($userId, $bookId) {
+        $query = "DELETE FROM varolistak WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        return $stmt->execute();
+    }
+
+    protected function insertBookWaited($userId, $bookId) {
+        $query="INSERT INTO varolistak (felhasznalo_id, konyv_id) VALUES (:userId, :bookId)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function isBookRated($userId, $bookId) {
+        $query = "SELECT id FROM ertekelesek WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT); 
+        $stmt->execute();
+        if ($stmt->rowCount()>0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function deleteBookRate($id) {
+        $query = "DELETE FROM ertekelesek WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id,PDO::PARAM_INT); 
+        return $stmt->execute();
+    }
+
+    protected function insertBookRate($userId, $bookId, $ertekeles) {
+        $query="INSERT INTO ertekelesek (felhasznalo_id, konyv_id, ertekeles) VALUES (:userId, :bookId, :ertekeles)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        $stmt->bindValue("ertekeles",$ertekeles,PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function updateBookRate($userId, $bookId, $ertekeles) {
+        $query="UPDATE ertekelesek SET ertekeles=:ertekeles WHERE felhasznalo_id=:userId AND konyv_id=:bookId;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        $stmt->bindValue("ertekeles",$ertekeles,PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function getUserBookRate($userId, $bookId) {
+        $query="SELECT ertekeles FROM ertekelesek WHERE felhasznalo_id = :userId AND konyv_id = :bookId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT);
+        $stmt->bindValue("bookId",$bookId,PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllUserRate($page) {
+        $query = "SELECT e.id, f.nev, k.cim, e.ertekeles 
+            FROM ertekelesek e
+            INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+            INNER JOIN konyvek k ON k.id=e.konyv_id 
+            LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllUserRatePageNumber() {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM ertekelesek;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getUserRate($name,$page) {
+        $query = "SELECT e.id, f.nev, k.cim, e.ertekeles 
+            FROM ertekelesek e
+            INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+            INNER JOIN konyvek k ON k.id=e.konyv_id 
+            WHERE f.nev LIKE :nev
+            LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getUserRatePageNumber($name) {
+        $query = "SELECT COUNT(e.id) as oldalak_szama 
+            FROM ertekelesek e
+            INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+            WHERE f.nev LIKE :nev;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getBookRate($book,$page) {
+        $query = "SELECT e.id, f.nev, k.cim, e.ertekeles 
+        FROM ertekelesek e
+        INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+        INNER JOIN konyvek k ON k.id=e.konyv_id 
+        WHERE k.cim LIKE :book
+        LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("book",'%'.$book.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getBookRatePageNumber($book) {
+        $query = "SELECT COUNT(e.id) as oldalak_szama 
+            FROM ertekelesek e
+            INNER JOIN konyvek k ON k.id=e.konyv_id
+            WHERE k.cim LIKE :book;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("book",'%'.$book.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    protected function getUserBookRates($name,$book,$page) {
+        $query = "SELECT e.id, f.nev, k.cim, e.ertekeles 
+            FROM ertekelesek e
+            INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+            INNER JOIN konyvek k ON k.id=e.konyv_id 
+            WHERE f.nev LIKE :nev OR k.cim LIKE :book
+            LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("book",'%'.$book.'%',PDO::PARAM_STR);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getUserBookRatesPageNumber($name,$book) {
+        $query = "SELECT COUNT(e.id) as oldalak_szama 
+            FROM ertekelesek e
+            INNER JOIN felhasznalok f ON f.id=e.felhasznalo_id
+            INNER JOIN konyvek k ON k.id=e.konyv_id
+            WHERE f.nev LIKE :nev OR k.cim LIKE :book;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("book",'%'.$book.'%',PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

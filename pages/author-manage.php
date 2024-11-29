@@ -10,7 +10,7 @@ require_once($ROOT."generate.php"); //`generate.php` meghívása
 
 $iroController=new AuthorController();
 
-if(!isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || (isset($_GET['id']) && !($iroController->getIsWriterExist($_GET['id'])))){
+if(!isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || (isset($_GET['id']) && !($iroController->getIsWriterExist(antiSql($_GET['id']))))){
     redirect($ROOT);
 }
 

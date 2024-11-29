@@ -14,4 +14,16 @@ class CategoryController extends CategoryModel {
         return $this->isCategoryExist($categoryId);
     }
 
+    public function createCategory($nev) {
+        return $this->insertCategory($nev);
+    }
+
+    public function modifyCategory($id, $nev) {
+        return $this->updateCategory($id, $nev);
+    }
+
+    public function removeCategory($id) {
+        return $this->deleteCategory($id);
+    }
+
 }

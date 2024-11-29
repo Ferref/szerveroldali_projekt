@@ -10,9 +10,11 @@ include_once($ROOT . "components/rating.php");
 
 $iroController=new AuthorController();
 
-if (!isset($_GET['id']) || !$iroController->getIsWriterExist($_GET['id'])) {
+if (!$iroController->getIsWriterExist($_GET['id'])) {
     header("Location: ../");
 }
+
+$_SESSION['rememberPage']=$ROOT.'pages/author-overview.php?id='.$_GET['id'];
 
 $iro=new AuthorView();
 $iroInfo=$iro->showAuthorInfo($_GET['id']);
@@ -58,22 +60,28 @@ $detailContainer =
                                     $detailContainer .=$iroInfo['halal_ido']=="" ? '' : '<p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>';                
 $detailContainer .=                 '<p><span class="my-blue">Származása:</span> <span class="float-end">'.$iroInfo['szarmazas'].'</span></p>
                                     <hr class="my-3">
-                                    <p><span class="my-blue">Kategóriák</span></p>
-                            </div>
+                                    <p class="mb-3"><span class="my-blue">Kategóriák:</span></p>';
+                                    foreach ($kategoriak as $k) {
+                                        $detailContainer .= '<p><label class="category-frame rounded-10 py-0 px-2 py-0 c-pointer me-1 mb-3">
+                                            <a href="'.$ROOT.'pages/search.php?categoryId='.$k['id'].'" style="color: inherit;">
+                                            <span class="reveal d-flex align-items-center">'.$k['nev'].'</span></a>
+                                        </label></p>';
+                                    }
+       $detailContainer .= '</div>
                         </div>
                         <div class="row">
-                            <div class="bg-white rounded-20 p-2 p-md-4 border w-100 mt-2">
-                            ' . rating($ertekeles) . '
-                             '.count($iroKonyvek).' könyv '.$ertekeles['ertekelesek_szama'].' értékelése alapján.
+                            <div class="bg-white rounded-20 p-2 p-md-4 border w-100 mt-2 text-center">
+                            ' . rating($ertekeles, null) . '
+                             '.count($iroKonyvek).' könyv '.$ertekeles['ertekelesek_szama'].' értékelése alapján
                             </div>
                         </div>
                    
                 </div>
                 <div class="col-12 col-md-9 d-flex">
                     <div class="pm-md-2 d-flex w-100">
-                        <div class="row p-2 bg-white rounded-20 ms-md-1" style="align-content: start;">
+                        <div class="row p-2 bg-white rounded-20 ms-md-1 w-100" style="align-content: start;">
                             
-                            <div class="col-12 p-2"><p><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="w-100 text-center bi bi-grid my-blue"></i></span><span class="fw-bold my-blue fs-5">Könyvei</span><span class="ms-2">(x)</span></p></div>
+                            <div class="col-12 p-2"><p><span class="block-icon-circle bg-my-white-blue rounded-circle d-inline-block text-center me-2"><i class="w-100 text-center bi bi-grid my-blue"></i></span><span class="fw-bold my-blue fs-5">Könyvei</span><span class="ms-2">('.count($iroKonyvek).')</span></p></div>
                             <div class="col-12">
                             '.$konyveiContent.'
                             </div>

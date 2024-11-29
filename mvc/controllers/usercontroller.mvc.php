@@ -34,5 +34,57 @@ class UserController extends UserModel {
         return $this->deleteUser($id);
     } 
 
+    public function getIsBookFavourite ($userId, $bookId) {
+        return $this->isBookFavourite($userId, $bookId);
+    } 
+
+    public function removeBookFavourite ($userId, $bookId) {
+        return $this->deleteBookFavourite($userId, $bookId);
+    }
+
+    public function createBookFavourite ($userId, $bookId) {
+        return $this->insertBookFavourite($userId, $bookId);
+    }
+
+    public function getIsBookRead ($userId, $bookId) {
+        return $this->isBookRead($userId, $bookId);
+    } 
+
+    public function removeBookRead($userId, $bookId) {
+        return $this->deleteBookRead($userId, $bookId);
+    }
+
+    public function createBookRead ($userId, $bookId) {
+        return $this->insertBookRead($userId, $bookId);
+    }
+
+    public function getIsBookWaited ($userId, $bookId) {
+        return $this->isBookWaited($userId, $bookId);
+    } 
+
+    public function removeBookWaited($userId, $bookId) {
+        return $this->deleteBookWaited($userId, $bookId);
+    }
+
+    public function createBookWaited ($userId, $bookId) {
+        return $this->insertBookWaited($userId, $bookId);
+    }
+
+    public function getIsBookRated ($userId, $bookId) {
+        return $this->isBookRated($userId, $bookId);
+    } 
+
+    public function removeBookRate($id) {
+        return $this->deleteBookRate($id);
+    }
+
+    public function createBookRate ($userId, $bookId, $ertekeles) {
+        return $this->insertBookRate($userId, $bookId, $ertekeles);
+    }
+
+    public function modifyBookRate ($userId, $bookId, $ertekeles) {
+        return $this->updateBookRate($userId, $bookId, $ertekeles);
+    }
+
 
 }

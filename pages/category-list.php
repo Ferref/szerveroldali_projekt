@@ -16,7 +16,7 @@ if(!isset($_GET['page'])) {
 }
 $homePage = new Generate();
 $homePage->root = $ROOT;     //relatív útvonal átadása az osztályban használt elérésekhez (css, képek...)
-$homePage->name = "Író lista"; //title attributum értéke
+$homePage->name = "Kategória lista"; //title attributum értéke
 //echo $ROOT."media/images/nincs-borito.jpg";
 //----------------------
 //      Tartalom
@@ -35,33 +35,33 @@ if ($page=="" || $page==1) {
   $page_1= ($page*10)-10;
 }
 
-$irok=new AuthorView();
+$kategoriak=new CategoryView();
 
 if(isset($_GET['filterName']) && $_GET['filterName']=="") {
-    redirect($ROOT.'pages/author-list.php?page='.$page);
+    redirect($ROOT.'pages/category-list.php?page='.$page);
 }
 
 if(isset($_GET['filterName']) && $_GET['filterName']!=""){
 
-    $irokInfo=$irok->showWriterInfoName(antiSql($_GET['filterName']),$page_1);
-    $irokPage=$irok->showWriterInfoNamePageNumber(antiSql($_GET['filterName']));
-    $talalatok=$irokPage['oldalak_szama'];
-    $irokPage=ceil(($irokPage['oldalak_szama'])/10);
+    $kategoriakInfo=$kategoriak->showCategoryInfoName(antiSql($_GET['filterName']),$page_1);
+    $kategoriakPage=$kategoriak->showCategoryInfoNamePageNumber(antiSql($_GET['filterName']));
+    $talalatok=$kategoriakPage['oldalak_szama'];
+    $kategoriakPage=ceil(($kategoriakPage['oldalak_szama'])/10);
 }
 
 
 
-if(!isset($_GET['filterName'])) {
-  $irokInfo=$irok->showAllWriterInfoName($page_1);
-  $irokPage=$irok->showAllWriterInfoPageNumber();
-  $talalatok=$irokPage['oldalak_szama'];
-  $irokPage=ceil(($irokPage['oldalak_szama'])/10);
+if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
+  $kategoriakInfo=$kategoriak->showAllCategoryInfo($page_1);
+  $kategoriakPage=$kategoriak->showAllCategoryInfoPageNumber();
+  $talalatok=$kategoriakPage['oldalak_szama'];
+  $kategoriakPage=ceil(($kategoriakPage['oldalak_szama'])/10);
 }
 
-$hrefBack=($_GET["page"]==1 ? "#" : $ROOT.'pages/author-list.php'."?page=".$_GET['page']-1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
-$hrefForward=(($irokPage<=1 || $_GET["page"]==$irokPage) ? "#" : $ROOT.'pages/author-list.php'."?page=".$_GET['page']+1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+$hrefBack=($_GET["page"]==1 ? "#" : $ROOT.'pages/category-list.php'."?page=".$_GET['page']-1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+$hrefForward=(($kategoriakPage<=1 || $_GET["page"]==$kategoriakPage) ? "#" : $ROOT.'pages/category-list.php'."?page=".$_GET['page']+1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
 
-$_SESSION["rememberPage"]=$ROOT.'pages/author-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+$_SESSION["rememberPage"]=$ROOT.'pages/category-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
 
 $kedvContent = '
 <style>
@@ -74,7 +74,7 @@ $kedvContent = '
 </style>
 
         <div class="row mb-4">
-          <form action="'.$ROOT.'pages/author-list.php" method="GET">
+          <form action="'.$ROOT.'pages/category-list.php" method="GET">
             <div class="col-12 my-blue d-flex justify-content-center">
                 <span class="me-3 align-items-center d-flex">Szűrés:</span>
                 <input type="text" name="filterName" id="filterName" placeholder="Írónév..." class="ps-2 me-3 rounded">
@@ -90,8 +90,8 @@ $kedvContent = '
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
-    for ($i=1; $i<=$irokPage;$i++){
-      $pagelink=$ROOT.'pages/author-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+    for ($i=1; $i<=$kategoriakPage;$i++){
+      $pagelink=$ROOT.'pages/category-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
       if ($i==$page) {
         $kedvContent .='<li class="page-item"><a class="page-link page-active" href="'.$pagelink.'">'.$i.'</a></li>';
       } else {
@@ -110,15 +110,15 @@ $kedvContent .=
 
 $kedvContent .= ((isset($_SESSION['error']) && !empty($_SESSION['error'])) ? '<div class="alert alert-danger" role="alert">'.$_SESSION['error'].'</div>' : "");
 $kedvContent .= ((isset($_SESSION['message']) && !empty($_SESSION['message'])) ? '<div class="alert alert-success" role="alert">'.$_SESSION['message'].'</div>' : "");
-$kedvContent .= '<div class="mb-4"><a href="'.$ROOT.'pages/author-manage.php" class="btn btn-outline-primary me-2">Új szerző hozzáadása</a></div>';
+$kedvContent .= '<div class="mb-4"><a href="'.$ROOT.'pages/category-manage.php" class="btn btn-outline-primary me-2">Új kategória hozzáadása</a></div>';
 $kedvContent .='<table class="table table-striped table-hover table-primary ">
     <thead>
-        <tr class="table-light"><th>#</th><th>Id</th><th>Név</th><th>Származás</th><th>Módosítás</th></tr>
+        <tr class="table-light"><th>#</th><th>Id</th><th>Név</th><th>Módosítás</th></tr>
     </thead>
     <tbody>';
     $j=1;
-    foreach($irokInfo as $i) {
-      $kedvContent .='<tr><td>'.$j.'</td><td>'.$i['id'].'</td><td>'.$i['nev'].'</td><td>'.$i['szarmazas'].'</td><td><a href="author-manage.php?id='.$i['id'].'" class="btn btn-outline-primary me-2">Szerk</a><a href="'.$ROOT.'handlers/delete_handler.php?deleteAuthor='.$i['id'].'" class="btn btn-outline-danger">Törlés</a></td></tr>';
+    foreach($kategoriakInfo as $k) {
+      $kedvContent .='<tr><td>'.$j.'</td><td>'.$k['id'].'</td><td>'.$k['nev'].'</td><td><a href="category-manage.php?id='.$k['id'].'" class="btn btn-outline-primary me-2">Szerk</a><a href="'.$ROOT.'handlers/delete_handler.php?deleteCategory='.$k['id'].'" class="btn btn-outline-danger">Törlés</a></td></tr>';
       $j++;
     }
 $kedvContent .=
@@ -132,8 +132,8 @@ $kedvContent .=
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>';
-    for ($i=1; $i<=$irokPage;$i++){
-        $pagelink=$ROOT.'pages/author-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+    for ($i=1; $i<=$kategoriakPage;$i++){
+        $pagelink=$ROOT.'pages/category-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
         if ($i==$page) {
           $kedvContent .='<li class="page-item"><a class="page-link page-active" href="'.$pagelink.'">'.$i.'</a></li>';
         } else {

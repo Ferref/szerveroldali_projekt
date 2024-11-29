@@ -84,4 +84,66 @@ class CategoryModel extends DatabaseHandler
         }
     }
 
+    protected function getCategoryInfoName($name,$page) {
+        $query = "SELECT id, nev FROM kategoriak WHERE nev LIKE :nev LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getCategoryInfoNamePageNumber($name) {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM kategoriak WHERE nev LIKE :nev;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",'%'.$name.'%',PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllCategoryInfo($page) {
+        $query = "SELECT id, nev FROM kategoriak LIMIT :page,10;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("page",$page,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getAllCategoryInfoPageNumber() {
+        $query = "SELECT COUNT(id) as oldalak_szama FROM kategoriak;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function getCategoryInfo($id) {
+        $query = "SELECT nev FROM kategoriak WHERE id=:id;";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    protected function insertCategory($nev) {
+        $query="INSERT INTO kategoriak (nev) VALUES (:nev)";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",$nev, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
+    protected function updateCategory($id, $nev) {
+        $query="UPDATE kategoriak SET nev=:nev WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",$nev, PDO::PARAM_STR);
+        $stmt->bindValue("id",$id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    protected function deleteCategory($id) {
+        $query="DELETE FROM kategoriak WHERE id=:id";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("id",$id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 }

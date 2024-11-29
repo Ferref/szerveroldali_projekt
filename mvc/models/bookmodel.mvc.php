@@ -100,7 +100,7 @@ class BookModel extends DatabaseHandler
     }
 
     protected function getBookRating($bookId){
-        $query = "SELECT COUNT(ertekeles) AS ertekelesek_szama, AVG(ertekeles) AS atlag_ertekeles
+        $query = "SELECT DISTINCT konyvek.id AS konyv_id, COUNT(ertekeles) AS ertekelesek_szama, AVG(ertekeles) AS atlag_ertekeles
                   FROM konyvek 
                   JOIN ertekelesek  ON ertekelesek.konyv_id = konyvek.id
                   WHERE konyvek.id = :konyvid;";

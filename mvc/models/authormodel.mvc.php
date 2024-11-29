@@ -43,7 +43,7 @@ class AuthorModel extends DatabaseHandler
     }
 
     protected function getBookWriters($bookId){
-        $query = "SELECT *
+        $query = "SELECT szerzok.*
                   FROM szerzok
                   JOIN konyv_szerzo ON konyv_szerzo.szerzo_id = szerzok.id
                   JOIN konyvek ON konyvek.id = konyv_szerzo.konyv_id
@@ -56,7 +56,7 @@ class AuthorModel extends DatabaseHandler
     }
 
     protected function getWriterCategories($writerId) {
-        $query = "SELECT DISTINCT nev
+        $query = "SELECT DISTINCT nev, kategoriak.id
                   FROM kategoriak
                   JOIN konyv_kategoria ON konyv_kategoria.kategoria_id = kategoriak.id
                   JOIN konyv_szerzo ON konyv_szerzo.konyv_id = konyv_kategoria.konyv_id

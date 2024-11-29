@@ -10,7 +10,7 @@ require_once($ROOT."generate.php"); //`generate.php` meghívása
 
 $userController=new UserController();
 
-if(!isset($_SESSION['user']) || !isset($_GET['id']) || (isset($_GET['id']) && !($userController->isIdExists($_GET['id']))) || ($_SESSION['user']['id']!=$_GET['id'] && $_SESSION['user']['szerep']!='admin')){
+if(!isset($_SESSION['user']) || !isset($_GET['id']) || (isset($_GET['id']) && !($userController->isIdExists(antiSql($_GET['id'])))) || ($_SESSION['user']['id']!=$_GET['id'] && $_SESSION['user']['szerep']!='admin')){
     redirect($ROOT);
 }
 

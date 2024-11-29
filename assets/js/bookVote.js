@@ -59,5 +59,5 @@ function starVote(e){
     var star = e.currentTarget;
     var starId = star.getAttribute("starIndex");
     //console.log("Click: "+starId);
-    document.getElementsByName('ratingValue')[0].value = starId;
+    document.getElementsByName('ratingValue')[0].value = (starId+1);
 }

@@ -75,6 +75,42 @@ if(isset($_GET['deleteReview']) && $_GET['deleteReview']!="" && isset($_SESSION[
     }
 }
 
+if(isset($_GET['deleteRate']) && $_GET['deleteRate']!="" && isset($_SESSION['user']) && $_SESSION['user']['szerep']=="admin") {
+    try {
+        $userController=new UserController();
+        if(!($userController->removeBookRate(antiSql($_GET['deleteRate'])))) {
+            throw new HibaException();
+        }
+        $_SESSION['message']="Az értékelés törlése sikerült!";
+
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
+        redirect($_SERVER['PHP_SELF']);
+    }catch (HibaException $e) {
+        $_SESSION['error']="Az értékelés törlése nem sikerült!";
+    }
+}
+
+if(isset($_GET['deleteCategory']) && $_GET['deleteCategory']!="" && isset($_SESSION['user']) && $_SESSION['user']['szerep']=="admin") {
+    try {
+        $categoryController=new CategoryController();
+        if(!($categoryController->removeCategory(antiSql($_GET['deleteCategory'])))) {
+            throw new HibaException();
+        }
+        $_SESSION['message']="A kategória törlése sikerült!";
+
+        if(isset($_SESSION['rememberPage'])){
+            redirect($_SESSION['rememberPage']);
+        }
+
+        redirect($_SERVER['PHP_SELF']);
+    }catch (HibaException $e) {
+        $_SESSION['error']="A kategória törlése nem sikerült!";
+    }
+}
+
 if(isset($_SESSION['rememberPage'])) {
     redirect($_SESSION['rememberPage']);
 }

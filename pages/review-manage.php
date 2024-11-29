@@ -10,7 +10,7 @@ require_once($ROOT."generate.php"); //`generate.php` meghívása
 
 $reviewController=new ReviewController();
 
-if(!isset($_GET['id']) || !isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || !($reviewController->getIsReviewExist($_GET['id']))){
+if(!isset($_GET['id']) || !isset($_SESSION['user']) || $_SESSION['user']['szerep']!="admin" || !($reviewController->getIsReviewExist(antiSql($_GET['id'])))){
     redirect($ROOT);
 }
 
