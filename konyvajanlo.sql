@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Nov 22. 16:45
+-- Létrehozás ideje: 2024. Nov 30. 12:59
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -44,7 +44,10 @@ CREATE TABLE `ertekelesek` (
 INSERT INTO `ertekelesek` (`id`, `felhasznalo_id`, `konyv_id`, `ertekeles`, `datum`) VALUES
 (2, 2, 2, 4, '2024-10-31 18:16:12'),
 (3, 1, 3, 3, '2024-10-31 18:16:12'),
-(4, 2, 4, 5, '2024-10-31 18:16:12');
+(4, 2, 4, 5, '2024-10-31 18:16:12'),
+(5, 3, 24, 2, '2024-11-29 21:16:11'),
+(7, 10, 25, 3, '2024-11-29 22:22:56'),
+(8, 10, 24, 4, '2024-11-29 22:23:12');
 
 -- --------------------------------------------------------
 
@@ -68,9 +71,17 @@ CREATE TABLE `felhasznalok` (
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `email`, `jelszo`, `szerep`, `profilkep_url`, `regisztracios_datum`) VALUES
 (1, 'Kovács Péter', 'peter@example.com', 'titkositott_jelszo1', 'user', '', '2024-10-31 18:16:11'),
-(2, 'Szabó Anna', 'anna@example.com', 'titkositott_jelszo2', 'user', '', '2024-10-31 18:16:11'),
-(3, 'admin', 'email@email.com', '$2y$10$wKwge67fwzspopakYJwMdOKkVzucpH6s/F9lg6HZtrxSFCSQkGX9S', 'admin', 'https://assets.moly.hu/system/users/missing_small.png', '2024-11-02 18:44:54'),
-(4, 'asas', 'ggg@gg.com', '$2y$10$.u1N/gaugSAw9NpZvM3avej/Sbv7rCRGu0izarqNxCw7P0Hf/bHV6', 'user', '', '2024-11-02 19:50:20');
+(2, 'Szabó Anna', 'anna@pelda.com', '$2y$10$2jPEA3sJsZx7.LYCcw4LLO/AkT0n1IkV0ryaQ/MeOTamr.Q/QiNuK', 'user', '', '2024-10-31 18:16:11'),
+(3, 'admin', 'email@email.com', '$2y$10$wKwge67fwzspopakYJwMdOKkVzucpH6s/F9lg6HZtrxSFCSQkGX9S', 'admin', 'https://assets.moly.hu/system/users/missing_normal.png', '2024-11-02 18:44:54'),
+(10, 'rico1', 'email@email1.com', '$2y$10$0iMbFLBZowt.0eQ2.9h2Euuhd/q3r2s.MdrOWN3Oi7ANwd1MQEA42', 'user', '', '2024-11-23 20:47:46'),
+(11, 'rico2', 'email@email2.com', '$2y$10$l1.HO/hJ5b.lvCt8BwazzOTyjHPfOywv7fwolqIAQyPjaNnY0CAJ6', 'user', '', '2024-11-23 20:47:59'),
+(12, 'rico3', 'email@email2.com2', '$2y$10$JiqF1XxYJCbzGv4LSakbfOcA9mKSBnyLYq9aQ9NX74iMSlwSeDokS', 'user', '', '2024-11-23 20:48:12'),
+(13, 'rico4', 'email@email2.com3', '$2y$10$uN4gEzAvPYDJP/mVlTVA.O/lerU.SDrt/1ZNqklmEAIOegTI7fY2m', 'user', '', '2024-11-23 20:48:27'),
+(14, 'rico5', 'email@email2.com4', '$2y$10$geu8ZUOIHislkxr5AvW1Q.ZJ84zXuBb8.CilPay/YROCjLOdrcIba', 'user', '', '2024-11-23 20:48:39'),
+(15, 'rico6', 'email@email2.com5', '$2y$10$X.J5oiuGI.Uo6k0Ix8y9RenXkGhIH9LA98gnVVTnL/EPMmq65xOSO', 'user', '', '2024-11-23 20:50:15'),
+(16, 'rico7', 'email@email2.com6', '$2y$10$AUOdTxJi4Lll8azLetbqEuIj.xnv/P9S1mcwiNUn8YOVt9ERbXLxu', 'user', '', '2024-11-23 20:50:29'),
+(17, 'rico8', 'email@email2.com7', '$2y$10$eBqgr8JHBRaOdMSqOEKyheiIBx/MgtY3rl22PJT5IOE/qJpjX7xKe', 'user', '', '2024-11-23 20:50:43'),
+(18, 'rico9', 'ggg@gg.com', '$2y$10$KW4eNBjxApFht98pPysuQ.1QPVISUlYuxgVCBA/pO1ht5c2tpV1xe', 'user', '', '2024-11-23 20:51:28');
 
 -- --------------------------------------------------------
 
@@ -126,6 +137,16 @@ CREATE TABLE `kedvencek` (
   `felhasznalo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- A tábla adatainak kiíratása `kedvencek`
+--
+
+INSERT INTO `kedvencek` (`id`, `konyv_id`, `felhasznalo_id`) VALUES
+(6, 2, 3),
+(7, 24, 3),
+(8, 22, 3),
+(12, 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -148,9 +169,12 @@ CREATE TABLE `konyvek` (
 --
 
 INSERT INTO `konyvek` (`id`, `cim`, `leiras`, `oldalszam`, `kiadasi_ev`, `boritokep_url`, `link_amazon`, `link_bookline`) VALUES
-(2, 'Alapítvány', 'Egy jövőbeli történet egy galaktikus birodalom összeomlásáról.', 300, 1951, 'https://moly.hu/system/covers/big/covers_154642.jpg?1713601948', 'https://amazon.com/alapitvany', 'https://bookline.com/alapitvany'),
-(3, '1984', 'Egy disztópikus regény a totalitarizmusról.', 250, 1949, 'https://moly.hu/system/covers/big/covers_590714.jpg?1580919360', 'https://amazon.com/1984', 'https://bookline.com/1984'),
-(4, 'Egy polgár vallomásai', 'Márai Sándor regénye a polgári világról.', 200, 1934, 'https://moly.hu/system/covers/big/covers_761527.jpg?1662555143', 'https://amazon.com/egy_polgar', 'https://bookline.com/egy_polgar');
+(2, 'Alapítvány', 'Egy jövőbeli történet egy galaktikus birodalom összeomlásáról.', 301, 1951, 'https://moly.hu/system/covers/big/covers_154642.jpg?1713601948', 'https://amazon.com/alapitvany', 'https://bookline.com/alapitvany'),
+(3, '1984', 'Egy disztópikus regény a totalitarizmusról.', 250, 1949, 'https://moly.hu/system/covers/big/covers_590714.jpg?1580919360', '', ''),
+(4, 'Egy polgár vallomásai', 'Márai Sándor regénye a polgári világról.', 200, 1934, 'https://moly.hu/system/covers/big/covers_761527.jpg?1662555143', 'https://amazon.com/egy_polgar', 'https://bookline.com/egy_polgar'),
+(22, 'Harry ​Potter és a bölcsek köve', 'Harry remegő kézzel megfordította a küldeményt. A borítékot lezáró piros viaszpecsétet címer díszítette: oroszlán, sas, borz és kígyó vettek körül egy nagy R betűt.\r\n\r\nHarry Potter még csak hallani sem hallott Roxfortról, amikor a Privet Drive 4-es számú ház lábtörlőjére elkezdenek sorban hullani a levelek. A zöld tintával címzett és piros pecséttel lezárt sárgás pergameneket azonban gyorsan elorozza rémes nagynénje és nagybátyja. Harry tizenegyedik születésnapját egy hatalmas, bogárszemű óriás, Rubeus Hagrid zavarja meg, és elképesztő híreket hoz: Harry Potter varázsló, és felvételt nyert a Roxfort Boszorkány- és Varázslóképző Szakiskolába. Ezzel elkezdődik egy hihetetlen kaland!', 288, 1999, 'https://moly.hu/system/covers/big/covers_695092.jpg?1727699765', '', ''),
+(24, 'Harry ​Potter és a Titkok Kamrája', 'A ​szemközti falon valami fénylett. Óvatosan közelebb mentek, s közben hunyorogva fürkészték a sötétséget. A lobogó fáklyák fényében egy felirat csillant meg. Valaki fél méter magas betűkkel ezt mázolta a két ablak között a falra: FELTÁRULT A TITKOK KAMRÁJA. AZ UTÓD ELLENSÉGEI RESZKESSENEK!\r\nHarry Potter varázslónak született, és jelenleg második tanévére készül a Roxfort Boszorkány-és Varázslóképző Szakiskolában. De már a szünidő sem telik eseménytelenül: egy nap különös szerzet , egy házimanó jelenik meg a Privet Drive-on, és közli Harryvel, hogy nagy veszély leselkedik rá, ha visszatér az iskolába. Harry a riválisa, Draco Malfoy mesterkedését sejti az üzenet mögött, és nem törődik a figyelmeztetéssel. Sőt, valójában el is feledkezik róla, ugyanis barátja, Ron egy repülő autón megszökteti a kibírhatatlan Dursley-éktől, s Harry a nyár további részét Weasley-éknél tölti. Ám a Roxfortba visszatérve hamarosan beigazolódik, hogy Dobby, a házimanó nem a levegőbe beszélt.', 200, 1999, 'https://moly.hu/system/covers/big/covers_282440.jpg?1395478519', '', ''),
+(25, 'Harry ​Potter és az azkabani fogoly', 'Harry Potter szokásos rémes vakációját tölti Dursley-éknél, ám a helyzet úgy elfajul, hogy Harry elviharzik a Privet Drive-ról. Így köt ki a Kóbor Grimbuszon, ami elviszi őt abba a világba, ahová egész nyáron vágyott. Az Abszol úton ijesztő hírek járják: az Azkabanból, a gonosz varázslókat őrző rettegett börtönből megszökött egy fogoly. A Mágiaügyi Minisztériumban tudják, hogy a veszélyes szökevény a Roxfort Boszorkány- és Varázslóképző Szakiskolába tart. Harry pedig egy véletlen folytán tudomást szerez róla, hogy az illető az ő nyomát követi.', 200, 1999, 'https://moly.hu/system/covers/big/covers_458537.jpg?1507105020', '', '');
 
 -- --------------------------------------------------------
 
@@ -171,9 +195,14 @@ CREATE TABLE `konyv_kategoria` (
 INSERT INTO `konyv_kategoria` (`id`, `konyv_id`, `kategoria_id`) VALUES
 (4, 4, 4),
 (8, 4, 3),
-(45, 2, 2),
-(46, 2, 3),
-(59, 3, 4);
+(68, 2, 2),
+(69, 2, 3),
+(70, 24, 1),
+(74, 25, 1),
+(75, 25, 4),
+(76, 22, 1),
+(77, 22, 3),
+(78, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -193,9 +222,13 @@ CREATE TABLE `konyv_szerzo` (
 
 INSERT INTO `konyv_szerzo` (`id`, `konyv_id`, `szerzo_id`) VALUES
 (4, 4, 4),
-(10, 2, 2),
-(17, 3, 2),
-(18, 3, 3);
+(24, 2, 2),
+(25, 24, 1),
+(28, 25, 1),
+(29, 22, 1),
+(30, 3, 1),
+(31, 3, 2),
+(32, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -208,6 +241,14 @@ CREATE TABLE `olvasott` (
   `konyv_id` int(11) NOT NULL,
   `felhasznalo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `olvasott`
+--
+
+INSERT INTO `olvasott` (`id`, `konyv_id`, `felhasznalo_id`) VALUES
+(4, 24, 3),
+(7, 22, 3);
 
 -- --------------------------------------------------------
 
@@ -232,8 +273,7 @@ INSERT INTO `szerzok` (`id`, `nev`, `profilkep_url`, `szuletesi_ido`, `halal_ido
 (1, 'J.K. Rowling', 'https://cdn.moly.hu/file/molyhu/pictures/normal/pictures_322.jpg?1492714015', NULL, NULL, ''),
 (2, 'Isaac Asimov', 'https://cdn.moly.hu/file/molyhu/pictures/big/pictures_3145.jpg?1500118177', NULL, NULL, ''),
 (3, 'George Orwell', 'https://cdn.moly.hu/file/molyhu/pictures/big/pictures_3203.jpg?1500465288', '1903-06-25', '1950-01-21', 'angol'),
-(4, 'Márai Sándor', 'https://cdn.moly.hu/file/molyhu/pictures/big/pictures_7661.jpg?1523472551', NULL, NULL, ''),
-(6, 'Ernest Hemingway', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/480px-ErnestHemingway.jpg', '2024-11-20', '2024-11-22', 'Ameri');
+(4, 'Márai Sándor', 'https://cdn.moly.hu/file/molyhu/pictures/big/pictures_7661.jpg?1523472551', '2024-11-21', NULL, 'magyar');
 
 -- --------------------------------------------------------
 
@@ -246,6 +286,13 @@ CREATE TABLE `varolistak` (
   `konyv_id` int(11) NOT NULL,
   `felhasznalo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `varolistak`
+--
+
+INSERT INTO `varolistak` (`id`, `konyv_id`, `felhasznalo_id`) VALUES
+(5, 25, 3);
 
 -- --------------------------------------------------------
 
@@ -266,7 +313,7 @@ CREATE TABLE `velemenyek` (
 --
 
 INSERT INTO `velemenyek` (`id`, `felhasznalo_id`, `konyv_id`, `velemeny`, `datum`) VALUES
-(2, 2, 2, 'Egy klasszikus sci-fi, ami sosem megy ki a divatból.', '2024-10-31 18:16:11'),
+(2, 2, 2, 'Egy olyan könyv, ami sosem megy ki a divatból.', '2024-10-31 18:16:11'),
 (4, 3, 2, 'nagyon jó', '2024-11-21 22:49:41');
 
 --
@@ -371,13 +418,13 @@ ALTER TABLE `velemenyek`
 -- AUTO_INCREMENT a táblához `ertekelesek`
 --
 ALTER TABLE `ertekelesek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT a táblához `hozzaszolasok`
@@ -389,55 +436,55 @@ ALTER TABLE `hozzaszolasok`
 -- AUTO_INCREMENT a táblához `kategoriak`
 --
 ALTER TABLE `kategoriak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `kedvencek`
 --
 ALTER TABLE `kedvencek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `konyvek`
 --
 ALTER TABLE `konyvek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT a táblához `konyv_kategoria`
 --
 ALTER TABLE `konyv_kategoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT a táblához `konyv_szerzo`
 --
 ALTER TABLE `konyv_szerzo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT a táblához `olvasott`
 --
 ALTER TABLE `olvasott`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT a táblához `szerzok`
 --
 ALTER TABLE `szerzok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `varolistak`
 --
 ALTER TABLE `varolistak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT a táblához `velemenyek`
 --
 ALTER TABLE `velemenyek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Megkötések a kiírt táblákhoz
