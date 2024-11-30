@@ -244,6 +244,7 @@ if(isset($_SESSION['user'])){
     
 
     foreach($konyvVelemenyek as $v) {
+        echo "hi";
         $velemenyekContent.= '<div class="col-12">
         <div class="py-1 px-3">
             <div class="pb-4 px-3 rounded ">

@@ -77,7 +77,13 @@ if(!isset($_GET['filterName']) && !isset($_GET['filterEmail'])) {
 }
 
 $hrefBack=($_GET["page"]==1 ? "#" : $ROOT.'pages/user-list.php'."?page=".$_GET['page']-1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
-$hrefForward=(($userPage<=1 || $_GET["page"]==$userPage) ? "#" : $ROOT.'pages/user-list.php'."?page=".$_GET['page']+1) . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
+$hrefForward=(($userPage<=1 || $_GET["page"]==$userPage) 
+ ? "#"
+ : $ROOT.'pages/user-list.php'."?page=".($_GET['page']+1)) . (isset($_GET['filterName'])
+ ? "&filterName=".antiSql($_GET['filterName'])
+ : "") . (isset($_GET['filterEmail'])
+ ? "&filterEmail=".antiSql($_GET['filterEmail'])
+ : "");
 
 $_SESSION["rememberPage"]=$ROOT.'pages/user-list.php?page='.$page . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "").(isset($_GET['filterEmail']) ? "&filterEmail=".antiSql($_GET['filterEmail']) : "");
 
