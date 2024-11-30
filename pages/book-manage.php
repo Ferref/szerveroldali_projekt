@@ -30,7 +30,7 @@ $irok=$iro->showAllWriter();
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && !isset($_GET['id'])) {
     try {
         if(!($bookController->insertNewBook(antiSql($_POST['cim']), antiSql($_POST['leiras']), antiSql($_POST['oldalszam']),
-        antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), antiSql($_POST['link-amazon']), antiSql($_POST['link-bookline'])))) {
+        antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), "", ""))) {
             throw new HibaException();
         }
 
@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && !isset($_GET
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && isset($_GET['id'])) {
     try {
         if(!($bookController->updatingBook($_GET['id'],antiSql($_POST['cim']), antiSql($_POST['leiras']), antiSql($_POST['oldalszam']),
-    antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), antiSql($_POST['link-amazon']), antiSql($_POST['link-bookline'])))) {
+    antiSql($_POST['kiadasev']),antiSql ($_POST['borito']), "", ""))) {
             throw new HibaException();
         }
 
