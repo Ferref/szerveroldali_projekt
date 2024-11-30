@@ -126,11 +126,11 @@ $konyvKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_
         </div>
         <div class="mb-3 col-6 col-lg-3">
             <label for="oldalszam" class="form-label my-light-blue">Oldalszám</label>
-            <input type="number" class="form-control" id="oldalszam" name="oldalszam" value="'.(isset($_GET['id']) ? $konyvInfo['oldalszam'] : "").'" required>
+            <input type="number" class="form-control" id="oldalszam" name="oldalszam" value="'.(isset($_GET['id']) ? $konyvInfo['oldalszam'] : "").'" min="0" required>
         </div>
         <div class="mb-3 col-6 col-lg-3">
             <label for="kiadasev" class="form-label my-light-blue">Kiadási év</label>
-            <input type="number" class="form-control" id="kiadasev" name="kiadasev" value="'.(isset($_GET['id']) ? $konyvInfo['kiadasi_ev'] : "").'" required>
+            <input type="number" class="form-control" id="kiadasev" name="kiadasev" value="'.(isset($_GET['id']) ? $konyvInfo['kiadasi_ev'] : "").'" min="0" required>
         </div>
 
         <div class="mb-3 col-12 col-lg-6">
