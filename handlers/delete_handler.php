@@ -5,6 +5,15 @@ require_once("../includes/autoload.inc.php");
 if(isset($_GET['deleteUser']) && $_GET['deleteUser']!="" && isset($_SESSION['user']) && $_SESSION['user']['szerep']=="admin") {
     try {
         $userController=new UserController();
+        if($userController->getIsUserAdmin(antiSql($_GET['deleteUser']))) {
+            $_SESSION['error']="Az admin nem törölhető!";
+
+            if(isset($_SESSION['rememberPage'])){
+                redirect($_SESSION['rememberPage']);
+            } else {
+                redirect("../");
+            }
+        }
         if(!($userController->removeUser(antiSql($_GET['deleteUser'])))) {
             throw new HibaException();
         }

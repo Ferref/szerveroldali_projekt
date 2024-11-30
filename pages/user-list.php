@@ -136,7 +136,7 @@ $kedvContent .='<table class="table table-striped table-hover table-primary ">
     <tbody>';
     $j=1;
     foreach($usersInfo as $u) {
-      $kedvContent .='<tr><td>'.$j.'</td><td>'.$u['id'].'</td><td>'.$u['nev'].'</td><td>'.$u['email'].'</td><td>'.$u['szerep'].'</td><td><a href="user-manage.php?id='.$u['id'].'" class="btn btn-outline-primary me-2">Szerk</a><a href="'.$ROOT.'handlers/delete_handler.php?deleteUser='.$u['id'].'" class="btn btn-outline-danger">Törlés</a></td></tr>';
+      $kedvContent .='<tr><td>'.$j.'</td><td>'.$u['id'].'</td><td>'.$u['nev'].'</td><td>'.$u['email'].'</td><td>'.$u['szerep'].'</td><td><a href="user-manage.php?id='.$u['id'].'" class="btn btn-outline-primary me-2">Szerk</a>'.($u['szerep']=="admin" ? "" : ('<a href="'.$ROOT.'handlers/delete_handler.php?deleteUser='.$u['id'].'" class="btn btn-outline-danger">Törlés</a>')).'</td></tr>';
       $j++;
     }
 $kedvContent .=

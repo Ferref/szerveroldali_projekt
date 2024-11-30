@@ -86,5 +86,8 @@ class UserController extends UserModel {
         return $this->updateBookRate($userId, $bookId, $ertekeles);
     }
 
+    public function getIsUserAdmin ($userId) {
+        return $this->isUserAdmin($userId);
+    }
 
 }

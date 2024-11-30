@@ -423,4 +423,17 @@ class UserModel extends DatabaseHandler {
         $stmt->execute();
         return $stmt->rowCount();
     }
+
+    protected function isUserAdmin($userId) {
+        $query = "SELECT szerep FROM felhasznalok WHERE id = :userId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        if($result['szerep']=="admin") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
