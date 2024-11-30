@@ -399,4 +399,28 @@ class UserModel extends DatabaseHandler {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    protected function getFavouriteBookNumber($userId) {
+        $query = "SELECT id FROM kedvencek WHERE felhasznalo_id = :userId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    protected function getReadBookNumber($userId) {
+        $query = "SELECT id FROM olvasott WHERE felhasznalo_id = :userId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+
+    protected function getWaitedBookNumber($userId) {
+        $query = "SELECT id FROM varolistak WHERE felhasznalo_id = :userId";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
 }

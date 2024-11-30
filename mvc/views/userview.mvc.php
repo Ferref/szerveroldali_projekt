@@ -80,4 +80,16 @@ class UserView extends UserModel {
         return $this->getUserBookRatesPageNumber($name,$book);
     }
 
+    public function showFavouriteBookNumber($userId) {
+        return $this->getFavouriteBookNumber($userId);
+    }
+
+    public function showReadBookNumber($userId) {
+        return $this->getReadBookNumber($userId);
+    }
+
+    public function showWaitedBookNumber($userId) {
+        return $this->getWaitedBookNumber($userId);
+    }
+
 }

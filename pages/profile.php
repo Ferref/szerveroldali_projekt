@@ -45,9 +45,9 @@ $kedvContent = '
                                         <p class="mb-2"><b class="my-blue">E-mail:</b> '.$userInfo['email'].'</p>
                                         <p class="mb-2"><b class="my-blue">Regisztrálva:</b> '.$userInfo['regisztracios_datum'].'</p>
                                         <br>
-                                        <p class="mb-2"><b class="my-blue">Kedvenc:</b> 12 <sub class="my-light-blue">db</sub></p>
-                                        <p class="mb-2"><b class="my-blue">Olvasott:</b> 52 <sub class="my-light-blue">db</sub></p>
-                                        <p class="mb-2"><b class="my-blue">Várólistás:</b> 19 <sub class="my-light-blue">db</sub></p>
+                                        <p class="mb-2"><b class="my-blue">Kedvenc:</b> '.$user->showFavouriteBookNumber($_SESSION['user']['id']).' <sub class="my-light-blue">db</sub></p>
+                                        <p class="mb-2"><b class="my-blue">Olvasott:</b> '.$user->showReadBookNumber($_SESSION['user']['id']).' <sub class="my-light-blue">db</sub></p>
+                                        <p class="mb-2"><b class="my-blue">Várólistás:</b> '.$user->showWaitedBookNumber($_SESSION['user']['id']).' <sub class="my-light-blue">db</sub></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -69,13 +69,13 @@ $kedvContent = '
                         <div class="col-12">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#"><i class="bi bi-heart my-blue me-2"></i><span class="my-light-blue">Kedvenc</span></a>
+                                    <a class="nav-link" aria-current="page" href="'.$ROOT.'pages/search.php?favouriteId='.$_SESSION['user']['id'].'"><i class="bi bi-heart my-blue me-2"></i><span class="my-light-blue">Kedvenc</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-journal-check my-blue me-2"></i><span class="my-light-blue">Olvasott</span></a>
+                                    <a class="nav-link" href="'.$ROOT.'pages/search.php?readId='.$_SESSION['user']['id'].'"><i class="bi bi-journal-check my-blue me-2"></i><span class="my-light-blue">Olvasott</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-journal-bookmark-fill my-blue me-2"></i><span class="my-light-blue">Várólistás</span></a>
+                                    <a class="nav-link" href="'.$ROOT.'pages/search.php?waitId='.$_SESSION['user']['id'].'"><i class="bi bi-journal-bookmark-fill my-blue me-2"></i><span class="my-light-blue">Várólistás</span></a>
                                 </li>
                             </ul>
                         </div>

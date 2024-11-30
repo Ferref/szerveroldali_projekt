@@ -52,4 +52,16 @@ class BookView extends BookModel {
     public function showBookByCategorySearch($keresesId) {
         return $this->getBookByCategorySearch($keresesId);
     }
+
+    public function showFavouriteBooks($userId) {
+        return $this->getFavouriteBooks($userId);
+    }
+
+    public function showReadBooks($userId) {
+        return $this->getReadBooks($userId);
+    }
+
+    public function showWaitBooks($userId) {
+        return $this->getWaitBooks($userId);
+    }
 }

@@ -48,6 +48,33 @@ if(isset($_GET['categoryId']) && !empty($_GET['categoryId'])){
         $talaltkonyvek=$konyvek->showAllBook();
     }
 }
+else if(isset($_GET['favouriteId']) && !empty($_GET['favouriteId'])){
+
+    $userController=new UserController();
+    if($userController->isIdExists(antiSql($_GET['favouriteId']))){
+        $talaltkonyvek=$konyvek->showFavouriteBooks(antiSql($_GET['favouriteId']));
+    } else {
+        $talaltkonyvek=$konyvek->showAllBook();
+    }
+}
+else if(isset($_GET['readId']) && !empty($_GET['readId'])){
+
+    $userController=new UserController();
+    if($userController->isIdExists(antiSql($_GET['readId']))){
+        $talaltkonyvek=$konyvek->showReadBooks(antiSql($_GET['readId']));
+    } else {
+        $talaltkonyvek=$konyvek->showAllBook();
+    }
+}
+else if(isset($_GET['waitId']) && !empty($_GET['waitId'])){
+
+    $userController=new UserController();
+    if($userController->isIdExists(antiSql($_GET['waitId']))){
+        $talaltkonyvek=$konyvek->showWaitBooks(antiSql($_GET['waitId']));
+    } else {
+        $talaltkonyvek=$konyvek->showAllBook();
+    }
+}
 else {
     
     if(isset($_POST['keresesKuldese']) && !empty($_POST['kereses'])) {

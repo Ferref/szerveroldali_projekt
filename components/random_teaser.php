@@ -40,7 +40,7 @@ $rt_element .=         '</div>
                         <li><a class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"  data-bs-toggle="modal" data-bs-target="#'.(!isset($_SESSION['user']) ? 'bejelentkezes' : "ment").'">';
                             if(!isset($_SESSION['user'])) {
                                                 
-                                $rt_element .='<button type="button" class="nav-link shadow-sm py-2  px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded  w-50" data-bs-dismiss="modal" aria-label="Close"><i class="me-2"></i>Értem</button>';
+                                $rt_element .='<i class="bi bi-bookmark me-2"></i>Mentés</a></li>';
                             }
                             else {
                                 if($userController->getIsBookRead($_SESSION['user']['id'], $bookInfo["id"])) {

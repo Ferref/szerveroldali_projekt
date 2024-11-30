@@ -42,6 +42,7 @@ $konyvKategoriak=$kategoriak->showBookCategories($konyvInfo["id"]);
 $konyvSzerzok=$szerzok->showBookAuthors($_GET['id']);
 $ertekeles=$konyv->showBookRating($konyvInfo["id"]);
 $konyvVelemenyek=$velemenyek->showBookReviews($konyvInfo["id"]);
+$hasonloKonyvek=$konyv->showSimilarBooks($konyvInfo["id"]);
 $userController=new UserController();
 
 $bookPage = new Generate();
@@ -56,9 +57,11 @@ $bookPage->name = "Könyv: " . $konyvInfo['cim'];
 //include_once($ROOT . "components/book_detail2.php");
 //$detailContent = $bd_element;
 //Legnépszerűbb könyvek
-$nKonyvekContent = "<div class=\"row\">
-    " . book_mini($konyvInfo, $ROOT) . "
-</div>";
+$nKonyvekContent = "<div class=\"row\">";
+    foreach($hasonloKonyvek as $konyv) {
+        $nKonyvekContent.=book_mini($konyv,$ROOT);
+    }
+$nKonyvekContent .="</div>";
 
 $detailContainer =
     '
@@ -117,7 +120,7 @@ $detailContainer .=                 '</div>
                                     <li><a class="nav-link shadow-sm py-1 px-2 my-2 d-flex c-pointer my-blue justify-content-around align-items-center bg-my-white-blue rounded"  data-bs-toggle="modal" data-bs-target="#'.(!isset($_SESSION['user']) ? 'bejelentkezes' : "ment").'">';
                                         if(!isset($_SESSION['user'])) {
                                                             
-                                            $detailContainer .='<button type="button" class="nav-link shadow-sm py-2  px-2 my-2 d-bock c-pointer my-blue align-items-center bg-my-white-blue rounded  w-50" data-bs-dismiss="modal" aria-label="Close"><i class="me-2"></i>Értem</button>';
+                                            $detailContainer .='<i class="bi bi-bookmark me-2"></i>Mentés</a></li>';
                                         }
                                         else {
                                             if($userController->getIsBookRead($_SESSION['user']['id'], $konyvInfo["id"])) {

@@ -70,15 +70,13 @@ class BookModel extends DatabaseHandler
 
     // Hasonlo konyvek (kategoria alapjan)
     protected function getSimilarBooks($bookId){
-        $query = "SELECT DISTINCT k2.id, k2.cim, k2.leiras, k2.boritokep_url, sz.nev AS szerzo_nev
-                  FROM konyvek k
-                  JOIN konyv_kategoria kk1 ON k.id = kk1.konyv_id
-                  JOIN konyv_kategoria kk2 ON kk1.kategoria_id = kk2.kategoria_id
-                  JOIN konyvek k2 ON kk2.konyv_id = k2.id
-                  JOIN konyv_szerzo ksz ON k2.id = ksz.konyv_id
-                  JOIN szerzok sz ON sz.id = ksz.szerzo_id
-                  WHERE k.id = :konyvid AND k2.id != :konyvid
-                  LIMIT 5;";
+        $query = "SELECT DISTINCT k.id, k.cim, k.boritokep_url
+                    FROM konyvek k
+                    JOIN konyv_kategoria kk ON k.id = kk.konyv_id
+                    JOIN konyv_kategoria kk2 ON kk.kategoria_id = kk2.kategoria_id
+                    WHERE kk2.konyv_id = :konyvid AND k.id != kk2.konyv_id
+                    ORDER BY RAND()
+                    LIMIT 5;";
 
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("konyvid",$bookId,PDO::PARAM_INT); 
@@ -209,6 +207,42 @@ class BookModel extends DatabaseHandler
                     WHERE ka.id=:keresesId;";
         $stmt = $this->connect()->prepare($query);
         $stmt->bindValue("keresesId",$keresesId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getFavouriteBooks($userId){
+        $query = "SELECT k.id, k.cim, k.boritokep_url
+                    FROM konyvek k
+                    JOIN kedvencek ke ON k.id = ke.konyv_id
+                    WHERE ke.felhasznalo_id = :userId";
+
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getReadBooks($userId){
+        $query = "SELECT k.id, k.cim, k.boritokep_url
+                    FROM konyvek k
+                    JOIN olvasott o ON k.id = o.konyv_id
+                    WHERE o.felhasznalo_id = :userId";
+
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    protected function getWaitBooks($userId){
+        $query = "SELECT k.id, k.cim, k.boritokep_url
+                    FROM konyvek k
+                    JOIN varolistak v ON k.id = v.konyv_id
+                    WHERE v.felhasznalo_id = :userId";
+
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("userId",$userId,PDO::PARAM_INT); 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
