@@ -93,16 +93,22 @@ if(isset($_SESSION['user']) && $_SESSION['user']['szerep']=='admin') {
                                <span class=\"my-blue\">Kezelés:</span>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/book-list.php\">Könyv</a>
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/book-list.php\">Könyvek</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/author-list.php\">Író</a>
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/author-list.php\">Írók</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/category-list.php\">Kategória</a>
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/category-list.php\">Kategóriák</a>
                         </li>
                         <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
-                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/user-list.php\">Felhasználó</a>
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/user-list.php\">Felhasználók</a>
+                        </li>
+                        <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/review-list.php\">Vélemények</a>
+                        </li>
+                        <li class=\"nav-item m-0 me-md-2 px-2 align-content-center\">
+                                <a class=\"nav-link d-flex my-light-blue p-0\" href=\"".$this->root."pages/rate-list.php\">Pontozások</a>
                         </li>
                     </ul>
                 </div>
