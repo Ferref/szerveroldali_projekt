@@ -23,7 +23,7 @@
 
 ### 3. Adatbázis beállítása
 1. Hozzon létre egy MySQL adatbázist.
-2. Importálja a `test/konyvajanlo.sql` fájlt az adatbázisába.
+2. Importálja a `test/konyvajanlo.sql` fájlt az adatbázisába. (a konyvajanlo.sql automatikusan létrehozza ha még nem létezik)
 
 ---
 
