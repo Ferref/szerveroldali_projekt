@@ -1,0 +1,94 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+  <diagram id="Kd7NgREUNtFxFwiCFawy" name="Page-1">
+    <mxGraphModel dx="2029" dy="1174" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" value="Kezdés" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="460" y="50" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="mainPage" value="Főoldal betöltése" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="410" y="150" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="interaction" value="Felhasználói interakció(k)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="410" y="240" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="login" value="Bejelentkezés&lt;br&gt;&lt;div&gt;login.php&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="100" y="340" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="register" value="Regisztráció&#xa;registration.php" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="340" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="search" value="Keresési oldal&#xa;search.php" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="560" y="350" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" value="Profil oldal&#xa;profile.php" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="810" y="350" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="loginDetails" value="Bejelentkezési adatok megadása&lt;br&gt;login_handler" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="75" y="460" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="registerDetails" value="Regisztrációs adatok&lt;br&gt;registration_handler" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="305" y="460" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="searchKeyword" value="Keresési kifejezés megadása" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="535" y="450" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="userActions" value="Felhasználói adatok megtekintése&lt;br&gt;- Kedvenc könyvek&lt;br&gt;- Olvasott lista&lt;br&gt;- Varólista" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="785" y="450" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="bookManagement" value="Könyv-kezelés&lt;br&gt;- Hozzáadás&lt;br&gt;- Módosítás&lt;br&gt;- Törlés&lt;br&gt;book-manage.php" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="600" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="userManagement" value="Felhasználó kezelése&#xa;- Profil szerkesztés&#xa;- Jelszó módosítás&#xa;user-manage.php" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="760" y="600" width="250" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" value="Admin funkciók&lt;br&gt;- Felhasználók megtekintése&lt;br&gt;- Felhasználók törlése" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="460" y="770" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" source="start" target="mainPage" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" source="mainPage" target="interaction" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" source="interaction" target="login" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" source="interaction" target="register" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" parent="1" source="interaction" target="search" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" parent="1" source="interaction" target="profile" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" parent="1" source="login" target="loginDetails" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" parent="1" source="register" target="registerDetails" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" parent="1" source="search" target="searchKeyword" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" parent="1" source="profile" target="userActions" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" parent="1" source="userActions" target="bookManagement" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" parent="1" source="userActions" target="userManagement" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" parent="1" source="userManagement" target="admin" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" parent="1" source="bookManagement" target="admin" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
