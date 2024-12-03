@@ -21,5 +21,9 @@ class BookController extends BookModel
     public function getIsBookExist($bookId) {
         return $this->isBookExist($bookId);
     }
+
+    public function getIsBookExistByName($nev) {
+        return $this->isBookExistByName($nev);
+    }
 }
 

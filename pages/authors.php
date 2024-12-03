@@ -27,7 +27,7 @@ $irokContent = '
     <div class="row mx-0 my-3">
         <div class="col-12" id="authorsContainer">';
             foreach($irok as $i) {
-                $irokContent .= '<label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2" for="kat'.$i['id'].'">
+                $irokContent .= '<label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2 mb-2" for="kat'.$i['id'].'">
                 <a href="'.$ROOT.'pages/author-overview.php?id='.$i['id'].'" id="kat'.$i['id'].'" style="color: inherit;">
                 <span>'.$i["nev"].'<span class="badge bg-my-light-blue ms-1">'.$iro->showSpecificWriterBookNumber($i['id']).'</span></span></a>
             </label>';

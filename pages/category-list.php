@@ -77,7 +77,7 @@ $kedvContent = '
           <form action="'.$ROOT.'pages/category-list.php" method="GET">
             <div class="col-12 my-blue d-flex justify-content-center">
                 <span class="me-3 align-items-center d-flex">Szűrés:</span>
-                <input type="text" name="filterName" id="filterName" placeholder="Írónév..." class="ps-2 me-3 rounded">
+                <input type="text" name="filterName" id="filterName" placeholder="Kategórianév..." class="ps-2 me-3 rounded">
                 <input type="submit" id="filterUsersSubmit" value="Keresés" class="btn btn-primary px-4 me-3 rounded">
                 <span class=" align-items-center d-flex">Találatok: '.$talalatok.'</span>
             </div>
@@ -149,7 +149,7 @@ $kedvContent .=
   </ul>
 </nav>
 ';
-$kedvContainer = $homePage->createContainer($kedvContent,"Írók", "bi-person-lines-fill");
+$kedvContainer = $homePage->createContainer($kedvContent,"Kategóriák", "bi-person-lines-fill");
 //---
 
 

@@ -155,6 +155,18 @@ class BookModel extends DatabaseHandler
         }
     }
 
+    protected function isBookExistByName($nev) {
+        $query = "SELECT id FROM konyvek WHERE cim=:nev";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",$nev,PDO::PARAM_STR); 
+        $stmt->execute();
+        if ($stmt->rowCount()!=0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected function getBookInfoName($name,$page) {
         $query = "SELECT id, cim, oldalszam, kiadasi_ev FROM konyvek WHERE cim LIKE :cim LIMIT :page,10;";
         $stmt = $this->connect()->prepare($query);

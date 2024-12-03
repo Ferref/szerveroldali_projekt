@@ -84,6 +84,18 @@ class CategoryModel extends DatabaseHandler
         }
     }
 
+    protected function isCategoryExistByName($nev) {
+        $query = "SELECT id FROM kategoriak WHERE nev=:nev";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->bindValue("nev",$nev,PDO::PARAM_STR); 
+        $stmt->execute();
+        if ($stmt->rowCount()!=0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected function getCategoryInfoName($name,$page) {
         $query = "SELECT id, nev FROM kategoriak WHERE nev LIKE :nev LIMIT :page,10;";
         $stmt = $this->connect()->prepare($query);

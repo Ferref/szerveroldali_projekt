@@ -149,20 +149,20 @@ $konyvKezelesContent .= '<form action="'.antiSql($_SERVER['PHP_SELF']).(isset($_
                         foreach($kategoriak as $k) {
                             if(isset($_GET['id'])) {
                                 if($kategoria->showIsCategoryInBook($_GET['id'],$k['id'])) {
-                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="kat'.$k['id'].'" style="background-color: rgb(75, 101, 135); color: white;">
+                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="kat'.$k['id'].'" style="background-color: rgb(75, 101, 135); color: white;">
                                         <input class="kat" type="checkbox" name="categories[]" value="'.$k['id'].'" id="kat'.$k['id'].'" hidden checked>
                                         <span>'.$k["nev"].'</span>
                                     </label>';
                                 }
                                 else {
-                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="kat'.$k['id'].'">
+                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="kat'.$k['id'].'">
                                         <input class="kat" type="checkbox" name="categories[]" value="'.$k['id'].'" id="kat'.$k['id'].'" hidden>
                                         <span>'.$k["nev"].'</span>
                                     </label>';
                                 }
                             }
                             else {
-                                $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="kat'.$k['id'].'">
+                                $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="kat'.$k['id'].'">
                                         <input class="kat" type="checkbox" name="categories[]" value="'.$k['id'].'" id="kat'.$k['id'].'" hidden>
                                         <span>'.$k["nev"].'</span>
                                     </label>';
@@ -185,20 +185,20 @@ $konyvKezelesContent.='<div class="mb-3 col-12">
                         foreach($irok as $i) {
                             if(isset($_GET['id'])) {
                                 if($iro->showIsWriterWroteBook($_GET['id'],$i['id'])) {
-                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="iro'.$i['id'].'" style="background-color: rgb(75, 101, 135); color: white;">
+                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="iro'.$i['id'].'" style="background-color: rgb(75, 101, 135); color: white;">
                                         <input class="kat" type="checkbox" name="writers[]" value="'.$i['id'].'" id="iro'.$i['id'].'" hidden checked>
                                         <span>'.$i["nev"].'</span>
                                     </label>';
                                 }
                                 else {
-                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="iro'.$i['id'].'">
+                                    $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="iro'.$i['id'].'">
                                         <input class="kat" type="checkbox" name="writers[]" value="'.$i['id'].'" id="iro'.$i['id'].'" hidden>
                                         <span>'.$i["nev"].'</span>
                                     </label>';
                                 }
                             }
                             else {
-                                $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2" for="iro'.$i['id'].'">
+                                $konyvKezelesContent .= '<label class="category-frame rounded-10 py-1 px-3 c-pointer me-2 mb-2" for="iro'.$i['id'].'">
                                         <input class="kat" type="checkbox" name="writers[]" value="'.$i['id'].'" id="iro'.$i['id'].'" hidden>
                                         <span>'.$i["nev"].'</span>
                                     </label>';

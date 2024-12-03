@@ -57,7 +57,7 @@ $detailContainer =
                                     <hr class="my-3">
                                     <p><span class="my-blue">Született:</span> <span class="float-end">'.$iroInfo['szuletesi_ido'].'</span></p>';
 
-                                    $detailContainer .=$iroInfo['halal_ido']=="" ? '' : '<p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>';                
+                                    $detailContainer .=$iroInfo['halal_ido']=="0000-00-00" ? '' : '<p><span class="my-blue">Elhunyt:</span> <span class="float-end">'.$iroInfo['halal_ido'].'</span></p>';                
 $detailContainer .=                 '<p><span class="my-blue">Származása:</span> <span class="float-end">'.$iroInfo['szarmazas'].'</span></p>
                                     <hr class="my-3">
                                     <p class="mb-3"><span class="my-blue">Kategóriák:</span></p>';

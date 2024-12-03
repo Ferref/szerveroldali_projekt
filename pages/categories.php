@@ -27,7 +27,7 @@ $kategoriakContent = '
     <div class="row mx-0 my-3">
         <div class="col-12" id="categoriesContainer">';
             foreach($kategoriak as $k) {
-                $kategoriakContent .= '<label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2" for="kat'.$k['id'].'">
+                $kategoriakContent .= '<label class="category-frame rounded-10 py-1 ps-3 pe-2 c-pointer me-2 mb-2" for="kat'.$k['id'].'">
                 <a href="'.$ROOT.'pages/search.php?categoryId='.$k['id'].'" id="kat'.$k['id'].'" style="color: inherit;">
                 <span>'.$k["nev"].'<span class="badge bg-my-light-blue ms-1">'.$kategoria->showSpecificCategoryNumber($k['id']).'</span></span></a>
             </label>';

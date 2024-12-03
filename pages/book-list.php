@@ -134,7 +134,7 @@ $kedvContent .=
       </a>
     </li>';
     for ($i=1; $i<=$konyvekPage;$i++){
-        $pagelink=$ROOT.'pages/author-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
+        $pagelink=$ROOT.'pages/book-list.php?page='.$i . (isset($_GET['filterName']) ? "&filterName=".antiSql($_GET['filterName']) : "");
         if ($i==$page) {
           $kedvContent .='<li class="page-item"><a class="page-link page-active" href="'.$pagelink.'">'.$i.'</a></li>';
         } else {

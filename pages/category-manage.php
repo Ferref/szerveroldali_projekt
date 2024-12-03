@@ -22,6 +22,10 @@ $homePage->name = "Kategória Kezelés"; //title attributum értéke
 
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']) && !isset($_GET['id'])) {
     try {
+        if($categoryController->getIsCategoryExistByName(antiSql($_POST['nev']))) {
+            throw new HibaException("Ilyen nevű kategória már van!");
+        }
+        
         if(!($categoryController->createCategory(antiSql($_POST['nev'])))) {
             throw new HibaException();
         }
